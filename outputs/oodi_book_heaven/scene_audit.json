@@ -1,0 +1,25 @@
+{
+  "target": "Helsinki Central Library Oodi - top floor Book Heaven concept",
+  "truth_status": "building match only; exact dimensions and furniture inferred",
+  "objects_total": 293,
+  "mesh_objects": 275,
+  "materials": 14,
+  "lights": 6,
+  "cameras": 2,
+  "required_features": {
+    "open_reading_floor": true,
+    "curved_timber_volume": true,
+    "undulating_ceiling": true,
+    "glazed_balcony": true,
+    "double_helix_stair": true,
+    "book_stacks": true,
+    "cafe_nook": true,
+    "childrens_oasis": true,
+    "circulation_path": true
+  },
+  "deliverables": {
+    "blend": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\oodi_book_heaven\\oodi_book_heaven.blend",
+    "glb": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\oodi_book_heaven\\oodi_book_heaven.glb",
+    "preview": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\oodi_book_heaven\\oodi_book_heaven_preview.png"
+  }
+}

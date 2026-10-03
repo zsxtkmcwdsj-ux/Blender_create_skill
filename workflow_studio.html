@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>Text to 3D Blender - 生成工作台</title>
+  <style>
+    :root{
+      --bg:#080b10;--panel:#111722;--panel2:#151d2a;--ink:#f7fafc;--muted:#9aa7b7;
+      --line:#273142;--accent:#2dd4bf;--blue:#5aa7ff;--warn:#d8a23a;--bad:#e05243;
+      --shadow:0 22px 58px rgba(0,0,0,.34);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC","Segoe UI",Arial,sans-serif;line-height:1.55}
+    a{color:inherit;text-decoration:none}
+    button,input,textarea,select{font:inherit}
+    .global-nav{position:sticky;top:0;z-index:5;height:68px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 24px;border-bottom:1px solid var(--line);background:#090d13}
+    .global-nav strong{font-size:18px}
+    .global-nav nav{display:flex;gap:8px;flex-wrap:wrap}
+    .global-nav a{font-size:14px;font-weight:800;color:var(--muted);border:1px solid var(--line);background:#111722;border-radius:8px;padding:9px 12px}
+    .global-nav a:hover,.global-nav a.active{color:#03110f;background:var(--accent);border-color:var(--accent)}
+    main{width:min(1320px,calc(100% - 40px));margin:auto;padding:26px 0 44px;display:grid;grid-template-columns:430px 1fr;gap:18px}
+    .panel{border:1px solid var(--line);background:var(--panel);border-radius:8px;box-shadow:var(--shadow)}
+    .panel-head{padding:18px 18px 0}
+    h1,h2{margin:0;line-height:1.22}
+    h1{font-size:26px}
+    h2{font-size:19px}
+    p{margin:8px 0 0;color:var(--muted)}
+    form{padding:18px;display:grid;gap:16px}
+    label{display:grid;gap:7px;color:#cdd6e4;font-weight:800;font-size:14px}
+    textarea,input,select{width:100%;border:1px solid var(--line);background:#0c1119;color:var(--ink);border-radius:8px;padding:11px 12px;outline:none}
+    textarea{min-height:150px;resize:vertical}
+    textarea:focus,input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(45,212,191,.16)}
+    .row{display:grid;grid-template-columns:1fr 150px;gap:12px}
+    .actions{display:flex;gap:10px;align-items:center}
+    .primary,.secondary{height:42px;border-radius:8px;border:1px solid var(--line);padding:0 14px;font-weight:900;cursor:pointer}
+    .primary{background:var(--accent);border-color:var(--accent);color:#03110f}
+    .primary:disabled{opacity:.55;cursor:not-allowed}
+    .secondary{background:#101722;color:var(--ink)}
+    .hint{font-size:12px;color:var(--muted);font-weight:500}
+    .workspace{display:grid;grid-template-rows:auto auto 1fr;gap:14px;min-width:0}
+    .summary{padding:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .metric{border:1px solid var(--line);background:var(--panel2);border-radius:8px;padding:12px}
+    .metric small{display:block;color:var(--muted);font-weight:800}
+    .metric b{display:block;margin-top:4px;word-break:break-all}
+    .steps{padding:18px;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+    .step{min-height:118px;border:1px solid var(--line);background:#0d131d;border-radius:8px;padding:12px;position:relative}
+    .step:before{content:attr(data-no);display:grid;place-items:center;width:28px;height:28px;border-radius:8px;background:#202b3a;color:var(--muted);font-weight:900;margin-bottom:10px}
+    .step.complete{border-color:rgba(45,212,191,.62)}
+    .step.complete:before{background:var(--accent);color:#03110f}
+    .step b{display:block;font-size:14px}
+    .step span{display:block;margin-top:6px;color:var(--muted);font-size:12px}
+    .output{padding:18px;display:grid;grid-template-columns:1fr 300px;gap:14px;min-height:320px}
+    .files{border:1px solid var(--line);background:#0c1119;border-radius:8px;padding:14px}
+    .files h2{margin-bottom:10px}
+    .file-grid{display:grid;gap:8px}
+    .file-grid a,.file-grid div{border:1px solid var(--line);background:#101722;border-radius:8px;padding:10px 12px;color:#cdd6e4;word-break:break-all}
+    .file-grid a:hover{border-color:var(--accent);color:#fff}
+    .status-card{border:1px solid var(--line);background:#0c1119;border-radius:8px;padding:14px;align-self:start}
+    .pill{display:inline-flex;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:900;background:#263244;color:#cdd6e4}
+    .pill.running{background:rgba(90,167,255,.16);color:#9fcaff}
+    .pill.complete{background:rgba(45,212,191,.16);color:#72f4e5}
+    .pill.failed{background:rgba(224,82,67,.18);color:#ff9b8f}
+    .showcase{display:block;text-align:center;margin-top:12px;background:var(--accent);color:#03110f;border-radius:8px;padding:11px 12px;font-weight:900}
+    pre{white-space:pre-wrap;word-break:break-word;margin:12px 0 0;color:#cdd6e4;background:#080b10;border:1px solid var(--line);border-radius:8px;padding:10px;max-height:170px;overflow:auto}
+    @media(max-width:1080px){main{grid-template-columns:1fr}.steps{grid-template-columns:repeat(3,1fr)}.output{grid-template-columns:1fr}.summary{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){main{width:calc(100% - 24px)}.global-nav{height:auto;padding:12px 14px;display:block}.global-nav nav{margin-top:10px}.row,.summary,.steps{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header class="global-nav">
+  <strong>Text to 3D Blender</strong>
+  <nav aria-label="主导航">
+    <a href="workflow_studio.html" class="active">生成工作台</a>
+    <a href="ground_truth_studio.html">人工真值</a>
+    <a href="method_b_studio.html">SAM基础分割</a>
+    <a href="method_c_studio.html">C-SAM拓扑修复</a>
+    <a href="lattice_studio.html">成果应用</a>
+    <a href="text_to_3d_blender.html">工作流复盘</a>
+    <a href="model_showcase.html">模型展示台</a>
+  </nav>
+</header>
+
+<main>
+  <section class="panel">
+    <div class="panel-head">
+      <h1>从文字生成 3D 模型</h1>
+      <p>输入你要的建筑或空间，工作流会自动完成调研、建模提示词、Blender 生成和 GLB 校验。</p>
+    </div>
+    <form id="workflowForm">
+      <label>
+        文字需求
+        <textarea id="question" required>生成一个现实风格的故宫角楼外观，重点体现多层屋顶、檐口、斗拱、台基、栏杆、窗棂和屋顶瓦片细节</textarea>
+      </label>
+      <div class="row">
+        <label>
+          案例编号
+          <input id="caseId" value="gugong_corner_visual" maxlength="80">
+        </label>
+        <label>
+          类型
+          <select id="module">
+            <option value="exterior">室外建筑</option>
+            <option value="interior">室内空间</option>
+          </select>
+        </label>
+      </div>
+      <label>
+        参考资料链接或本地路径
+        <textarea id="references" placeholder="一行一个，可不填"></textarea>
+        <span class="hint">可填参考网页、图片或资料文件路径；不填也会自动调研。</span>
+      </label>
+      <div class="actions">
+        <button class="primary" id="runButton" type="submit">开始生成</button>
+        <button class="secondary" id="restoreButton" type="button">恢复上次任务</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="workspace">
+    <section class="panel summary">
+      <div class="metric"><small>当前状态</small><b id="statusText">未开始</b></div>
+      <div class="metric"><small>案例编号</small><b id="caseText">-</b></div>
+      <div class="metric"><small>生成类型</small><b id="moduleText">-</b></div>
+      <div class="metric"><small>结果目录</small><b id="dirText">-</b></div>
+    </section>
+
+    <section class="panel steps" id="steps"></section>
+
+    <section class="panel output">
+      <div class="files">
+        <h2>生成结果</h2>
+        <div class="file-grid" id="files">
+          <div>任务完成后，这里会出现 GLB、Blend、预览图、校验报告和总记录。</div>
+        </div>
+      </div>
+      <aside class="status-card">
+        <span class="pill" id="statusPill">idle</span>
+        <p id="statusDesc">点击“开始生成”后，这里会持续刷新。Blender 建模可能需要几分钟到更久。</p>
+        <a class="showcase" id="showcaseLink" href="model_showcase.html" hidden>进入模型展示台</a>
+        <pre id="manifestText" hidden></pre>
+      </aside>
+    </section>
+  </section>
+</main>
+
+<script>
+const form = document.getElementById("workflowForm");
+const runButton = document.getElementById("runButton");
+const restoreButton = document.getElementById("restoreButton");
+const stepsBox = document.getElementById("steps");
+const filesBox = document.getElementById("files");
+const statusText = document.getElementById("statusText");
+const caseText = document.getElementById("caseText");
+const moduleText = document.getElementById("moduleText");
+const dirText = document.getElementById("dirText");
+const statusPill = document.getElementById("statusPill");
+const statusDesc = document.getElementById("statusDesc");
+const showcaseLink = document.getElementById("showcaseLink");
+const manifestText = document.getElementById("manifestText");
+let timer = null;
+
+const T = {
+  title: "Text to 3D Blender - \u751f\u6210\u5de5\u4f5c\u53f0",
+  workflowStudio: "\u751f\u6210\u5de5\u4f5c\u53f0",
+  latticeStudio: "\u7a97\u68c2\u7814\u7a76\u53f0",
+  workflowReview: "\u5de5\u4f5c\u6d41\u590d\u76d8",
+  modelShowcase: "\u6a21\u578b\u5c55\u793a\u53f0",
+  heading: "\u4ece\u6587\u5b57\u751f\u6210 3D \u6a21\u578b",
+  intro: "\u8f93\u5165\u4f60\u8981\u7684\u5efa\u7b51\u6216\u7a7a\u95f4\uff0c\u5de5\u4f5c\u6d41\u4f1a\u81ea\u52a8\u5b8c\u6210\u8c03\u7814\u3001\u5efa\u6a21\u63d0\u793a\u8bcd\u3001Blender \u751f\u6210\u548c GLB \u6821\u9a8c\u3002",
+  sample: "\u751f\u6210\u4e00\u4e2a\u73b0\u5b9e\u98ce\u683c\u7684\u6545\u5bab\u89d2\u697c\u5916\u89c2\uff0c\u91cd\u70b9\u4f53\u73b0\u591a\u5c42\u5c4b\u9876\u3001\u6a90\u53e3\u3001\u6597\u62f1\u3001\u53f0\u57fa\u3001\u680f\u6746\u3001\u7a97\u68c2\u548c\u5c4b\u9876\u74e6\u7247\u7ec6\u8282",
+  request: "\u6587\u5b57\u9700\u6c42",
+  caseId: "\u6848\u4f8b\u7f16\u53f7",
+  type: "\u7c7b\u578b",
+  exterior: "\u5ba4\u5916\u5efa\u7b51",
+  interior: "\u5ba4\u5185\u7a7a\u95f4",
+  references: "\u53c2\u8003\u8d44\u6599\u94fe\u63a5\u6216\u672c\u5730\u8def\u5f84",
+  referencePlaceholder: "\u4e00\u884c\u4e00\u4e2a\uff0c\u53ef\u4e0d\u586b",
+  referenceHelp: "\u53ef\u586b\u53c2\u8003\u7f51\u9875\u3001\u56fe\u7247\u6216\u8d44\u6599\u6587\u4ef6\u8def\u5f84\uff1b\u4e0d\u586b\u4e5f\u4f1a\u81ea\u52a8\u8c03\u7814\u3002",
+  start: "\u5f00\u59cb\u751f\u6210",
+  restore: "\u6062\u590d\u4e0a\u6b21\u4efb\u52a1",
+  currentStatus: "\u5f53\u524d\u72b6\u6001",
+  caseLabel: "\u6848\u4f8b\u7f16\u53f7",
+  moduleLabel: "\u751f\u6210\u7c7b\u578b",
+  outputDir: "\u7ed3\u679c\u76ee\u5f55",
+  outputTitle: "\u751f\u6210\u7ed3\u679c",
+  outputEmpty: "\u4efb\u52a1\u5b8c\u6210\u540e\uff0c\u8fd9\u91cc\u4f1a\u51fa\u73b0 GLB\u3001Blend\u3001\u9884\u89c8\u56fe\u3001\u6821\u9a8c\u62a5\u544a\u548c\u603b\u8bb0\u5f55\u3002",
+  idleDesc: "\u70b9\u51fb\u5f00\u59cb\u751f\u6210\u540e\uff0c\u8fd9\u91cc\u4f1a\u6301\u7eed\u5237\u65b0\u3002Blender \u5efa\u6a21\u53ef\u80fd\u9700\u8981\u51e0\u5206\u949f\u5230\u66f4\u4e45\u3002",
+  enterShowcase: "\u8fdb\u5165\u6a21\u578b\u5c55\u793a\u53f0",
+  textRequest: "\u6587\u672c\u9700\u6c42",
+  researchPackage: "\u81ea\u52a8\u8c03\u7814\u8d44\u6599\u5305",
+  modelingPrompt: "\u9ad8\u8d28\u91cf\u5efa\u6a21\u63d0\u793a\u8bcd",
+  blenderCode: "Blender \u5efa\u6a21\u4ee3\u7801",
+  blenderOutput: "Blender \u751f\u6210\u6a21\u578b",
+  glbValidation: "GLB \u6a21\u578b\u6821\u9a8c",
+  complete: "\u5df2\u5b8c\u6210",
+  pending: "\u7b49\u5f85\u4e2d",
+  notGenerated: "\u5c1a\u672a\u751f\u6210",
+  running: "\u8fd0\u884c\u4e2d",
+  done: "\u5b8c\u6210",
+  failed: "\u5931\u8d25",
+  glbModel: "GLB \u5c55\u793a\u6a21\u578b",
+  blendFile: "Blend \u53ef\u7f16\u8f91\u6587\u4ef6",
+  previewImage: "\u9884\u89c8\u56fe",
+  validationReport: "GLB \u6821\u9a8c\u62a5\u544a",
+  manifest: "\u5de5\u4f5c\u6d41\u603b\u8bb0\u5f55",
+  runningDesc: "\u4efb\u52a1\u6b63\u5728\u540e\u53f0\u8fd0\u884c\u3002\u9875\u9762\u4f1a\u6839\u636e\u6587\u4ef6\u751f\u6210\u8fdb\u5ea6\u6301\u7eed\u5237\u65b0\u3002",
+  completeDesc: "\u6d41\u7a0b\u5df2\u7ecf\u8dd1\u5b8c\uff0c\u53ef\u4ee5\u8fdb\u5165\u6a21\u578b\u5c55\u793a\u53f0\u67e5\u770b\u53ef\u4ea4\u4e92 3D \u6a21\u578b\u3002",
+  failedPrefix: "\u6d41\u7a0b\u5931\u8d25\uff1a",
+  checkLogs: "\u8bf7\u67e5\u770b\u603b\u8bb0\u5f55\u548c\u65e5\u5fd7\u6587\u4ef6\u3002",
+  submitHint: "\u63d0\u4ea4\u9700\u6c42\u540e\u5f00\u59cb\u751f\u6210\u3002",
+  submitting: "\u63d0\u4ea4\u4e2d",
+  notStarted: "\u672a\u5f00\u59cb"
+};
+
+function replaceLabelText(label, text){
+  label.childNodes[0].nodeValue = `\n        ${text}\n        `;
+}
+
+function applyChineseUi(){
+  document.title = T.title;
+  const navLinks = document.querySelectorAll(".global-nav nav a");
+  [T.workflowStudio, T.latticeStudio, T.workflowReview, T.modelShowcase].forEach((text, index) => {
+    if (navLinks[index]) navLinks[index].textContent = text;
+  });
+  document.querySelector(".panel-head h1").textContent = T.heading;
+  document.querySelector(".panel-head p").textContent = T.intro;
+  const labels = document.querySelectorAll("form label");
+  replaceLabelText(labels[0], T.request);
+  replaceLabelText(labels[1], T.caseId);
+  replaceLabelText(labels[2], T.type);
+  replaceLabelText(labels[3], T.references);
+  document.getElementById("question").value = T.sample;
+  document.querySelector('#module option[value="exterior"]').textContent = T.exterior;
+  document.querySelector('#module option[value="interior"]').textContent = T.interior;
+  document.getElementById("references").placeholder = T.referencePlaceholder;
+  document.querySelector(".hint").textContent = T.referenceHelp;
+  runButton.textContent = T.start;
+  restoreButton.textContent = T.restore;
+  const metrics = document.querySelectorAll(".metric small");
+  [T.currentStatus, T.caseLabel, T.moduleLabel, T.outputDir].forEach((text, index) => metrics[index].textContent = text);
+  statusText.textContent = T.notStarted;
+  document.querySelector(".files h2").textContent = T.outputTitle;
+  filesBox.innerHTML = `<div>${T.outputEmpty}</div>`;
+  statusDesc.textContent = T.idleDesc;
+  showcaseLink.textContent = T.enterShowcase;
+}
+
+function cleanCaseId(value){
+  return (value || "").trim().replace(/[^a-zA-Z0-9_-]+/g, "_").replace(/^_+|_+$/g, "").slice(0, 80) || `scene_${Date.now()}`;
+}
+
+function renderSteps(progress = []){
+  const fallback = [T.textRequest, T.researchPackage, T.modelingPrompt, T.blenderCode, T.blenderOutput, T.glbValidation];
+  const items = progress.length ? progress : fallback.map(name => ({name, status:"pending"}));
+  stepsBox.innerHTML = items.map((item, index) => `
+    <div class="step ${item.status === "complete" ? "complete" : ""}" data-no="${index + 1}">
+      <b>${item.name}</b>
+      <span>${item.status === "complete" ? T.complete : T.pending}</span>
+    </div>
+  `).join("");
+}
+
+function link(label, path){
+  return path ? `<a href="${path}" target="_blank" rel="noreferrer">${label}<br>${path}</a>` : `<div>${label}<br>${T.notGenerated}</div>`;
+}
+
+function renderJob(job){
+  const status = job.status || "unknown";
+  statusText.textContent = status === "running" ? T.running : status === "complete" ? T.done : status === "failed" ? T.failed : status;
+  caseText.textContent = job.case_id || "-";
+  moduleText.textContent = job.module === "interior" ? T.interior : T.exterior;
+  dirText.textContent = job.artifacts?.case_dir || "-";
+  statusPill.textContent = status;
+  statusPill.className = `pill ${status}`;
+  runButton.disabled = status === "running";
+  renderSteps(job.progress || []);
+  const art = job.artifacts || {};
+  filesBox.innerHTML = [
+    link(T.glbModel, art.glb),
+    link(T.blendFile, art.blend),
+    link(T.previewImage, art.preview),
+    link(T.validationReport, art.validation),
+    link(T.manifest, art.manifest),
+  ].join("");
+  showcaseLink.hidden = !art.showcase_url;
+  if (art.showcase_url) showcaseLink.href = art.showcase_url;
+  if (job.manifest) {
+    manifestText.hidden = false;
+    manifestText.textContent = JSON.stringify(job.manifest.stages || job.manifest, null, 2);
+  }
+  statusDesc.textContent = status === "running"
+    ? T.runningDesc
+    : status === "complete"
+      ? T.completeDesc
+      : status === "failed"
+        ? `${T.failedPrefix}${job.error || T.checkLogs}`
+        : T.submitHint;
+}
+
+async function poll(jobId){
+  const response = await fetch(`/api/workflows/${jobId}`);
+  const job = await response.json();
+  renderJob(job);
+  if (job.status === "running") timer = setTimeout(() => poll(jobId), 2500);
+}
+
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+  clearTimeout(timer);
+  const payload = {
+    question: document.getElementById("question").value.trim(),
+    case_id: cleanCaseId(document.getElementById("caseId").value),
+    module: document.getElementById("module").value,
+    references: document.getElementById("references").value.split(/\n+/).map(item => item.trim()).filter(Boolean),
+  };
+  runButton.disabled = true;
+  statusText.textContent = T.submitting;
+  const response = await fetch("/api/workflows", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(payload)});
+  const job = await response.json();
+  if (!response.ok) {
+    renderJob({status:"failed", error:job.error, case_id:payload.case_id, module:payload.module, progress:[]});
+    return;
+  }
+  localStorage.setItem("lastWorkflowJobId", job.id);
+  renderJob(job);
+  poll(job.id);
+});
+
+restoreButton.addEventListener("click", () => {
+  const jobId = localStorage.getItem("lastWorkflowJobId");
+  if (jobId) poll(jobId);
+});
+
+applyChineseUi();
+renderSteps();
+</script>
+</body>
+</html>

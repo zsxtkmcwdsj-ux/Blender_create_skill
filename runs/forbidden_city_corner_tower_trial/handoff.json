@@ -1,0 +1,13 @@
+{
+  "question": "生成故宫角楼外观，现实风格，重点表现三层复合屋顶、黄色琉璃瓦、朱红柱窗、斗拱、汉白玉栏杆、台基、城墙连接和近景材质细节",
+  "synthesis_status": "fallback: HTTP Error 400: Bad Request",
+  "generation_module": "exterior_architecture",
+  "workflow_mode": "assembled_elements_with_verified_joints",
+  "research_file": "research.json",
+  "brief_file": "scene_brief.json",
+  "prompt_quality_package_file": "prompt_quality_package.json",
+  "skill_prompt_file": "skill_prompt.md",
+  "space_contract_reference": "blender-mcp-reference-modeling/references/spatial-grammar.md",
+  "hard_finish_contract_reference": "blender-mcp-reference-modeling/references/closed-space-hard-finish.md",
+  "references": []
+}

@@ -1,0 +1,14 @@
+{
+  "case_id": "TWV3_P05_E6_application",
+  "status": "analysis_complete",
+  "frame_width_mm": 1500,
+  "frame_height_mm": 2098.2,
+  "node_count": 582,
+  "edge_count": 664,
+  "confidence": 0.82,
+  "estimated_fields": [
+    "bars.width_mm",
+    "bars.depth_mm"
+  ],
+  "next_stage": "deterministic_3d_generation"
+}

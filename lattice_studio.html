@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>传统窗棂研究台</title>
+  <script>
+    if(location.protocol==="file:") location.replace("http://127.0.0.1:8765/lattice_studio.html"+location.search+location.hash);
+  </script>
+  <style>
+    :root{
+      --bg:#080b10;--panel:#111722;--panel2:#151d2a;--ink:#f7fafc;--muted:#9aa7b7;
+      --line:#273142;--accent:#2dd4bf;--blue:#5aa7ff;--warn:#e2ae47;--bad:#ef6b61;
+      --shadow:0 22px 58px rgba(0,0,0,.34)
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC","Segoe UI",Arial,sans-serif;line-height:1.55}
+    a{color:inherit;text-decoration:none}button,input,select{font:inherit}
+    .global-nav{position:sticky;top:0;z-index:5;min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 24px;border-bottom:1px solid var(--line);background:#090d13}
+    .brand{display:flex;align-items:center;gap:12px}.mark{display:grid;place-items:center;width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--blue));color:#03110f;font-weight:1000}.brand strong{display:block}.brand small{display:block;color:var(--muted);letter-spacing:.08em}
+    nav{display:flex;gap:8px;flex-wrap:wrap}nav a{font-size:14px;font-weight:800;color:var(--muted);border:1px solid var(--line);background:#111722;border-radius:8px;padding:9px 12px}nav a:hover,nav a.active{color:#03110f;background:var(--accent);border-color:var(--accent)}
+    .notice{display:none;width:min(1500px,calc(100% - 40px));margin:16px auto 0;padding:10px 14px;border:1px solid rgba(226,174,71,.45);background:rgba(226,174,71,.1);border-radius:8px;color:#f4d58c}
+    main{width:min(1500px,calc(100% - 40px));margin:auto;padding:22px 0 46px;display:grid;gap:16px}
+    .panel{border:1px solid var(--line);background:var(--panel);border-radius:10px;box-shadow:var(--shadow)}
+    .hero{padding:20px;display:flex;justify-content:space-between;gap:20px;align-items:end}.hero h1{margin:0;font-size:28px}.hero p{margin:7px 0 0;color:var(--muted)}.badge{white-space:nowrap;border:1px solid rgba(45,212,191,.35);background:rgba(45,212,191,.08);color:#78f4e5;padding:7px 10px;border-radius:999px;font-size:13px;font-weight:900}.handoff{display:none;padding:14px 18px;border:1px solid rgba(45,212,191,.5);background:rgba(45,212,191,.08);border-radius:10px}.handoff b{color:#7af3e5}.handoff p{margin:4px 0 0;color:var(--muted)}
+    .steps{padding:14px;display:grid;grid-template-columns:repeat(7,1fr);gap:8px}.step{min-height:94px;border:1px solid var(--line);background:#0d131d;border-radius:8px;padding:10px}.step:before{content:attr(data-no);display:grid;place-items:center;width:25px;height:25px;border-radius:7px;background:#202b3a;color:var(--muted);font-weight:900;margin-bottom:8px}.step b{display:block;font-size:13px}.step span{display:block;margin-top:4px;color:var(--muted);font-size:11px}.step.complete{border-color:rgba(45,212,191,.62)}.step.complete:before{background:var(--accent);color:#03110f}.step.active{border-color:var(--blue);box-shadow:0 0 0 2px rgba(90,167,255,.12)}.step.active:before{background:var(--blue);color:#06111d}
+    .workbench{display:grid;grid-template-columns:360px minmax(0,1fr);gap:16px}.side{padding:18px}.side h2,.viewer h2,.results h2{margin:0 0 12px;font-size:19px}.side form{display:grid;gap:13px}label{display:grid;gap:6px;color:#d8e0eb;font-size:13px;font-weight:800}input,select{width:100%;border:1px solid var(--line);background:#0c1119;color:var(--ink);border-radius:8px;padding:10px 11px;outline:none}input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(45,212,191,.14)}input[type=file]{padding:8px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.hint{font-size:12px;color:var(--muted);font-weight:500}.source-note{border:1px solid var(--line);background:#0c1119;border-radius:8px;padding:10px 11px;color:var(--muted);font-size:12px}.source-note b{color:#dbe5f1}.actions{display:flex;gap:8px;flex-wrap:wrap}.primary,.secondary{min-height:40px;border-radius:8px;border:1px solid var(--line);padding:0 13px;font-weight:900;cursor:pointer}.primary{background:var(--accent);border-color:var(--accent);color:#03110f}.secondary{background:#101722;color:var(--ink)}.secondary.active{border-color:var(--accent);color:#78f4e5;background:rgba(45,212,191,.12)}button:disabled{opacity:.5;cursor:not-allowed}.checkline{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#0c1119;border-radius:8px;padding:10px 11px}.checkline input{width:auto;margin:0}.checkline span{font-size:12px;color:#d8e0eb;font-weight:800}
+    .viewer{padding:18px;min-width:0}.viewer-head{display:flex;align-items:start;justify-content:space-between;gap:12px;margin-bottom:10px}.viewer-head p{margin:4px 0 0;color:var(--muted);font-size:13px}.point-count{border:1px solid var(--line);background:#0c1119;border-radius:8px;padding:7px 10px;color:#cdd6e4;font-size:12px;font-weight:900}
+    .canvas-wrap{position:relative;display:grid;place-items:center;min-height:430px;border:1px dashed #324156;background:linear-gradient(135deg,#0a0f16,#0d1520);border-radius:10px;overflow:auto;padding:12px}.canvas-wrap canvas{display:block;max-width:100%;height:auto;cursor:crosshair;border-radius:4px}.empty{color:var(--muted);text-align:center;padding:30px}.empty strong{display:block;color:#d8e0eb;font-size:18px;margin-bottom:6px}
+    .analysis-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.analysis-card{padding:12px}.analysis-card h3{font-size:14px;margin:0 0 8px}.analysis-card canvas{display:block;width:100%;height:auto;min-height:130px;object-fit:contain;background:#080b10;border:1px solid var(--line);border-radius:7px}.analysis-card p{font-size:11px;color:var(--muted);margin:7px 0 0}.analysis-card.editor{grid-column:span 2}.analysis-card.editor canvas{cursor:crosshair;touch-action:none}.editor-tools{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin:8px 0}.tool{min-height:34px;padding:0 10px;border:1px solid var(--line);background:#101722;color:var(--ink);border-radius:7px;font-size:12px;font-weight:800;cursor:pointer}.tool.active{border-color:var(--accent);background:rgba(45,212,191,.16);color:#7af3e5}.brush-control{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:12px}.brush-control input{width:120px;padding:0}.confirm-note{padding:9px 10px;border-radius:7px;border:1px solid rgba(226,174,71,.35);background:rgba(226,174,71,.08);color:#f1d18b;font-size:12px}
+    .results{padding:18px;display:grid;grid-template-columns:1fr 320px;gap:14px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.metric{border:1px solid var(--line);background:#0c1119;border-radius:8px;padding:11px}.metric small{display:block;color:var(--muted)}.metric b{display:block;margin-top:3px;font-size:17px}.status{border:1px solid var(--line);background:#0c1119;border-radius:8px;padding:13px}.pill{display:inline-flex;padding:5px 9px;border-radius:999px;background:#263244;color:#cdd6e4;font-size:12px;font-weight:900}.pill.complete{background:rgba(45,212,191,.15);color:#72f4e5}.pill.failed{background:rgba(239,107,97,.16);color:#ffaba4}.status p{color:var(--muted);font-size:13px}.files{display:grid;gap:7px;margin-top:10px}.files a{border:1px solid var(--line);background:#111925;border-radius:7px;padding:8px 10px;color:#cdd6e4;font-size:12px;word-break:break-all}.files a:hover{border-color:var(--accent);color:#fff}
+    @media(max-width:1120px){.workbench{grid-template-columns:1fr}.steps{grid-template-columns:repeat(4,1fr)}.analysis-grid{grid-template-columns:repeat(2,1fr)}.results{grid-template-columns:1fr}}
+    @media(max-width:680px){main,.notice{width:calc(100% - 24px)}.global-nav{align-items:flex-start;display:block}.global-nav nav{margin-top:10px}.hero{display:block}.badge{display:inline-block;margin-top:12px}.steps,.analysis-grid,.metrics,.grid2{grid-template-columns:1fr}.analysis-card.editor{grid-column:auto}.canvas-wrap{min-height:280px}}
+  </style>
+</head>
+<body>
+<header class="global-nav">
+  <div class="brand"><span class="mark">窗</span><div><strong>传统窗棂研究台</strong><small>IMAGE → STRUCTURE</small></div></div>
+  <nav aria-label="主导航">
+    <a href="workflow_studio.html">文字生成工作台</a>
+    <a href="lattice_studio.html" class="active">成果应用</a>
+    <a href="ground_truth_studio.html">人工真值标注</a>
+    <a href="method_b_studio.html">开放词汇SAM2</a>
+    <a href="method_c_studio.html">障碍感知拓扑反馈</a>
+    <a href="text_to_3d_blender.html">工作流复盘</a>
+    <a href="model_showcase.html">模型展示台</a>
+  </nav>
+</header>
+
+<div class="notice" id="fileNotice">当前页面由文件直接打开：图片分析仍可使用，但结果不能保存到项目。请通过工作流服务打开 <b>http://127.0.0.1:8765/lattice_studio.html</b>。</div>
+
+<main>
+  <section class="panel hero">
+    <div><h1>窗棂成果应用与三维重建</h1><p>接收人工真值Mask或ECO-Lattice的E6补全成果，人工终检后提取中心线与节点，再由Blender生成2.5D窗棂模型。</p></div>
+    <span class="badge">下游应用平台 · 不参与A/B/C精度对照</span>
+  </section>
+
+  <section class="handoff" id="handoffBanner"><b id="handoffTitle">正在读取二维窗棂Mask……</b><p id="handoffText">传入Mask将作为建模初稿；在本页的人工修正只属于下游建模终检，不会回写或美化二维实验结果。</p></section>
+
+  <section class="panel steps" id="steps"></section>
+
+  <section class="workbench">
+    <aside class="panel side">
+      <h2>1. 输入资料</h2>
+      <form id="analysisForm">
+        <label>研究对象名称<input id="title" value="苏州园林传统窗棂" required></label>
+        <label>案例编号<input id="caseId" value="lattice_window_001" maxlength="80" required></label>
+        <label>来源链接（可选）<input id="sourceUrl" type="url" placeholder="https://..."></label>
+        <label>上传窗棂图片<input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp"></label>
+        <div class="source-note"><b>推荐路线：</b>从人工真值页面发送当前人工Mask，或在ECO-Lattice研究台完成E0—E6后发送M_completed。上传图片和本地分析保留为手工备用入口。</div>
+        <label>范围选择方式<select id="selectionMode"><option value="polygon">自由轮廓圈选（推荐不规则窗棂）</option><option value="quad">四角透视矫正（矩形窗棂）</option><option value="full">直接使用整张图片</option></select></label>
+        <div class="grid2">
+          <label>窗框真实宽度（mm）<input id="frameWidth" type="number" min="100" step="1" value="1500" required></label>
+          <label>木条颜色<select id="polarity"><option value="auto">自动判断（推荐）</option><option value="dark">深色木条/浅色背景</option><option value="light">浅色木条/深色背景</option></select></label>
+        </div>
+        <label>生成路线<select id="generationRoute"><option value="silhouette">曲线雕花／实体轮廓挤出（推荐）</option><option value="skeleton">直线格栅／中心线生成</option></select><span class="hint">当前三维生成使用“实体轮廓挤出”；中心线模式保留为结构分析对照。</span></label>
+        <div class="grid2">
+          <label>木条宽度（mm，可空）<input id="barWidth" type="number" min="1" step="0.1" placeholder="自动估算"></label>
+          <label>木条进深（mm，可空）<input id="barDepth" type="number" min="1" step="0.1" placeholder="按宽度估算"></label>
+        </div>
+        <label>分割阈值微调 <span class="hint" id="thresholdText">自动 + 0</span><input id="thresholdOffset" type="range" min="-70" max="70" value="0"></label>
+        <label>颜色取样容差 <span class="hint" id="toleranceText">68</span><input id="colorTolerance" type="range" min="20" max="140" value="68"></label>
+        <label>背景排除容差 <span class="hint" id="backgroundToleranceText">46</span><input id="backgroundTolerance" type="range" min="15" max="120" value="46"></label>
+        <label class="checkline"><input id="suppressGreen" type="checkbox" checked><span>抑制绿色植物及已取样的假山、石头和墙面</span></label>
+        <div class="actions">
+          <button class="secondary" id="demoButton" type="button">加载示例窗棂</button>
+          <button class="secondary" id="finishBoundary" type="button">完成轮廓</button>
+          <button class="secondary" id="sampleButton" type="button">取样窗棂颜色</button>
+          <button class="secondary" id="backgroundSampleButton" type="button">取样背景干扰</button>
+          <button class="secondary" id="clearSamples" type="button">清除全部取样</button>
+          <button class="secondary" id="resetButton" type="button">重新标记</button>
+          <button class="primary" id="analyzeButton" type="submit">分析图片</button>
+        </div>
+        <span class="hint">建议先在木条上取样3—5处，再对假山、石头、植物或墙面分别取样。青色边界、橙色S为窗棂样本、红色B为背景样本。</span>
+      </form>
+    </aside>
+
+    <section class="panel viewer">
+      <div class="viewer-head"><div><h2 id="viewerTitle">2. 圈选窗棂范围</h2><p id="viewerHelp">先上传图片，或点击“加载示例窗棂”。</p></div><span class="point-count" id="pointCount">0 个边界点</span></div>
+      <div class="canvas-wrap" id="sourceWrap"><div class="empty" id="emptyState"><strong>等待窗棂图片</strong>建议使用窗框完整、遮挡少、角度不过大的照片。</div><canvas id="sourceCanvas" hidden></canvas></div>
+    </section>
+  </section>
+
+  <section class="analysis-grid" id="analysisGrid" hidden>
+    <article class="panel analysis-card"><h3>选区与视图矫正</h3><canvas id="rectifiedCanvas"></canvas><p>矩形窗棂执行透视矫正；自由轮廓和整图模式保留真实外形并裁除选区外背景。</p></article>
+    <article class="panel analysis-card editor"><h3>实体分割修正</h3><canvas id="maskCanvas"></canvas><div class="editor-tools"><button class="tool active" id="paintTool" type="button">补成实体</button><button class="tool" id="eraseTool" type="button">擦成背景</button><span class="brush-control">笔刷 <input id="brushSize" type="range" min="2" max="42" value="12"><b id="brushSizeText">12</b></span><button class="tool" id="keepMainStructure" type="button">只保留主结构</button><button class="tool" id="removeSpeckles" type="button">去小杂点</button><button class="tool" id="closeGaps" type="button">连接小断点</button><button class="tool" id="invertMask" type="button">黑白反转</button><button class="tool" id="resetMask" type="button">恢复自动结果</button></div><p>白色必须只保留窗框和窗棂实体；黑色必须是孔洞或背景。假山等误识别可先用背景取样排除，再用笔刷修正。</p></article>
+    <article class="panel analysis-card"><h3>中心线骨架</h3><canvas id="skeletonCanvas"></canvas><p>将木条压缩为单像素中心线，用于拓扑分析。</p></article>
+    <article class="panel analysis-card"><h3>节点与连线</h3><canvas id="overlayCanvas"></canvas><p>青色为骨架，橙色为交叉或端点节点。</p></article>
+  </section>
+
+  <section class="panel results" id="resultsPanel" hidden>
+    <div>
+      <h2>3. 分析结果</h2>
+      <div class="metrics">
+        <div class="metric"><small>窗框尺寸</small><b id="frameMetric">-</b></div>
+        <div class="metric"><small>实体／孔洞</small><b id="solidMetric">-</b></div>
+        <div class="metric"><small>生成方式</small><b id="routeMetric">-</b></div>
+        <div class="metric"><small>分析可信度</small><b id="confidenceMetric">-</b></div>
+      </div>
+      <p class="confirm-note" id="confirmNote">分析后请检查白色实体；只有点击“确认分割并保存”后才允许生成三维模型。</p>
+      <div class="actions" style="margin-top:12px">
+        <button class="secondary" id="downloadButton" type="button" disabled>下载 lattice_schema.json</button>
+        <button class="secondary" id="confirmButton" type="button" disabled>确认分割并保存</button>
+        <button class="primary" id="generateButton" type="button" disabled>生成三维模型</button>
+        <button class="secondary" type="button" disabled title="三维模型稳定后接入">建筑构件装配验证（后续阶段）</button>
+      </div>
+    </div>
+    <aside class="status">
+      <span class="pill" id="statusPill">idle</span>
+      <p id="statusText">尚未运行图片分析。</p>
+      <div class="files" id="artifactLinks"></div>
+    </aside>
+  </section>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const sourceCanvas = $("sourceCanvas");
+const sourceContext = sourceCanvas.getContext("2d", {willReadFrequently:true});
+const outputCanvases = {
+  rectified: $("rectifiedCanvas"), mask: $("maskCanvas"), skeleton: $("skeletonCanvas"), overlay: $("overlayCanvas")
+};
+let sourceImage = null;
+let sourceName = "";
+let cornerPoints = [];
+let samplePoints = [];
+let backgroundSamplePoints = [];
+let boundaryFinished = false;
+let interactionMode = "boundary";
+let latestRoiMask = null;
+let latestSchema = null;
+let latestRectified = null;
+let currentMask = null;
+let automaticMask = null;
+let currentGraph = null;
+let segmentationConfirmed = false;
+let editMode = "paint";
+let drawingMask = false;
+
+const stageNames = ["图片输入", "范围与尺度", "选区矫正", "纹样分割", "骨架与节点", "三维生成", "构件装配"];
+function renderSteps(completed = 0, active = 0){
+  $("steps").innerHTML = stageNames.map((name,index) => `<div class="step ${index < completed ? "complete" : index === active ? "active" : ""}" data-no="${index+1}"><b>${name}</b><span>${index < completed ? "已完成" : index === active ? "当前阶段" : "后续阶段"}</span></div>`).join("");
+}
+
+function cleanCaseId(value){
+  return (value || "").trim().replace(/[^a-zA-Z0-9_-]+/g,"_").replace(/^_+|_+$/g,"").slice(0,80) || `lattice_${Date.now()}`;
+}
+
+function setStatus(kind, message){
+  $("statusPill").textContent = kind;
+  $("statusPill").className = `pill ${kind}`;
+  $("statusText").textContent = message;
+}
+
+function markMaskDirty(message="分割结果已修改，请重新确认后再生成模型。"){
+  segmentationConfirmed=false;
+  $("generateButton").disabled=true;
+  $("confirmButton").disabled=!currentMask;
+  $("confirmNote").textContent=message;
+  if(currentMask)setStatus("idle",message);
+}
+
+function fitImageSize(width, height, maxSide = 1100){
+  const scale = Math.min(1, maxSide / Math.max(width,height));
+  return [Math.max(1,Math.round(width*scale)), Math.max(1,Math.round(height*scale))];
+}
+
+function drawSource(){
+  if (!sourceImage) return;
+  const [width,height] = fitImageSize(sourceImage.naturalWidth || sourceImage.width, sourceImage.naturalHeight || sourceImage.height);
+  if (sourceCanvas.width !== width || sourceCanvas.height !== height){ sourceCanvas.width=width; sourceCanvas.height=height; }
+  sourceContext.clearRect(0,0,width,height);
+  sourceContext.drawImage(sourceImage,0,0,width,height);
+  sourceContext.lineWidth = Math.max(2,width/350);
+  sourceContext.font = `${Math.max(14,width/45)}px sans-serif`;
+  const mode=$("selectionMode").value;
+  cornerPoints.forEach((point,index) => {
+    sourceContext.beginPath();sourceContext.arc(point.x,point.y,Math.max(6,width/100),0,Math.PI*2);sourceContext.fillStyle="#2dd4bf";sourceContext.fill();
+    sourceContext.strokeStyle="#06110f";sourceContext.stroke();sourceContext.fillStyle="#07100f";sourceContext.fillText(String(index+1),point.x-4,point.y+5);
+    if(index>0){sourceContext.beginPath();sourceContext.moveTo(cornerPoints[index-1].x,cornerPoints[index-1].y);sourceContext.lineTo(point.x,point.y);sourceContext.strokeStyle="#2dd4bf";sourceContext.stroke();}
+  });
+  if((mode==="quad"&&cornerPoints.length===4)||(mode==="polygon"&&boundaryFinished&&cornerPoints.length>=3)){sourceContext.beginPath();sourceContext.moveTo(cornerPoints[cornerPoints.length-1].x,cornerPoints[cornerPoints.length-1].y);sourceContext.lineTo(cornerPoints[0].x,cornerPoints[0].y);sourceContext.strokeStyle="#2dd4bf";sourceContext.stroke();}
+  samplePoints.forEach((point,index)=>{sourceContext.beginPath();sourceContext.arc(point.x,point.y,Math.max(6,width/110),0,Math.PI*2);sourceContext.fillStyle="#ff9d3f";sourceContext.fill();sourceContext.strokeStyle="#1a0d03";sourceContext.stroke();sourceContext.fillStyle="#1a0d03";sourceContext.fillText("S"+String(index+1),point.x+7,point.y-7);});
+  backgroundSamplePoints.forEach((point,index)=>{sourceContext.beginPath();sourceContext.arc(point.x,point.y,Math.max(6,width/110),0,Math.PI*2);sourceContext.fillStyle="#ef6b61";sourceContext.fill();sourceContext.strokeStyle="#210503";sourceContext.stroke();sourceContext.fillStyle="#fff";sourceContext.fillText("B"+String(index+1),point.x+7,point.y-7);});
+  const sampleSummary=`${samplePoints.length}S / ${backgroundSamplePoints.length}B`;
+  if(mode==="quad"){
+    $("viewerTitle").textContent="2. 标记矩形窗框四角";$("pointCount").textContent=`${cornerPoints.length} / 4 · ${sampleSummary}`;
+    $("viewerHelp").textContent=interactionMode==="sample"?"请在真实窗棂木条上点击取样，建议3—5处。":interactionMode==="background_sample"?"请分别点击假山、石头、植物和墙面等干扰物。":cornerPoints.length<4?`请点击第 ${cornerPoints.length+1} 个角：${["左上","右上","右下","左下"][cornerPoints.length]}`:"四角完成；可继续取样窗棂和背景颜色或直接分析。";
+  }else if(mode==="polygon"){
+    $("viewerTitle").textContent="2. 自由圈选窗棂外轮廓";$("pointCount").textContent=`${cornerPoints.length} 个边界点 · ${sampleSummary}`;
+    $("viewerHelp").textContent=interactionMode==="sample"?"请在真实窗棂木条上点击取样，建议3—5处。":interactionMode==="background_sample"?"请分别点击假山、石头、植物和墙面等干扰物。":boundaryFinished?"自由轮廓已闭合；可分别取样窗棂和背景颜色或开始分析。":"沿窗棂最外边界逐点点击，至少3点，完成后点击“完成轮廓”。";
+  }else{
+    $("viewerTitle").textContent="2. 使用整张图片";$("pointCount").textContent=`整图 · ${sampleSummary}`;
+    $("viewerHelp").textContent=interactionMode==="sample"?"请在真实窗棂木条上点击取样，建议3—5处。":interactionMode==="background_sample"?"请分别点击假山、石头、植物和墙面等干扰物。":"整张图片将直接用于分析；复杂背景建议同时取样窗棂和干扰物。";
+  }
+}
+
+function loadImageDataUrl(dataUrl, name, presetPoints = null){
+  const image = new Image();
+  image.onload = () => {
+    sourceImage=image;sourceName=name || "uploaded_image";cornerPoints=[];samplePoints=[];backgroundSamplePoints=[];boundaryFinished=false;interactionMode="boundary";
+    $("emptyState").hidden=true;sourceCanvas.hidden=false;
+    drawSource();
+    if(presetPoints){
+      const sx=sourceCanvas.width/(image.naturalWidth||image.width), sy=sourceCanvas.height/(image.naturalHeight||image.height);
+      cornerPoints=presetPoints.map(point=>({x:point.x*sx,y:point.y*sy}));boundaryFinished=true;drawSource();
+    }
+    renderSteps(1,1);setStatus("idle","图片已载入，请选择范围方式并圈选窗棂；复杂背景建议取样木条颜色。");
+  };
+  image.onerror=()=>setStatus("failed","图片无法读取，请换用 PNG、JPEG 或 WebP。");
+  image.src=dataUrl;
+}
+
+$("fileInput").addEventListener("change", event => {
+  const file=event.target.files && event.target.files[0];if(!file)return;
+  if(!/^image\/(png|jpeg|webp)$/.test(file.type)){setStatus("failed","只支持 PNG、JPEG 或 WebP 图片。");return;}
+  const reader=new FileReader();reader.onload=()=>loadImageDataUrl(reader.result,file.name);reader.readAsDataURL(file);
+});
+
+sourceCanvas.addEventListener("click", event => {
+  if(!sourceImage)return;
+  const rect=sourceCanvas.getBoundingClientRect();
+  const point={x:(event.clientX-rect.left)*sourceCanvas.width/rect.width,y:(event.clientY-rect.top)*sourceCanvas.height/rect.height};
+  if(interactionMode==="sample"){
+    if(samplePoints.length<12)samplePoints.push(point);
+  }else if(interactionMode==="background_sample"){
+    if(backgroundSamplePoints.length<20)backgroundSamplePoints.push(point);
+  }else{
+    const mode=$("selectionMode").value;
+    if(mode==="full")return;
+    if(mode==="quad"&&cornerPoints.length>=4)return;
+    if(mode==="polygon"&&boundaryFinished)return;
+    cornerPoints.push(point);if(mode==="quad"&&cornerPoints.length===4)boundaryFinished=true;
+  }
+  drawSource();
+  if(selectionReady())renderSteps(2,2);
+});
+
+function selectionReady(){const mode=$("selectionMode").value;return mode==="full"||(mode==="quad"&&cornerPoints.length===4)||(mode==="polygon"&&boundaryFinished&&cornerPoints.length>=3)}
+function resetSelection(){cornerPoints=[];samplePoints=[];backgroundSamplePoints=[];boundaryFinished=false;interactionMode="boundary";$("sampleButton").classList.remove("active");$("backgroundSampleButton").classList.remove("active");drawSource();renderSteps(sourceImage?1:0,sourceImage?1:0)}
+$("resetButton").addEventListener("click",resetSelection);
+$("finishBoundary").addEventListener("click",()=>{if($("selectionMode").value!=="polygon")return;if(cornerPoints.length<3){setStatus("failed","自由轮廓至少需要3个边界点。");return;}boundaryFinished=true;drawSource();renderSteps(2,2);});
+$("sampleButton").addEventListener("click",()=>{interactionMode=interactionMode==="sample"?"boundary":"sample";$("sampleButton").classList.toggle("active",interactionMode==="sample");$("backgroundSampleButton").classList.remove("active");drawSource();});
+$("backgroundSampleButton").addEventListener("click",()=>{interactionMode=interactionMode==="background_sample"?"boundary":"background_sample";$("backgroundSampleButton").classList.toggle("active",interactionMode==="background_sample");$("sampleButton").classList.remove("active");drawSource();});
+$("clearSamples").addEventListener("click",()=>{samplePoints=[];backgroundSamplePoints=[];drawSource();markMaskDirty("颜色取样已清除，请重新分析图片。");});
+$("selectionMode").addEventListener("change",()=>{resetSelection();const full=$("selectionMode").value==="full";$("finishBoundary").disabled=full||$("selectionMode").value==="quad";if(full)renderSteps(sourceImage?2:0,sourceImage?2:0);});
+$("thresholdOffset").addEventListener("input",event=>{$("thresholdText").textContent=`自动 ${Number(event.target.value)>=0?"+":""}${event.target.value}`;markMaskDirty("阈值已改变，请重新点击“分析图片”。");});
+$("colorTolerance").addEventListener("input",event=>{$("toleranceText").textContent=event.target.value;markMaskDirty("颜色取样容差已改变，请重新分析图片。");});
+$("backgroundTolerance").addEventListener("input",event=>{$("backgroundToleranceText").textContent=event.target.value;markMaskDirty("背景排除容差已改变，请重新分析图片。");});
+$("suppressGreen").addEventListener("change",()=>markMaskDirty("背景抑制设置已改变，请重新分析图片。"));
+
+$("demoButton").addEventListener("click",()=>{
+  const demo=document.createElement("canvas");demo.width=900;demo.height=650;const ctx=demo.getContext("2d");
+  ctx.fillStyle="#efe6ce";ctx.fillRect(0,0,demo.width,demo.height);ctx.fillStyle="#d7c8a6";
+  for(let y=0;y<650;y+=28){ctx.fillRect(0,y,900,1)}
+  ctx.strokeStyle="#3d2417";ctx.lineCap="square";ctx.lineJoin="miter";ctx.lineWidth=30;ctx.strokeRect(90,70,720,510);
+  ctx.lineWidth=17;ctx.strokeRect(120,100,660,450);
+  const left=120,right=780,top=100,bottom=550,cx=450,cy=325;
+  ctx.lineWidth=14;
+  [[left,cy,right,cy],[cx,top,cx,bottom],[left,top,right,bottom],[right,top,left,bottom],[left,212,right,438],[left,438,right,212]].forEach(line=>{ctx.beginPath();ctx.moveTo(line[0],line[1]);ctx.lineTo(line[2],line[3]);ctx.stroke();});
+  ctx.beginPath();ctx.moveTo(cx,top);ctx.lineTo(right,cy);ctx.lineTo(cx,bottom);ctx.lineTo(left,cy);ctx.closePath();ctx.stroke();
+  $("selectionMode").value="quad";$("finishBoundary").disabled=true;
+  loadImageDataUrl(demo.toDataURL("image/png"),"demo_haitang_lattice.png",[{x:90,y:70},{x:810,y:70},{x:810,y:580},{x:90,y:580}]);
+  $("title").value="示例海棠纹窗棂";$("caseId").value="lattice_demo_001";
+});
+
+function distance(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
+function clamp(value,min,max){return Math.max(min,Math.min(max,value))}
+function solveLinear(matrix, vector){
+  const n=vector.length;const a=matrix.map((row,i)=>[...row,vector[i]]);
+  for(let col=0;col<n;col++){
+    let pivot=col;for(let row=col+1;row<n;row++)if(Math.abs(a[row][col])>Math.abs(a[pivot][col]))pivot=row;
+    if(Math.abs(a[pivot][col])<1e-10)throw new Error("四角位置无法形成有效透视，请重新标记。");
+    [a[col],a[pivot]]=[a[pivot],a[col]];const divisor=a[col][col];for(let j=col;j<=n;j++)a[col][j]/=divisor;
+    for(let row=0;row<n;row++){if(row===col)continue;const factor=a[row][col];for(let j=col;j<=n;j++)a[row][j]-=factor*a[col][j];}
+  }
+  return a.map(row=>row[n]);
+}
+function homography(from,to){
+  const rows=[],values=[];
+  for(let i=0;i<4;i++){
+    const u=from[i].x,v=from[i].y,x=to[i].x,y=to[i].y;
+    rows.push([u,v,1,0,0,0,-x*u,-x*v]);values.push(x);
+    rows.push([0,0,0,u,v,1,-y*u,-y*v]);values.push(y);
+  }
+  return [...solveLinear(rows,values),1];
+}
+function rawSourceCanvas(){
+  const canvas=document.createElement("canvas");canvas.width=sourceCanvas.width;canvas.height=sourceCanvas.height;
+  canvas.getContext("2d").drawImage(sourceImage,0,0,canvas.width,canvas.height);return canvas;
+}
+function warpPerspective(){
+  const top=distance(cornerPoints[0],cornerPoints[1]),bottom=distance(cornerPoints[3],cornerPoints[2]);
+  const left=distance(cornerPoints[0],cornerPoints[3]),right=distance(cornerPoints[1],cornerPoints[2]);
+  const aspect=Math.max(.25,Math.min(4,(top+bottom)/(left+right)));
+  const width=clamp(Math.round((top+bottom)/2),320,680),height=clamp(Math.round(width/aspect),220,680);
+  const dest=[{x:0,y:0},{x:width-1,y:0},{x:width-1,y:height-1},{x:0,y:height-1}];
+  const h=homography(dest,cornerPoints),raw=rawSourceCanvas(),source=raw.getContext("2d").getImageData(0,0,raw.width,raw.height),out=new ImageData(width,height);
+  for(let y=0;y<height;y++)for(let x=0;x<width;x++){
+    const d=h[6]*x+h[7]*y+h[8],sx=(h[0]*x+h[1]*y+h[2])/d,sy=(h[3]*x+h[4]*y+h[5])/d;
+    const x0=clamp(Math.floor(sx),0,sourceCanvas.width-1),y0=clamp(Math.floor(sy),0,sourceCanvas.height-1),x1=Math.min(x0+1,sourceCanvas.width-1),y1=Math.min(y0+1,sourceCanvas.height-1),fx=sx-x0,fy=sy-y0;
+    for(let c=0;c<4;c++){
+      const p00=source.data[(y0*sourceCanvas.width+x0)*4+c],p10=source.data[(y0*sourceCanvas.width+x1)*4+c],p01=source.data[(y1*sourceCanvas.width+x0)*4+c],p11=source.data[(y1*sourceCanvas.width+x1)*4+c];
+      out.data[(y*width+x)*4+c]=(p00*(1-fx)+p10*fx)*(1-fy)+(p01*(1-fx)+p11*fx)*fy;
+    }
+  }
+  return out;
+}
+
+function pointInPolygon(x,y,points){
+  let inside=false;
+  for(let i=0,j=points.length-1;i<points.length;j=i++){
+    const a=points[i],b=points[j];
+    if(((a.y>y)!==(b.y>y))&&(x<(b.x-a.x)*(y-a.y)/(b.y-a.y)+a.x))inside=!inside;
+  }
+  return inside;
+}
+
+function prepareSelection(){
+  const mode=$("selectionMode").value;
+  if(mode==="quad"){
+    const imageData=warpPerspective();return {imageData,roiMask:new Uint8Array(imageData.width*imageData.height).fill(1),method:"quadrilateral_homography"};
+  }
+  const raw=rawSourceCanvas();
+  if(mode==="full"){
+    const [width,height]=fitImageSize(raw.width,raw.height,680),canvas=document.createElement("canvas");canvas.width=width;canvas.height=height;
+    canvas.getContext("2d").drawImage(raw,0,0,width,height);const imageData=canvas.getContext("2d").getImageData(0,0,width,height);
+    return {imageData,roiMask:new Uint8Array(width*height).fill(1),method:"full_image"};
+  }
+  const minX=clamp(Math.floor(Math.min(...cornerPoints.map(p=>p.x))),0,raw.width-1),maxX=clamp(Math.ceil(Math.max(...cornerPoints.map(p=>p.x))),1,raw.width);
+  const minY=clamp(Math.floor(Math.min(...cornerPoints.map(p=>p.y))),0,raw.height-1),maxY=clamp(Math.ceil(Math.max(...cornerPoints.map(p=>p.y))),1,raw.height);
+  const cropW=Math.max(2,maxX-minX),cropH=Math.max(2,maxY-minY),scale=Math.min(1,680/Math.max(cropW,cropH));
+  const width=Math.max(2,Math.round(cropW*scale)),height=Math.max(2,Math.round(cropH*scale)),canvas=document.createElement("canvas");canvas.width=width;canvas.height=height;
+  const ctx=canvas.getContext("2d");ctx.drawImage(raw,minX,minY,cropW,cropH,0,0,width,height);const imageData=ctx.getImageData(0,0,width,height);
+  const polygon=cornerPoints.map(point=>({x:(point.x-minX)*width/cropW,y:(point.y-minY)*height/cropH})),roiMask=new Uint8Array(width*height);
+  for(let y=0;y<height;y++)for(let x=0;x<width;x++){
+    const inside=pointInPolygon(x+.5,y+.5,polygon);roiMask[y*width+x]=inside?1:0;
+    if(!inside){const p=(y*width+x)*4;imageData.data[p]=245;imageData.data[p+1]=248;imageData.data[p+2]=252;imageData.data[p+3]=255;}
+  }
+  return {imageData,roiMask,method:"freeform_polygon_crop"};
+}
+
+function sampledLatticeColor(){
+  if(!samplePoints.length)return null;
+  const raw=rawSourceCanvas(),data=raw.getContext("2d").getImageData(0,0,raw.width,raw.height).data,channels=[[],[],[]];
+  for(const point of samplePoints)for(let yy=-2;yy<=2;yy++)for(let xx=-2;xx<=2;xx++){
+    const x=clamp(Math.round(point.x)+xx,0,raw.width-1),y=clamp(Math.round(point.y)+yy,0,raw.height-1),p=(y*raw.width+x)*4;
+    channels[0].push(data[p]);channels[1].push(data[p+1]);channels[2].push(data[p+2]);
+  }
+  return channels.map(items=>{items.sort((a,b)=>a-b);return items[Math.floor(items.length/2)]});
+}
+
+function sampledBackgroundColors(){
+  if(!backgroundSamplePoints.length)return [];
+  const raw=rawSourceCanvas(),data=raw.getContext("2d").getImageData(0,0,raw.width,raw.height).data;
+  return backgroundSamplePoints.map(point=>{
+    const channels=[[],[],[]];
+    for(let yy=-2;yy<=2;yy++)for(let xx=-2;xx<=2;xx++){
+      const x=clamp(Math.round(point.x)+xx,0,raw.width-1),y=clamp(Math.round(point.y)+yy,0,raw.height-1),p=(y*raw.width+x)*4;
+      channels[0].push(data[p]);channels[1].push(data[p+1]);channels[2].push(data[p+2]);
+    }
+    return channels.map(items=>{items.sort((a,b)=>a-b);return items[Math.floor(items.length/2)]});
+  });
+}
+
+function otsuThreshold(gray){
+  const histogram=new Uint32Array(256);for(const value of gray)histogram[value]++;
+  const total=gray.length;let sum=0;for(let i=0;i<256;i++)sum+=i*histogram[i];
+  let sumB=0,weightB=0,maxVariance=-1,threshold=128;
+  for(let i=0;i<256;i++){weightB+=histogram[i];if(!weightB)continue;const weightF=total-weightB;if(!weightF)break;sumB+=i*histogram[i];const meanB=sumB/weightB,meanF=(sum-sumB)/weightF,variance=weightB*weightF*(meanB-meanF)**2;if(variance>maxVariance){maxVariance=variance;threshold=i;}}
+  return threshold;
+}
+function morphology(mask,width,height,mode){
+  const out=new Uint8Array(mask.length);
+  for(let y=1;y<height-1;y++)for(let x=1;x<width-1;x++){
+    let value=mode==="dilate"?0:1;
+    for(let yy=-1;yy<=1;yy++)for(let xx=-1;xx<=1;xx++){const p=mask[(y+yy)*width+x+xx];value=mode==="dilate"?(value||p):(value&&p);}
+    out[y*width+x]=value?1:0;
+  }
+  return out;
+}
+function keepLargestComponent(mask,width,height){
+  const visited=new Uint8Array(mask.length),queue=new Int32Array(mask.length);let best=[];
+  const dirs=[-width-1,-width,-width+1,-1,1,width-1,width,width+1];
+  for(let start=0;start<mask.length;start++){
+    if(!mask[start]||visited[start])continue;let head=0,tail=0;queue[tail++]=start;visited[start]=1;const component=[];
+    while(head<tail){const p=queue[head++];component.push(p);const x=p%width;for(const d of dirs){const n=p+d;if(n<0||n>=mask.length||Math.abs(n%width-x)>1||visited[n]||!mask[n])continue;visited[n]=1;queue[tail++]=n;}}
+    if(component.length>best.length)best=component;
+  }
+  const out=new Uint8Array(mask.length);for(const p of best)out[p]=1;return out;
+}
+function createMask(imageData){
+  const width=imageData.width,height=imageData.height,gray=new Uint8Array(width*height),roi=latestRoiMask||new Uint8Array(width*height).fill(1),roiGray=[];
+  for(let i=0;i<gray.length;i++){const p=i*4;gray[i]=Math.round(.2126*imageData.data[p]+.7152*imageData.data[p+1]+.0722*imageData.data[p+2]);if(roi[i])roiGray.push(gray[i]);}
+  const threshold=clamp(otsuThreshold(Uint8Array.from(roiGray))+Number($("thresholdOffset").value),15,240),reference=sampledLatticeColor(),backgroundReferences=sampledBackgroundColors(),tolerance=Number($("colorTolerance").value),backgroundTolerance=Number($("backgroundTolerance").value),suppressBackground=$("suppressGreen").checked;
+  const buildCandidate=dark=>{
+    let rejectedBackground=0,rejectedGreen=0,rejectedBySamples=0,mask=new Uint8Array(gray.length);
+    for(let i=0;i<gray.length;i++){
+      if(!roi[i])continue;const p=i*4,r=imageData.data[p],g=imageData.data[p+1],b=imageData.data[p+2];
+      const greenish=suppressBackground&&g>r+10&&g>b+8&&g-Math.min(r,b)>16;
+      const distanceToSample=reference?Math.hypot(r-reference[0],g-reference[1],b-reference[2]):0;
+      let distanceToBackground=Infinity;
+      for(const sample of backgroundReferences)distanceToBackground=Math.min(distanceToBackground,Math.hypot(r-sample[0],g-sample[1],b-sample[2]));
+      const backgroundMatch=Boolean(suppressBackground&&backgroundReferences.length&&distanceToBackground<=backgroundTolerance&&(!reference||distanceToBackground+6<distanceToSample));
+      const tonal=dark?gray[i]<threshold:gray[i]>threshold;
+      const sampleMatch=!reference||distanceToSample<=tolerance||(dark&&gray[i]<35)||(!dark&&gray[i]>225);
+      if(greenish||backgroundMatch){rejectedBackground++;if(greenish)rejectedGreen++;if(backgroundMatch)rejectedBySamples++;continue;}
+      mask[i]=tonal&&sampleMatch?1:0;
+    }
+    mask=morphology(morphology(mask,width,height,"dilate"),width,height,"erode");
+    mask=removeSmallComponents(mask,width,height,Math.max(12,Math.round(mask.length*.00012)));
+    if(!reference)mask=keepLargestComponent(mask,width,height);
+    for(let i=0;i<mask.length;i++)if(!roi[i])mask[i]=0;
+    return {mask,rejectedBackground,rejectedGreen,rejectedBySamples,dark};
+  };
+  const requested=$("polarity").value,candidates=requested==="auto"?[buildCandidate(true),buildCandidate(false)]:[buildCandidate(requested==="dark")];
+  const roiCount=Math.max(1,roi.reduce((sum,value)=>sum+value,0));
+  const referenceLuminance=reference?.length?(.2126*reference[0]+.7152*reference[1]+.0722*reference[2]):null;
+  const score=candidate=>{const coverage=countPixels(candidate.mask)/roiCount,polarityPenalty=referenceLuminance===null?(candidate.dark?0:.18):((candidate.dark&&referenceLuminance>150)||(!candidate.dark&&referenceLuminance<105)?.25:0);return Math.abs(coverage-.28)+(coverage<.025||coverage>.72?1:0)+(coverage>.58?.25:0)+polarityPenalty};
+  const chosen=candidates.sort((a,b)=>score(a)-score(b))[0];
+  return {mask:chosen.mask,gray,threshold,polarityUsed:chosen.dark?"dark":"light",sampleColor:reference,backgroundSampleColors:backgroundReferences,rejectedBackground:chosen.rejectedBackground,rejectedGreen:chosen.rejectedGreen,rejectedBySamples:chosen.rejectedBySamples,roiPixels:roiCount};
+}
+function neighbors(mask,index,width,height){
+  const x=index%width,y=Math.floor(index/width),items=[];for(let yy=-1;yy<=1;yy++)for(let xx=-1;xx<=1;xx++){if(!xx&&!yy)continue;const nx=x+xx,ny=y+yy;if(nx>=0&&ny>=0&&nx<width&&ny<height){const n=ny*width+nx;if(mask[n])items.push(n);}}return items;
+}
+function skeletonize(input,width,height){
+  const img=new Uint8Array(input),remove=[];let changed=true,iteration=0;
+  const pixel=(x,y)=>img[y*width+x];
+  while(changed&&iteration<90){changed=false;iteration++;
+    for(let phase=0;phase<2;phase++){
+      remove.length=0;
+      for(let y=1;y<height-1;y++)for(let x=1;x<width-1;x++){
+        if(!pixel(x,y))continue;const p=[pixel(x,y-1),pixel(x+1,y-1),pixel(x+1,y),pixel(x+1,y+1),pixel(x,y+1),pixel(x-1,y+1),pixel(x-1,y),pixel(x-1,y-1)];
+        const count=p.reduce((a,b)=>a+b,0);if(count<2||count>6)continue;let transitions=0;for(let i=0;i<8;i++)if(!p[i]&&p[(i+1)%8])transitions++;if(transitions!==1)continue;
+        const test=phase===0?(p[0]*p[2]*p[4]===0&&p[2]*p[4]*p[6]===0):(p[0]*p[2]*p[6]===0&&p[0]*p[4]*p[6]===0);
+        if(test)remove.push(y*width+x);
+      }
+      if(remove.length){changed=true;for(const i of remove)img[i]=0;}
+    }
+  }
+  return img;
+}
+function extractGraph(skeleton,width,height,scale){
+  const candidate=new Uint8Array(skeleton.length);for(let i=0;i<skeleton.length;i++)if(skeleton[i]&&neighbors(skeleton,i,width,height).length!==2)candidate[i]=1;
+  const nodeOf=new Int32Array(skeleton.length);nodeOf.fill(-1);const nodes=[],visited=new Uint8Array(skeleton.length);
+  for(let start=0;start<candidate.length;start++){
+    if(!candidate[start]||visited[start])continue;const queue=[start],pixels=[];visited[start]=1;
+    while(queue.length){const p=queue.pop();pixels.push(p);for(const n of neighbors(candidate,p,width,height))if(!visited[n]){visited[n]=1;queue.push(n);}}
+    const cx=pixels.reduce((s,p)=>s+p%width,0)/pixels.length,cy=pixels.reduce((s,p)=>s+Math.floor(p/width),0)/pixels.length,id=nodes.length;
+    pixels.forEach(p=>nodeOf[p]=id);nodes.push({id:`N${String(id+1).padStart(3,"0")}`,x:Number((cx/(width-1)).toFixed(5)),y:Number((cy/(height-1)).toFixed(5)),x_mm:Number((cx*scale).toFixed(2)),y_mm:Number((cy*scale).toFixed(2)),pixels});
+  }
+  const visitedLinks=new Set(),rawEdges=[];const linkKey=(a,b)=>a<b?`${a}:${b}`:`${b}:${a}`;
+  for(let startId=0;startId<nodes.length;startId++)for(const startPixel of nodes[startId].pixels)for(const first of neighbors(skeleton,startPixel,width,height)){
+    if(nodeOf[first]===startId||visitedLinks.has(linkKey(startPixel,first)))continue;
+    let prev=startPixel,current=first,endId=-1;const polyline=[];
+    for(let guard=0;guard<skeleton.length;guard++){
+      visitedLinks.add(linkKey(prev,current));const x=current%width,y=Math.floor(current/width);if(polyline.length===0||guard%6===0)polyline.push([Number((x/(width-1)).toFixed(5)),Number((y/(height-1)).toFixed(5))]);
+      if(nodeOf[current]>=0){endId=nodeOf[current];break;}
+      const options=neighbors(skeleton,current,width,height).filter(n=>n!==prev);if(!options.length)break;
+      const next=options.find(n=>!visitedLinks.has(linkKey(current,n))) ?? options[0];prev=current;current=next;
+    }
+    if(endId>=0&&endId!==startId)rawEdges.push({start:startId,end:endId,polyline});
+  }
+  const unique=new Map();for(const edge of rawEdges){const key=edge.start<edge.end?`${edge.start}:${edge.end}`:`${edge.end}:${edge.start}`;if(!unique.has(key)||unique.get(key).polyline.length<edge.polyline.length)unique.set(key,edge);}
+  const edges=[...unique.values()].map((edge,index)=>({id:`E${String(index+1).padStart(3,"0")}`,start:nodes[edge.start].id,end:nodes[edge.end].id,polyline:edge.polyline,source:"image_analysis"}));
+  nodes.forEach(node=>delete node.pixels);return {nodes,edges};
+}
+function drawBinary(canvas,mask,width,height,color){
+  canvas.width=width;canvas.height=height;const ctx=canvas.getContext("2d"),data=ctx.createImageData(width,height),rgb=color;
+  for(let i=0;i<mask.length;i++){const p=i*4,v=mask[i]?rgb:[8,11,16];data.data[p]=v[0];data.data[p+1]=v[1];data.data[p+2]=v[2];data.data[p+3]=255;}ctx.putImageData(data,0,0);
+}
+function drawOverlay(rectified,skeleton,graph){
+  const canvas=outputCanvases.overlay;canvas.width=rectified.width;canvas.height=rectified.height;const ctx=canvas.getContext("2d");ctx.putImageData(rectified,0,0);const image=ctx.getImageData(0,0,canvas.width,canvas.height);
+  for(let i=0;i<skeleton.length;i++)if(skeleton[i]){const p=i*4;image.data[p]=0;image.data[p+1]=235;image.data[p+2]=215;}ctx.putImageData(image,0,0);
+  ctx.fillStyle="#ff9d3f";ctx.font="11px sans-serif";for(const node of graph.nodes){const x=node.x*(canvas.width-1),y=node.y*(canvas.height-1);ctx.beginPath();ctx.arc(x,y,3.8,0,Math.PI*2);ctx.fill();if(graph.nodes.length<=80)ctx.fillText(node.id,x+5,y-4);}
+}
+function copyImageDataToCanvas(canvas,imageData){canvas.width=imageData.width;canvas.height=imageData.height;canvas.getContext("2d").putImageData(imageData,0,0)}
+function countPixels(mask){let count=0;for(const value of mask)count+=value;return count}
+function canvasPng(canvas){return canvas.toDataURL("image/png")}
+
+function removeSmallComponents(mask,width,height,minSize=28){
+  const visited=new Uint8Array(mask.length),queue=new Int32Array(mask.length),out=new Uint8Array(mask);
+  const dirs=[-width-1,-width,-width+1,-1,1,width-1,width,width+1];
+  for(let start=0;start<mask.length;start++){
+    if(!mask[start]||visited[start])continue;let head=0,tail=0;queue[tail++]=start;visited[start]=1;const component=[];
+    while(head<tail){const p=queue[head++];component.push(p);const x=p%width;for(const d of dirs){const n=p+d;if(n<0||n>=mask.length||Math.abs(n%width-x)>1||visited[n]||!mask[n])continue;visited[n]=1;queue[tail++]=n;}}
+    if(component.length<minSize)for(const p of component)out[p]=0;
+  }
+  return out;
+}
+
+function updateSchemaFromMask(){
+  if(!currentMask||!latestRectified||!latestSchema)return;
+  drawBinary(outputCanvases.mask,currentMask,latestRectified.width,latestRectified.height,[245,248,252]);
+  const skeleton=skeletonize(currentMask,latestRectified.width,latestRectified.height);
+  drawBinary(outputCanvases.skeleton,skeleton,latestRectified.width,latestRectified.height,[45,212,191]);
+  const scale=latestSchema.frame.mm_per_pixel;
+  currentGraph=extractGraph(skeleton,latestRectified.width,latestRectified.height,scale);
+  drawOverlay(latestRectified,skeleton,currentGraph);
+  const roiCount=latestRoiMask?Math.max(1,latestRoiMask.reduce((sum,value)=>sum+value,0)):currentMask.length;
+  const coverage=countPixels(currentMask)/roiCount,openRatio=1-coverage,warnings=[];
+  if(coverage<.03||coverage>.72)warnings.push("实体覆盖率异常，请继续修正白色区域");
+  if($("generationRoute").value==="skeleton"&&(currentGraph.nodes.length<2||currentGraph.edges.length<1))warnings.push("中心线结构较少，请检查分割结果");
+  const confidence=clamp(.82-(warnings.length*.16)-(coverage>.62?.1:0),.2,.94);
+  latestSchema.analysis.foreground_coverage=Number(coverage.toFixed(4));
+  latestSchema.analysis.segmentation_confirmed=segmentationConfirmed;
+  latestSchema.nodes=currentGraph.nodes;latestSchema.edges=currentGraph.edges;
+  latestSchema.confidence=Number(confidence.toFixed(3));latestSchema.warnings=warnings;
+  latestSchema.generation_route=$("generationRoute").value==="silhouette"?"silhouette_extrusion":"centerline_members";
+  $("solidMetric").textContent=`${Math.round(coverage*100)}% / ${Math.round(openRatio*100)}%`;
+  $("routeMetric").textContent=$("generationRoute").value==="silhouette"?"轮廓挤出":"中心线";
+  $("confidenceMetric").textContent=`${Math.round(confidence*100)}%`;
+}
+
+function maskRuns(mask,width,height){
+  const runs=[];
+  for(let y=0;y<height;y++){
+    let x=0;
+    while(x<width){while(x<width&&!mask[y*width+x])x++;if(x>=width)break;const x0=x;while(x+1<width&&mask[y*width+x+1])x++;runs.push({y,x0,x1:x});x++;}
+  }
+  return runs;
+}
+
+function setEditMode(mode){
+  editMode=mode;
+  $("paintTool").classList.toggle("active",mode==="paint");
+  $("eraseTool").classList.toggle("active",mode==="erase");
+}
+
+function editMaskAt(event){
+  if(!drawingMask||!currentMask)return;
+  const canvas=outputCanvases.mask,rect=canvas.getBoundingClientRect();
+  const cx=(event.clientX-rect.left)*canvas.width/rect.width,cy=(event.clientY-rect.top)*canvas.height/rect.height;
+  const radius=Number($("brushSize").value)*canvas.width/Math.max(320,rect.width);
+  const x0=Math.max(0,Math.floor(cx-radius)),x1=Math.min(canvas.width-1,Math.ceil(cx+radius));
+  const y0=Math.max(0,Math.floor(cy-radius)),y1=Math.min(canvas.height-1,Math.ceil(cy+radius));
+  for(let y=y0;y<=y1;y++)for(let x=x0;x<=x1;x++)if((x-cx)**2+(y-cy)**2<=radius**2)currentMask[y*canvas.width+x]=editMode==="paint"?1:0;
+  drawBinary(canvas,currentMask,canvas.width,canvas.height,[245,248,252]);
+}
+
+outputCanvases.mask.addEventListener("pointerdown",event=>{if(!currentMask)return;drawingMask=true;outputCanvases.mask.setPointerCapture(event.pointerId);markMaskDirty();editMaskAt(event);});
+outputCanvases.mask.addEventListener("pointermove",editMaskAt);
+outputCanvases.mask.addEventListener("pointerup",event=>{if(!drawingMask)return;drawingMask=false;try{outputCanvases.mask.releasePointerCapture(event.pointerId)}catch{}updateSchemaFromMask();});
+outputCanvases.mask.addEventListener("pointercancel",()=>{drawingMask=false;updateSchemaFromMask();});
+$("paintTool").addEventListener("click",()=>setEditMode("paint"));
+$("eraseTool").addEventListener("click",()=>setEditMode("erase"));
+$("brushSize").addEventListener("input",event=>$("brushSizeText").textContent=event.target.value);
+$("keepMainStructure").addEventListener("click",()=>{if(!currentMask)return;currentMask=keepLargestComponent(currentMask,latestRectified.width,latestRectified.height);markMaskDirty("已只保留最大的连通窗棂结构；如果真实构件被删掉，可点击“恢复自动结果”。");updateSchemaFromMask();});
+$("removeSpeckles").addEventListener("click",()=>{if(!currentMask)return;currentMask=removeSmallComponents(currentMask,latestRectified.width,latestRectified.height,Math.max(20,Math.round(currentMask.length*.00018)));markMaskDirty();updateSchemaFromMask();});
+$("closeGaps").addEventListener("click",()=>{if(!currentMask)return;currentMask=morphology(morphology(currentMask,latestRectified.width,latestRectified.height,"dilate"),latestRectified.width,latestRectified.height,"erode");markMaskDirty();updateSchemaFromMask();});
+$("invertMask").addEventListener("click",()=>{if(!currentMask)return;currentMask=Uint8Array.from(currentMask,value=>value?0:1);markMaskDirty();updateSchemaFromMask();});
+$("resetMask").addEventListener("click",()=>{if(!automaticMask)return;currentMask=new Uint8Array(automaticMask);markMaskDirty("已恢复自动分割，请检查后确认。");updateSchemaFromMask();});
+$("generationRoute").addEventListener("change",()=>{markMaskDirty("生成路线已改变，请重新确认分割。");updateSchemaFromMask();});
+
+function artifactHtml(artifacts){
+  const labels={original:"原始图片",rectified:"透视矫正图",mask:"自动分割图",skeleton:"中心线骨架",overlay:"节点连线叠加图",schema:"结构参数 JSON",report:"分析报告",clean_mask:"确认分割图",silhouette_svg:"轮廓 SVG",contours:"轮廓数据",blend:"Blender 模型",glb:"GLB 模型",front_preview:"正视预览",perspective_preview:"透视预览",geometry_report:"几何报告",glb_validation:"GLB 校验报告",showcase_url:"打开模型展示台",manifest:"阶段记录"};
+  return Object.entries(artifacts||{}).filter(([key,value])=>value&&key!=="case_dir").map(([key,value])=>{const href=key==="showcase_url"?value:encodeURI(value);return `<a href="${href}" target="_blank">${labels[key]||key}<br>${value}</a>`}).join("");
+}
+
+$("analysisForm").addEventListener("submit",async event=>{
+  event.preventDefault();if(!sourceImage){setStatus("failed","请先上传图片或加载示例窗棂。");return;}if(!selectionReady()){setStatus("failed",$("selectionMode").value==="polygon"?"请沿窗棂外边界圈选至少3个点，并点击“完成轮廓”。":"请完成当前范围标记。");return;}
+  const frameWidth=Number($("frameWidth").value);if(!Number.isFinite(frameWidth)||frameWidth<=0){setStatus("failed","请输入有效的窗框真实宽度。");return;}
+  $("analyzeButton").disabled=true;setStatus("running","正在处理选区、抑制背景干扰并提取窗棂实体……");
+  await new Promise(resolve=>setTimeout(resolve,30));
+  try{
+    const selection=prepareSelection(),rectified=selection.imageData;latestRectified=rectified;latestRoiMask=selection.roiMask;copyImageDataToCanvas(outputCanvases.rectified,rectified);renderSteps(3,3);
+    const segmentation=createMask(rectified),mask=segmentation.mask;automaticMask=new Uint8Array(mask);currentMask=new Uint8Array(mask);segmentationConfirmed=false;drawBinary(outputCanvases.mask,mask,rectified.width,rectified.height,[245,248,252]);renderSteps(4,4);
+    const skeleton=skeletonize(mask,rectified.width,rectified.height);drawBinary(outputCanvases.skeleton,skeleton,rectified.width,rectified.height,[45,212,191]);
+    const scale=frameWidth/(rectified.width-1),graph=extractGraph(skeleton,rectified.width,rectified.height,scale);currentGraph=graph;drawOverlay(rectified,skeleton,graph);renderSteps(5,5);
+    const maskCount=countPixels(mask),skeletonCount=Math.max(1,countPixels(skeleton)),estimatedWidth=clamp(maskCount/skeletonCount*scale,1,frameWidth/8);
+    const enteredWidth=Number($("barWidth").value),barWidth=enteredWidth>0?enteredWidth:estimatedWidth,enteredDepth=Number($("barDepth").value),barDepth=enteredDepth>0?enteredDepth:barWidth;
+    const coverage=maskCount/Math.max(1,segmentation.roiPixels),warnings=[];if(coverage<.02||coverage>.65)warnings.push("分割覆盖率异常，请调整阈值、颜色取样或背景抑制后重试");if(graph.nodes.length<2||graph.edges.length<1)warnings.push("识别到的结构较少，请检查选区和分割结果");
+    const confidence=clamp(.38+Math.min(graph.nodes.length/80,.22)+Math.min(graph.edges.length/100,.2)+(warnings.length?-.12:.12),.1,.95);
+    latestSchema={
+      schema_version:"1.0",subject_type:"traditional_window_lattice",case_id:cleanCaseId($("caseId").value),title:$("title").value.trim(),
+      source:{mode:"browser_upload",filename:sourceName,url:$("sourceUrl").value.trim(),selection_mode:$("selectionMode").value,boundary_points:cornerPoints.map(p=>({x:Number((p.x/sourceCanvas.width).toFixed(5)),y:Number((p.y/sourceCanvas.height).toFixed(5))})),sample_points:samplePoints.map(p=>({x:Number((p.x/sourceCanvas.width).toFixed(5)),y:Number((p.y/sourceCanvas.height).toFixed(5))})),background_sample_points:backgroundSamplePoints.map(p=>({x:Number((p.x/sourceCanvas.width).toFixed(5)),y:Number((p.y/sourceCanvas.height).toFixed(5))}))},
+      frame:{width_mm:Number(frameWidth.toFixed(2)),height_mm:Number((rectified.height*scale).toFixed(2)),rectified_pixels:[rectified.width,rectified.height],mm_per_pixel:Number(scale.toFixed(6))},
+      bars:{width_mm:Number(barWidth.toFixed(2)),depth_mm:Number(barDepth.toFixed(2)),width_source:enteredWidth>0?"user_confirmed":"image_estimate",depth_source:enteredDepth>0?"user_confirmed":"estimated_from_bar_width"},
+      analysis:{method:"browser_cv_roi_color_v4",selection_method:selection.method,threshold:segmentation.threshold,polarity_requested:$("polarity").value,polarity_used:segmentation.polarityUsed,foreground_coverage:Number(coverage.toFixed(4)),segmentation_confirmed:false,background_suppression:$("suppressGreen").checked,rejected_background_pixels:segmentation.rejectedBackground,rejected_green_pixels:segmentation.rejectedGreen,rejected_sampled_background_pixels:segmentation.rejectedBySamples,color_sample_rgb:segmentation.sampleColor,color_tolerance:Number($("colorTolerance").value),background_sample_rgbs:segmentation.backgroundSampleColors,background_tolerance:Number($("backgroundTolerance").value)},
+      nodes:graph.nodes,edges:graph.edges,estimated_fields:[...(enteredWidth>0?[]:["bars.width_mm"]),...(enteredDepth>0?[]:["bars.depth_mm"])],confidence:Number(confidence.toFixed(3)),warnings,
+      generation_route:$("generationRoute").value==="silhouette"?"silhouette_extrusion":"centerline_members",
+      scope_limitations:["支持整图、矩形四角和自由轮廓选区","单张图片输出为2.5D轮廓挤出","严重遮挡仍需人工修正","不能恢复榫卯、雕刻截面和背面信息"]
+    };
+    $("analysisGrid").hidden=false;$("resultsPanel").hidden=false;$("frameMetric").textContent=`${latestSchema.frame.width_mm} × ${latestSchema.frame.height_mm} mm`;$("downloadButton").disabled=false;$("confirmButton").disabled=false;$("generateButton").disabled=true;updateSchemaFromMask();renderSteps(5,-1);
+    $("confirmNote").textContent="请检查“实体分割修正”：白色只保留木条和外框。确认无误后点击“确认分割并保存”。";
+    setStatus("idle",`图片分析完成：自动采用${segmentation.polarityUsed==="dark"?"深色":"浅色"}窗棂，已排除 ${segmentation.rejectedBackground} 个背景干扰像素（其中背景取样命中 ${segmentation.rejectedBySamples} 个）。请检查并确认分割。`);
+  }catch(error){console.error(error);setStatus("failed",error.message||String(error));}
+  finally{$("analyzeButton").disabled=false;}
+});
+
+$("confirmButton").addEventListener("click",async()=>{
+  if(!latestSchema||!currentMask||!latestRectified)return;
+  if(location.protocol==="file:"){setStatus("failed","请通过 http://127.0.0.1:8765/lattice_studio.html 打开，才能保存和生成模型。");return;}
+  $("confirmButton").disabled=true;setStatus("running","正在保存确认后的分割与结构参数……");
+  try{
+    segmentationConfirmed=true;updateSchemaFromMask();latestSchema.analysis.segmentation_confirmed=true;
+    const payload={case_id:latestSchema.case_id,title:latestSchema.title,source_url:latestSchema.source.url,original_filename:sourceName,schema:latestSchema,images:{original:canvasPng(rawSourceCanvas()),rectified:canvasPng(outputCanvases.rectified),mask:canvasPng(outputCanvases.mask),skeleton:canvasPng(outputCanvases.skeleton),overlay:canvasPng(outputCanvases.overlay)}};
+    const response=await fetch("/api/lattice-cases",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)}),saved=await response.json();if(!response.ok)throw new Error(saved.error||"保存失败");
+    $("artifactLinks").innerHTML=artifactHtml(saved.artifacts);$("generateButton").disabled=false;
+    $("confirmNote").textContent="分割已确认。现在可以生成 Blender 与 GLB 模型；如继续涂改，需要重新确认。";
+    setStatus("complete",`分割已确认并保存到 ${saved.artifacts.case_dir}。`);
+  }catch(error){segmentationConfirmed=false;$("generateButton").disabled=true;setStatus("failed",error.message||String(error));}
+  finally{$("confirmButton").disabled=false;}
+});
+
+$("generateButton").addEventListener("click",async()=>{
+  if(!segmentationConfirmed||!latestSchema||!currentMask)return;
+  if($("generationRoute").value!=="silhouette"){setStatus("failed","中心线生成仍作为实验对照；请先选择“曲线雕花／实体轮廓挤出”。");return;}
+  $("generateButton").disabled=true;$("confirmButton").disabled=true;setStatus("running","Blender 正在后台生成模型、渲染预览并重新导入 GLB 校验，通常需要几十秒……");renderSteps(5,5);
+  try{
+    const runs=maskRuns(currentMask,latestRectified.width,latestRectified.height);
+    const response=await fetch(`/api/lattice-cases/${encodeURIComponent(latestSchema.case_id)}/generate`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({confirmed:true,clean_mask:canvasPng(outputCanvases.mask),width:latestRectified.width,height:latestRectified.height,runs})});
+    const generated=await response.json();if(!response.ok)throw new Error(generated.error||"三维生成失败");
+    $("artifactLinks").innerHTML=artifactHtml(generated.artifacts);renderSteps(6,6);
+    $("confirmNote").textContent="三维模型与 GLB 校验已完成。可在右侧打开 Blender、GLB、预览图和模型展示台。";
+    setStatus("complete",`三维模型生成完成；GLB 独立重导入校验${generated.validation?.passed?"通过":"未通过"}。`);
+  }catch(error){console.error(error);setStatus("failed",error.message||String(error));$("generateButton").disabled=false;}
+  finally{$("confirmButton").disabled=false;}
+});
+
+$("downloadButton").addEventListener("click",()=>{
+  if(!latestSchema)return;const blob=new Blob([JSON.stringify(latestSchema,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),link=document.createElement("a");link.href=url;link.download=`${latestSchema.case_id}_lattice_schema.json`;link.click();URL.revokeObjectURL(url);
+});
+
+function loadRemoteImage(url){
+  return new Promise((resolve,reject)=>{const image=new Image();image.onload=()=>resolve(image);image.onerror=()=>reject(new Error("二维分割交接图像无法读取"));image.src=`${url}${url.includes("?")?"&":"?"}t=${Date.now()}`;});
+}
+
+async function importCsamHandoff(handoffId){
+  $("handoffBanner").style.display="block";setStatus("running","正在读取二维Mask与原图……");
+  try{
+    const response=await fetch(`/api/csam-handoffs/${encodeURIComponent(handoffId)}`),handoff=await response.json();
+    if(!response.ok)throw new Error(handoff.error||"二维分割交接记录不存在");
+    const [source,maskImage]=await Promise.all([loadRemoteImage(handoff.source_url),loadRemoteImage(handoff.mask_url)]),metadata=handoff.metadata,methodLabel=metadata.method||"二维窗棂Mask",stageLabel=metadata.stage||"Mask";
+    sourceImage=source;sourceName=`${metadata.case_id}_${stageLabel}_source.png`;cornerPoints=[];samplePoints=[];backgroundSamplePoints=[];boundaryFinished=true;interactionMode="boundary";
+    $("emptyState").hidden=true;sourceCanvas.hidden=false;drawSource();
+    $("title").value=`${metadata.case_id} ${methodLabel}`;
+    $("caseId").value=cleanCaseId(`${metadata.case_id}_${stageLabel}_application`);
+    $("selectionMode").value="full";$("finishBoundary").disabled=true;$("generationRoute").value="silhouette";
+    const raw=rawSourceCanvas(),rectCanvas=document.createElement("canvas");rectCanvas.width=raw.width;rectCanvas.height=raw.height;const rectContext=rectCanvas.getContext("2d",{willReadFrequently:true});rectContext.drawImage(source,0,0,rectCanvas.width,rectCanvas.height);latestRectified=rectContext.getImageData(0,0,rectCanvas.width,rectCanvas.height);latestRoiMask=new Uint8Array(rectCanvas.width*rectCanvas.height).fill(1);copyImageDataToCanvas(outputCanvases.rectified,latestRectified);
+    const maskCanvas=document.createElement("canvas");maskCanvas.width=rectCanvas.width;maskCanvas.height=rectCanvas.height;const maskContext=maskCanvas.getContext("2d",{willReadFrequently:true});maskContext.drawImage(maskImage,0,0,maskCanvas.width,maskCanvas.height);const maskPixels=maskContext.getImageData(0,0,maskCanvas.width,maskCanvas.height).data;currentMask=new Uint8Array(maskCanvas.width*maskCanvas.height);for(let i=0;i<currentMask.length;i++)currentMask[i]=(maskPixels[i*4]+maskPixels[i*4+1]+maskPixels[i*4+2])/3>127?1:0;automaticMask=new Uint8Array(currentMask);
+    const frameWidth=Number($("frameWidth").value)||1500,scale=frameWidth/Math.max(1,latestRectified.width-1),skeleton=skeletonize(currentMask,latestRectified.width,latestRectified.height);currentGraph=extractGraph(skeleton,latestRectified.width,latestRectified.height,scale);drawBinary(outputCanvases.mask,currentMask,latestRectified.width,latestRectified.height,[245,248,252]);drawBinary(outputCanvases.skeleton,skeleton,latestRectified.width,latestRectified.height,[45,212,191]);drawOverlay(latestRectified,skeleton,currentGraph);
+    const maskCount=countPixels(currentMask),skeletonCount=Math.max(1,countPixels(skeleton)),estimatedWidth=clamp(maskCount/skeletonCount*scale,1,frameWidth/8);
+    latestSchema={schema_version:"1.1",subject_type:"traditional_window_lattice",case_id:cleanCaseId($("caseId").value),title:$("title").value,source:{mode:metadata.handoff_kind||"segmentation_mask_handoff",filename:sourceName,url:"",selection_mode:`${methodLabel} ${stageLabel}`,boundary_points:[],sample_points:[],background_sample_points:[]},frame:{width_mm:Number(frameWidth.toFixed(2)),height_mm:Number((latestRectified.height*scale).toFixed(2)),rectified_pixels:[latestRectified.width,latestRectified.height],mm_per_pixel:Number(scale.toFixed(6))},bars:{width_mm:Number(estimatedWidth.toFixed(2)),depth_mm:Number(estimatedWidth.toFixed(2)),width_source:"estimated_from_handoff_mask",depth_source:"estimated_from_bar_width"},analysis:{method:metadata.analysis_method||"lattice_mask_handoff",algorithm_version:metadata.algorithm_version,imported_handoff_id:metadata.handoff_id,source_output_dir:metadata.source_output_dir,application_validation:metadata.application_validation,foreground_coverage:Number((maskCount/currentMask.length).toFixed(4)),segmentation_confirmed:false},nodes:currentGraph.nodes,edges:currentGraph.edges,estimated_fields:["bars.width_mm","bars.depth_mm"],confidence:.82,warnings:[],generation_route:"silhouette_extrusion",scope_limitations:["本页人工修正只属于下游建模终检，不回写二维实验结果","单张图片输出为2.5D轮廓挤出","不能恢复照片中完全不可见的构造"]};
+    segmentationConfirmed=false;$("analysisGrid").hidden=false;$("resultsPanel").hidden=false;$("downloadButton").disabled=false;$("confirmButton").disabled=false;$("generateButton").disabled=true;$("frameMetric").textContent=`${latestSchema.frame.width_mm} × ${latestSchema.frame.height_mm} mm`;updateSchemaFromMask();renderSteps(5,-1);
+    $("handoffTitle").textContent=`已导入 ${metadata.case_id} 的${methodLabel}结果`;
+    $("handoffText").textContent=`来源阶段：${stageLabel}；版本：${metadata.algorithm_version||"未标注"}。当前Mask已保留为二维原始输出；如在下方修正，修正结果只用于建模。`;
+    $("confirmNote").textContent="Mask已导入。请对白色实体做建模终检，确认后保存并生成三维模型。";
+    setStatus("idle","二维Mask已进入成果应用平台，等待人工建模终检。");
+  }catch(error){$("handoffTitle").textContent="二维分割成果导入失败";$("handoffText").textContent=error.message||String(error);setStatus("failed",error.message||String(error));}
+}
+
+if(location.protocol==="file:")$("fileNotice").style.display="block";
+renderSteps(0,0);
+const csamHandoffId=new URLSearchParams(location.search).get("csam_handoff");if(csamHandoffId)importCsamHandoff(csamHandoffId);
+</script>
+</body>
+</html>

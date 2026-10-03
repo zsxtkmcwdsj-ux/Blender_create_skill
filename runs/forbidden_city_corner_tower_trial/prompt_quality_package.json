@@ -1,0 +1,102 @@
+{
+  "purpose": "Convert research into explicit Blender modeling instructions, not just archived references.",
+  "identity_lock": {
+    "requested_target": "生成故宫角楼外观，现实风格，重点表现三层复合屋顶、黄色琉璃瓦、朱红柱窗、斗拱、汉白玉栏杆、台基、城墙连接和近景材质细节",
+    "do_not_replace_target": true,
+    "source_count": 0
+  },
+  "build_order": [
+    "freeze target identity and source confidence",
+    "block out recognizable massing before small decoration",
+    "add structural connections and circulation details",
+    "add signature facade, roof, opening and edge details",
+    "apply separated realistic materials with roughness, noise and bump",
+    "render hero and close-up audit views before export"
+  ],
+  "detail_targets": [
+    "overall silhouette and tier proportions",
+    "base or plinth connection to the ground",
+    "entrances, doors, windows and facade rhythm",
+    "stairs with real treads, risers, landings and rail openings",
+    "guardrails split into posts, panels, caps and breaks at entrances",
+    "roof massing, eaves, ribs, tile courses, underside structure and finial details",
+    "material separation for stone, timber, roof tile, metal trim and paving"
+  ],
+  "signature_feature_rules": [
+    {
+      "name": "compound_roof_and_tiles",
+      "rules": [
+        "roof cannot be a single flat slab; use separate roof mass, eave underside, raised ridges and repeated tile plates or tile ribs",
+        "model main ridge, vertical ridges and diagonal hip ridges when the reference implies compound or hip roofs",
+        "stacked roof tiers must have visible support bodies, columns or bracket layers between tiers; no upper roof may float above empty air",
+        "add finial, ridge caps, eave trim and upturned corner emphasis when visible"
+      ],
+      "failure_check": "roof close-up fails if the roof reads as one smooth board, lacks tile/ridge hierarchy, or any tier floats without support"
+    },
+    {
+      "name": "dougong_brackets",
+      "rules": [
+        "dougong cannot be isolated cubes; build stacked bracket blocks, cantilever arms and beam seats under the eave",
+        "use at least two colors or material layers for painted bracket blocks when reference supports painted timber"
+      ],
+      "failure_check": "facade close-up fails if bracket blocks do not visually support the eave"
+    },
+    {
+      "name": "ornamental_lattice_windows",
+      "rules": [
+        "windows need recessed dark glass or interior shadow, outer frame thickness, vertical bars, horizontal bars and diagonal or ornamental bars when named",
+        "avoid one simple cross when the request mentions ornamental lattice or historical window patterns"
+      ],
+      "failure_check": "facade close-up fails if windows read as flat black rectangles with only one cross"
+    },
+    {
+      "name": "stone_balustrade_and_stairs",
+      "rules": [
+        "stairs need individual treads, risers, side cheeks, landing slabs and clear railing openings",
+        "stone balustrades need separate posts, caps, panels, relief strips and breaks at stair entrances"
+      ],
+      "failure_check": "stair close-up fails if stairs are a ramp, a single block, or if railings cross the stair opening"
+    },
+    {
+      "name": "plinth_wall_ground_connection",
+      "rules": [
+        "ground contact needs a believable base or plinth, not a floating building body",
+        "the main body, columns and plinth must physically touch or overlap through hidden support blocks; do not leave visible shadow gaps under the building",
+        "historic wall or terrace connections need visible courses, seams, edges and material separation"
+      ],
+      "failure_check": "overview fails if the building body, columns, base, wall or terrace appear detached or hovering"
+    }
+  ],
+  "material_targets": [
+    "stone",
+    "timber",
+    "roof_tile",
+    "metal",
+    "glass"
+  ],
+  "negative_constraints": [
+    "no unrelated filler objects unless requested",
+    "no white clay final material",
+    "no single-color plastic look",
+    "no floating slabs, fake painted openings or disconnected parts",
+    "no guardrail passing through stairs or entrances"
+  ],
+  "audit_views": [
+    "hero exterior",
+    "front facade detail",
+    "roof/eave detail",
+    "stair and terrace connection audit"
+  ],
+  "quality_standard": [
+    "focus on the requested building only; do not fill the scene with unrelated trees or decoration",
+    "lock the main silhouette, proportions and tier relationships before adding ornament",
+    "model real circulation parts: stairs need treads, risers, landings, side rails and clear railing openings",
+    "model guardrails as separate posts, panels, caps and directional breaks rather than continuous rings through entrances",
+    "add facade depth: columns, doors, lattice panels, plaques, brackets, eaves and visible joints",
+    "add roof depth: tiered masses, ribs, tile courses, eave trim, underside structure and finial details",
+    "use material variation: color, roughness, procedural noise and bump so the browser GLB is not a white clay model",
+    "render hero and close-up checks for overall shape, roof/eave detail, facade detail and stair/terrace detail",
+    "validate the exported GLB before publishing it to the model showcase"
+  ],
+  "evidence_for_prompt": []
+}

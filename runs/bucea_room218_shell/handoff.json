@@ -1,0 +1,11 @@
+{
+  "question": "Create a single complete student dormitory room based on Room 218 from the supplied Beijing University of Civil Engineering and Architecture Daxing Campus Floor 2 fire plan. Model hard finish only: floor, walls, ceiling, a real corridor door opening with wall above the door, door frame and leaf, and an exterior window opening with sill, head and frame. No furniture. Use the attached BOT paper to reason from storey -> space -> elements -> interfaces and adjacency.",
+  "synthesis_status": "fallback",
+  "research_file": "research.json",
+  "brief_file": "scene_brief.json",
+  "skill_prompt_file": "skill_prompt.md",
+  "references": [
+    "E:\\app\\condex_project\\Test_to_3D\\test0022.jpg",
+    "C:\\Users\\Lenovo\\Desktop\\智能体人研究\\阶段1：虚拟场景搭建\\参考文献\\建筑术语论文.pdf"
+  ]
+}

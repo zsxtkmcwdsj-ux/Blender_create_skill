@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "glb": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\china_landmarks_exterior\\realistic\\china_landmarks_realistic.glb",
+  "blender_version": "5.1.1",
+  "object_count": 382,
+  "mesh_object_count": 382,
+  "material_count": 12,
+  "image_count": 0,
+  "light_count": 0,
+  "camera_count": 0,
+  "action_count": 0,
+  "bounds": {
+    "min": [
+      -46.0,
+      -21.0,
+      -0.1599999964237213
+    ],
+    "max": [
+      46.0,
+      21.0,
+      16.100000381469727
+    ],
+    "dimensions": [
+      92.0,
+      42.0,
+      16.260000377893448
+    ]
+  },
+  "images": [],
+  "negative_scale_objects": [],
+  "deep_mesh_issues": [],
+  "errors": [],
+  "warnings": []
+}

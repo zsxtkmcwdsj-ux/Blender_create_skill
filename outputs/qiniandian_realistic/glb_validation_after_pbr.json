@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "glb": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\qiniandian_realistic\\qiniandian_realistic.glb",
+  "blender_version": "5.1.1",
+  "object_count": 3663,
+  "mesh_object_count": 3663,
+  "material_count": 13,
+  "image_count": 0,
+  "light_count": 0,
+  "camera_count": 0,
+  "action_count": 0,
+  "bounds": {
+    "min": [
+      -29.0,
+      -29.0,
+      -0.18000000715255737
+    ],
+    "max": [
+      29.0,
+      29.0,
+      24.0
+    ],
+    "dimensions": [
+      58.0,
+      58.0,
+      24.180000007152557
+    ]
+  },
+  "images": [],
+  "negative_scale_objects": [],
+  "deep_mesh_issues": [],
+  "errors": [],
+  "warnings": []
+}

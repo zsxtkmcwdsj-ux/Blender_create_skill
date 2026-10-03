@@ -1,0 +1,17 @@
+{
+  "workflow": "research_to_blender_skill",
+  "case_id": "suzhou_museum_new",
+  "research_file": "research.json",
+  "brief_file": "scene_brief.json",
+  "skill_prompt_file": "skill_prompt.md",
+  "research_mode": "Codex web research fallback because Agent-reach MCP channels were not available",
+  "skill": "blender-mcp-reference-modeling",
+  "spatial_envelope_gate": "complete shell plus explicit openings before furniture",
+  "deliverables": [".blend", ".glb", "hero preview", "cutaway preview"],
+  "references": [
+    "https://www.szmuseum.com/Other/MuseumIntro",
+    "https://artsandculture.google.com/story/hgXxr9NyQc6tKA?hl=zh-CN",
+    "https://www.archdaily.com/894202/ad-classics-suzhou-museum-im-pei-plus-pei-partnership-architects",
+    "https://www.dpm.org.cn/Uploads/File/2024/02/21/u65d55f6fd8d83.pdf"
+  ]
+}

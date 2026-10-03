@@ -1,0 +1,242 @@
+{
+  "mode": "concept_spatial_modeling",
+  "generation_module": "exterior_architecture",
+  "envelope_model": "assembled_elements_with_verified_joints",
+  "spatial_envelope": {
+    "mode": "open",
+    "footprint": "inferred architectural/site footprint",
+    "boundary_segments": [
+      "site plane",
+      "plinth/base",
+      "facade/body",
+      "ceiling_or_roof"
+    ],
+    "openings": [
+      "door",
+      "window",
+      "stair_access",
+      "terrace_edge"
+    ],
+    "vertical_connections": []
+  },
+  "target_verification": {
+    "building_identity": "unknown",
+    "floor_identity": "unknown",
+    "visual_relevance": "unknown",
+    "verdict": "concept_reference",
+    "reason": "未完成模型判断，以下只作为概念设计输入。"
+  },
+  "scene_goal": "生成一个现实风格地标外观，重点要求屋顶、楼梯、栏杆和材质细节",
+  "spaces": [
+    {
+      "name": "overall exterior massing",
+      "type": "exterior"
+    },
+    {
+      "name": "roof and eave system",
+      "type": "roof"
+    },
+    {
+      "name": "facade rhythm and openings",
+      "type": "facade"
+    },
+    {
+      "name": "terrace, stairs, and balustrades",
+      "type": "terrace"
+    }
+  ],
+  "space_contracts": [
+    {
+      "space": "overall exterior massing",
+      "boundary_mode": "closed",
+      "floor": true,
+      "walls": [
+        "side boundaries",
+        "ceiling boundary"
+      ],
+      "ceiling": true,
+      "openings": [
+        "door to circulation"
+      ],
+      "connections": [],
+      "vertical_geometry": [],
+      "content_after_envelope": []
+    },
+    {
+      "space": "roof and eave system",
+      "boundary_mode": "closed",
+      "floor": true,
+      "walls": [
+        "side boundaries",
+        "ceiling boundary"
+      ],
+      "ceiling": true,
+      "openings": [
+        "door to circulation"
+      ],
+      "connections": [],
+      "vertical_geometry": [],
+      "content_after_envelope": []
+    },
+    {
+      "space": "facade rhythm and openings",
+      "boundary_mode": "closed",
+      "floor": true,
+      "walls": [
+        "side boundaries",
+        "ceiling boundary"
+      ],
+      "ceiling": true,
+      "openings": [
+        "door to circulation"
+      ],
+      "connections": [],
+      "vertical_geometry": [],
+      "content_after_envelope": []
+    },
+    {
+      "space": "terrace, stairs, and balustrades",
+      "boundary_mode": "closed",
+      "floor": true,
+      "walls": [
+        "side boundaries",
+        "ceiling boundary"
+      ],
+      "ceiling": true,
+      "openings": [
+        "door to circulation"
+      ],
+      "connections": [],
+      "vertical_geometry": [],
+      "content_after_envelope": []
+    }
+  ],
+  "hard_finish": {
+    "required": [
+      "floor_finish",
+      "wall_finish",
+      "ceiling_finish",
+      "skirting_or_baseboard",
+      "door_window_frame_finish",
+      "threshold_or_sill",
+      "readable_room_light"
+    ],
+    "conditional": [
+      "corner_guard_or_reveal",
+      "switches_and_sockets",
+      "hvac_grille",
+      "detector_or_sprinkler",
+      "waterproofing_and_floor_drain",
+      "acoustic_or_curtain_finish"
+    ],
+    "exclude_by_default": [
+      "furniture",
+      "decorative_props",
+      "unverified_equipment"
+    ]
+  },
+  "adjacency_graph": [],
+  "relationships": [
+    "base supports facade/body",
+    "stairs connect every visible terrace level",
+    "roof tiers align to facade/column rhythm"
+  ],
+  "visual_language": {
+    "style": "realistic exterior architectural reconstruction with source-led proportions",
+    "materials": [
+      "stone",
+      "lacquered wood",
+      "glazed roof tile",
+      "metal/gold trim"
+    ],
+    "lighting": "daylight architectural presentation",
+    "mood": "realistic, detailed, restrained"
+  },
+  "must_have": [
+    "overall exterior massing",
+    "roof and eave system",
+    "facade rhythm and openings",
+    "terrace, stairs, and balustrades"
+  ],
+  "quality_gates": [
+    "recognizable massing before ornament: base/plinth, body, roof tiers, eaves, column grid, openings",
+    "stairs require real treads, risers, landings, side cheeks, rail openings, and verified connections to each terrace level",
+    "balustrades must break at stairs and reconnect to platforms; never let rails pass through a stair flight",
+    "do not add unrelated trees, people, vehicles, water, or filler landscaping unless requested",
+    "materials must separate stone, lacquered timber, glazed roof tiles, metal/gold trim, with visible roughness/bump variation"
+  ],
+  "delivery_views": [
+    "hero exterior",
+    "front facade detail",
+    "roof/eave detail",
+    "stair and terrace connection audit"
+  ],
+  "prompt_directives": [
+    "write the Blender task as a staged exterior execution plan: reference lock, massing blockout, structural connections, signature details, materials, cameras, export audit",
+    "name must-have exterior components explicitly instead of asking for a generic realistic building",
+    "describe near-view detail targets: eaves, roof ribs/tiles, column bases/caps, plaque/door panels, terrace stairs, balustrade joints",
+    "state negative constraints in the prompt: no unrelated landscape filler, no floating plates, no rails crossing stair openings, no single-color plastic materials",
+    "ask for at least one close-up audit render of the weakest structural area"
+  ],
+  "soft_constraints": [
+    "不要求一比一复刻",
+    "局部尺寸和装饰允许合理发挥"
+  ],
+  "uncertainties": [
+    "未确认的具体尺寸、门洞和房间数量不得当成事实"
+  ],
+  "sources": [],
+  "prompt_quality_package": {
+    "purpose": "Convert research into explicit Blender modeling instructions, not just archived references.",
+    "identity_lock": {
+      "requested_target": "生成一个现实风格地标外观，重点要求屋顶、楼梯、栏杆和材质细节",
+      "do_not_replace_target": true,
+      "source_count": 0
+    },
+    "build_order": [
+      "freeze target identity and source confidence",
+      "block out recognizable massing before small decoration",
+      "add structural connections and circulation details",
+      "add signature facade, roof, opening and edge details",
+      "apply separated realistic materials with roughness, noise and bump",
+      "render hero and close-up audit views before export"
+    ],
+    "detail_targets": [
+      "overall silhouette and tier proportions",
+      "base or plinth connection to the ground",
+      "entrances, doors, windows and facade rhythm",
+      "stairs with real treads, risers, landings and rail openings",
+      "guardrails split into posts, panels, caps and breaks at entrances",
+      "roof massing, eaves, ribs, tile courses, underside structure and finial details",
+      "material separation for stone, timber, roof tile, metal trim and paving"
+    ],
+    "material_targets": [
+      "roof_tile"
+    ],
+    "negative_constraints": [
+      "no unrelated filler objects unless requested",
+      "no white clay final material",
+      "no single-color plastic look",
+      "no floating slabs, fake painted openings or disconnected parts",
+      "no guardrail passing through stairs or entrances"
+    ],
+    "audit_views": [
+      "hero exterior",
+      "front facade detail",
+      "roof/eave detail",
+      "stair and terrace connection audit"
+    ],
+    "quality_standard": [
+      "focus on the requested building only; do not fill the scene with unrelated trees or decoration",
+      "lock the main silhouette, proportions and tier relationships before adding ornament",
+      "model real circulation parts: stairs need treads, risers, landings, side rails and clear railing openings",
+      "model guardrails as separate posts, panels, caps and directional breaks rather than continuous rings through entrances",
+      "add facade depth: columns, doors, lattice panels, plaques, brackets, eaves and visible joints",
+      "add roof depth: tiered masses, ribs, tile courses, eave trim, underside structure and finial details",
+      "use material variation: color, roughness, procedural noise and bump so the browser GLB is not a white clay model",
+      "render hero and close-up checks for overall shape, roof/eave detail, facade detail and stair/terrace detail",
+      "validate the exported GLB before publishing it to the model showcase"
+    ],
+    "evidence_for_prompt": []
+  }
+}

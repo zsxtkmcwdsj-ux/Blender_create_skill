@@ -1,0 +1,14 @@
+{
+  "handoff_id": "TWV3_P01_C6_20260824_114400",
+  "case_id": "TWV3_P01",
+  "method": "C-SAM",
+  "stage": "C6",
+  "algorithm_version": "c_sam_v1_frozen",
+  "source_output_dir": "/Users/san/Desktop/text to bim/传统窗棂实验_阶段1至4_20260823/08_方法C_C-SAM与消融_30张/TWV3_P01/20260824_114337_962000",
+  "application_validation": {
+    "status": "accepted_for_downstream_reconstruction",
+    "note": "",
+    "scope": "应用验收，不等同于论文精度验证"
+  },
+  "created_at": "2026-08-24T11:44:00+0800"
+}

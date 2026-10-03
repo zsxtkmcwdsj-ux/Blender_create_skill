@@ -1,0 +1,78 @@
+{
+  "question": "生成一个现实风格的天安门外观，重点体现多层屋顶、檐口、斗拱、台基、栏杆、窗棂和屋顶瓦片细节",
+  "generation_module": "exterior_architecture",
+  "case_dir": "E:\\app\\condex_project\\Blender_create_skill\\runs\\gugong_corner_visual",
+  "actual_flow": "text -> research package -> research-to-prompt package -> production modeling standard -> scene brief -> Blender skill prompt -> generated Blender code -> Blender generation -> GLB validation",
+  "stages": [
+    {
+      "name": "text_request",
+      "status": "complete",
+      "question": "生成一个现实风格的天安门外观，重点体现多层屋顶、檐口、斗拱、台基、栏杆、窗棂和屋顶瓦片细节",
+      "generation_module": "exterior_architecture"
+    },
+    {
+      "name": "production_modeling_standard",
+      "status": "applied",
+      "items": [
+        "focus on the requested building only; do not fill the scene with unrelated trees or decoration",
+        "lock the main silhouette, proportions and tier relationships before adding ornament",
+        "model real circulation parts: stairs need treads, risers, landings, side rails and clear railing openings",
+        "model guardrails as separate posts, panels, caps and directional breaks rather than continuous rings through entrances",
+        "add facade depth: columns, doors, lattice panels, plaques, brackets, eaves and visible joints",
+        "add roof depth: tiered masses, ribs, tile courses, eave trim, underside structure and finial details",
+        "use material variation: color, roughness, procedural noise and bump so the browser GLB is not a white clay model",
+        "render hero and close-up checks for overall shape, roof/eave detail, facade detail and stair/terrace detail",
+        "validate the exported GLB before publishing it to the model showcase"
+      ]
+    },
+    {
+      "name": "research_package",
+      "status": "complete",
+      "file": "research.json",
+      "mode": "agent_reach",
+      "source_count": 26,
+      "page_count": 18
+    },
+    {
+      "name": "research_to_prompt",
+      "status": "complete",
+      "file": "prompt_quality_package.json",
+      "detail_targets": 7,
+      "signature_features": 5,
+      "material_targets": 5
+    },
+    {
+      "name": "scene_brief",
+      "status": "complete",
+      "file": "scene_brief.json",
+      "synthesis": "model"
+    },
+    {
+      "name": "blender_skill_prompt",
+      "status": "complete",
+      "file": "skill_prompt.md"
+    },
+    {
+      "name": "handoff_package",
+      "status": "complete",
+      "file": "handoff.json"
+    },
+    {
+      "name": "blender_code_generation",
+      "status": "failed",
+      "file": "generated_blender_scene.py",
+      "attempts": 2,
+      "reason": "generated script tries to append/link external Blender assets without a verified asset path"
+    },
+    {
+      "name": "blender_generation",
+      "status": "model_required",
+      "reason": "automatic Blender code was not produced"
+    },
+    {
+      "name": "glb_validation",
+      "status": "pending",
+      "reason": "no GLB path was provided or auto-detected"
+    }
+  ]
+}

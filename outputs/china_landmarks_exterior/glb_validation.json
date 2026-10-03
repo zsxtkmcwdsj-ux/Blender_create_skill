@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "glb": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\china_landmarks_exterior\\china_landmarks_exterior.glb",
+  "blender_version": "5.1.1",
+  "object_count": 176,
+  "mesh_object_count": 176,
+  "material_count": 13,
+  "image_count": 0,
+  "light_count": 0,
+  "camera_count": 0,
+  "action_count": 0,
+  "bounds": {
+    "min": [
+      -46.0,
+      -17.31199836730957,
+      -0.24150006473064423
+    ],
+    "max": [
+      46.307186126708984,
+      17.0,
+      15.300000190734863
+    ],
+    "dimensions": [
+      92.30718612670898,
+      34.31199836730957,
+      15.541500255465508
+    ]
+  },
+  "images": [],
+  "negative_scale_objects": [],
+  "deep_mesh_issues": [],
+  "errors": [],
+  "warnings": []
+}

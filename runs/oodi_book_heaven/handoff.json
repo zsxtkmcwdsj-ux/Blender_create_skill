@@ -1,0 +1,17 @@
+{
+  "workflow": "research_to_blender_skill",
+  "case_id": "oodi_book_heaven",
+  "research_file": "research.json",
+  "brief_file": "scene_brief.json",
+  "skill_prompt_file": "skill_prompt.md",
+  "research_mode": "Codex web research fallback because Agent-reach MCP channels were not available",
+  "skill": "blender-mcp-reference-modeling",
+  "deliverables": [".blend", ".glb", "preview.png"],
+  "approval_policy": "single-turn autonomous execution; no user approval gates",
+  "references": [
+    "https://ala.fi/work/helsinki-central-library/",
+    "https://oodihelsinki.fi/en/facilities/floors/",
+    "https://culture.ec.europa.eu/cultural-and-creative-sectors/architecture/living-spaces/catalogue/helsinki",
+    "https://www.archdaily.com/907675/oodi-helsinki-central-library-ala-architects"
+  ]
+}

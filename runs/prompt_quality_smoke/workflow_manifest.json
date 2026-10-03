@@ -1,0 +1,69 @@
+{
+  "question": "生成一个现实风格地标外观，重点要求屋顶、楼梯、栏杆和材质细节",
+  "generation_module": "exterior_architecture",
+  "case_dir": "E:\\app\\condex_project\\Blender_create_skill\\runs\\prompt_quality_smoke",
+  "actual_flow": "text -> production modeling standard -> research package -> scene brief -> Blender skill prompt -> model execution plan -> Blender generation -> GLB validation",
+  "stages": [
+    {
+      "name": "text_request",
+      "status": "complete",
+      "question": "生成一个现实风格地标外观，重点要求屋顶、楼梯、栏杆和材质细节",
+      "generation_module": "exterior_architecture"
+    },
+    {
+      "name": "production_modeling_standard",
+      "status": "applied",
+      "items": [
+        "focus on the requested building only; do not fill the scene with unrelated trees or decoration",
+        "lock the main silhouette, proportions and tier relationships before adding ornament",
+        "model real circulation parts: stairs need treads, risers, landings, side rails and clear railing openings",
+        "model guardrails as separate posts, panels, caps and directional breaks rather than continuous rings through entrances",
+        "add facade depth: columns, doors, lattice panels, plaques, brackets, eaves and visible joints",
+        "add roof depth: tiered masses, ribs, tile courses, eave trim, underside structure and finial details",
+        "use material variation: color, roughness, procedural noise and bump so the browser GLB is not a white clay model",
+        "render hero and close-up checks for overall shape, roof/eave detail, facade detail and stair/terrace detail",
+        "validate the exported GLB before publishing it to the model showcase"
+      ]
+    },
+    {
+      "name": "research_package",
+      "status": "complete",
+      "file": "research.json",
+      "mode": "offline",
+      "source_count": 0
+    },
+    {
+      "name": "research_to_prompt",
+      "status": "complete",
+      "file": "prompt_quality_package.json",
+      "detail_targets": 7,
+      "material_targets": 1
+    },
+    {
+      "name": "scene_brief",
+      "status": "complete",
+      "file": "scene_brief.json",
+      "synthesis": "fallback"
+    },
+    {
+      "name": "blender_skill_prompt",
+      "status": "complete",
+      "file": "skill_prompt.md"
+    },
+    {
+      "name": "handoff_package",
+      "status": "complete",
+      "file": "handoff.json"
+    },
+    {
+      "name": "blender_generation",
+      "status": "handoff_required",
+      "reason": "skill_prompt.md is ready; provide --blender-script to execute an existing generator"
+    },
+    {
+      "name": "glb_validation",
+      "status": "pending",
+      "reason": "no GLB path was provided or auto-detected"
+    }
+  ]
+}

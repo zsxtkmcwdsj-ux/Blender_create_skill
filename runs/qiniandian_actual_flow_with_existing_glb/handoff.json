@@ -1,0 +1,12 @@
+{
+  "question": "生成祈年殿外观，重点楼梯和栏杆",
+  "synthesis_status": "fallback",
+  "generation_module": "exterior_architecture",
+  "workflow_mode": "assembled_elements_with_verified_joints",
+  "research_file": "research.json",
+  "brief_file": "scene_brief.json",
+  "skill_prompt_file": "skill_prompt.md",
+  "space_contract_reference": "blender-mcp-reference-modeling/references/spatial-grammar.md",
+  "hard_finish_contract_reference": "blender-mcp-reference-modeling/references/closed-space-hard-finish.md",
+  "references": []
+}

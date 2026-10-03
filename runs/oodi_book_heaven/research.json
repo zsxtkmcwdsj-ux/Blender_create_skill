@@ -1,0 +1,67 @@
+{
+  "status": "codex_web_research",
+  "question": "Create a concept interior model of the real Helsinki Central Library Oodi, focusing on the top-floor Book Heaven reading room with the Citizens' Balcony, curved wood volume, wave ceiling, glass facade, and double-helix stair.",
+  "target": {
+    "building": "Helsinki Central Library Oodi",
+    "architect": "ALA Architects",
+    "location": "Helsinki, Finland",
+    "opened": "2018-12-05",
+    "scope": "Top floor Book Heaven / Citizens' Balcony interior concept"
+  },
+  "channels": {
+    "agent_reach": "unavailable in this environment; Codex web research used as the research channel",
+    "official_architect": "passed",
+    "official_oodi": "passed",
+    "eu_architecture_catalogue": "passed",
+    "secondary_plan_reference": "passed"
+  },
+  "sources": [
+    {
+      "title": "Helsinki Central Library Oodi - ALA Architects",
+      "url": "https://ala.fi/work/helsinki-central-library/",
+      "channel": "official_architect",
+      "evidence": [
+        "The design is organized around three individual floors.",
+        "The top floor is a calm, contemplative library space with city and park views.",
+        "An arching wooden volume creates the contrast and vertical connections between the open floors.",
+        "The official gallery identifies top-floor views, the double-helix stair, balcony, and sections.",
+        "Program includes library functions, group work, studios, maker space, cafe, restaurant, cinema and event spaces."
+      ]
+    },
+    {
+      "title": "The floors of Oodi - Oodi Helsinki Central Library",
+      "url": "https://oodihelsinki.fi/en/facilities/floors/",
+      "channel": "official_oodi",
+      "evidence": [
+        "The third floor is Book Heaven, Citizens' Balcony and children's section.",
+        "The top floor is for relaxing and unwinding under an undulating ceiling.",
+        "The top floor includes a cafe, seven reading oases, 100,000 books and a children's section."
+      ]
+    },
+    {
+      "title": "Helsinki Central Library Oodi - European Commission Culture and Creativity",
+      "url": "https://culture.ec.europa.eu/cultural-and-creative-sectors/architecture/living-spaces/catalogue/helsinki",
+      "channel": "eu_architecture_catalogue",
+      "evidence": [
+        "The layout divides functions into a lively ground floor, a peaceful upper floor and an enclosed in-between volume.",
+        "The glass facade extends the public square into the ground floor.",
+        "The third floor preserves the traditional library atmosphere and features the Citizens' Balcony.",
+        "The middle floor sits inside a curved wooden mass that connects the levels."
+      ]
+    },
+    {
+      "title": "Oodi Helsinki Central Library / ALA Architects - ArchDaily",
+      "url": "https://www.archdaily.com/907675/oodi-helsinki-central-library-ala-architects",
+      "channel": "secondary_plan_reference",
+      "evidence": [
+        "Materials are identified as wood, glass and concrete.",
+        "The project gallery and floor-plan references support a large open reading floor and balcony relationship."
+      ]
+    }
+  ],
+  "research_limits": [
+    "No public measurement set for the selected camera area was found.",
+    "The model is a spatial concept, not an exact survey or construction document.",
+    "Furniture positions, dimensions and ceiling wave amplitude are inferred for visual completeness."
+  ]
+}

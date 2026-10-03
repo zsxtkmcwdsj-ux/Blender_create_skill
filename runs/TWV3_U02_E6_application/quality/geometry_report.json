@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "case_id": "TWV3_U02_E6_application",
+  "generation_method": "confirmed_mask_grid_extrusion_v1",
+  "representation": "2.5D silhouette extrusion",
+  "source_mask": "/Users/san/Desktop/Blender_create_skill/runs/TWV3_U02_E6_application/vector/clean_mask.png",
+  "source_dimensions_mm": [
+    1500,
+    16.49,
+    1030.35
+  ],
+  "model_dimensions_m": [
+    1.5,
+    0.016489999368786812,
+    1.0303499698638916
+  ],
+  "mask_grid": [
+    293,
+    200
+  ],
+  "mask_grid_before_solid_crop": [
+    314,
+    215
+  ],
+  "solid_bounds_before_crop": [
+    9,
+    9,
+    301,
+    208,
+    314,
+    215
+  ],
+  "mask_sample_step": 3,
+  "solid_cells": 27902,
+  "grid": [
+    293,
+    200
+  ],
+  "vertex_count": 68226,
+  "face_count": 68434,
+  "solid_ratio": 0.4761433447098976,
+  "limitations": [
+    "单张正面照片不能恢复侧面雕刻、榫卯和真实截面",
+    "当前模型用于几何轮廓、拓扑检查、数字构件归档和建筑场景装配验证",
+    "材质为中性预览材质，不代表历史实测材质"
+  ]
+}

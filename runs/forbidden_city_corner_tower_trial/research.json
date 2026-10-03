@@ -1,0 +1,78 @@
+{
+  "status": "partial",
+  "question": "生成故宫角楼外观，现实风格，重点表现三层复合屋顶、黄色琉璃瓦、朱红柱窗、斗拱、汉白玉栏杆、台基、城墙连接和近景材质细节",
+  "channels": {
+    "exa": {
+      "status": "error",
+      "results": [],
+      "errors": []
+    },
+    "exa_pages": [],
+    "xiaohongshu": {
+      "status": "skipped",
+      "results": [],
+      "errors": [
+        "xhs is not installed or not on PATH"
+      ]
+    },
+    "baidu_baike": [
+      {
+        "channel": "agent_reach_baidu_baike",
+        "term": "故宫角楼",
+        "url": "https://baike.baidu.com/item/%E6%95%85%E5%AE%AB%E8%A7%92%E6%A5%BC",
+        "status": "error",
+        "error": "HTTP Error 403: Forbidden",
+        "text": "",
+        "images": []
+      },
+      {
+        "channel": "agent_reach_baidu_baike",
+        "term": "故宫角楼三层复合屋顶黄色",
+        "url": "https://baike.baidu.com/item/%E6%95%85%E5%AE%AB%E8%A7%92%E6%A5%BC%E4%B8%89%E5%B1%82%E5%A4%8D%E5%90%88%E5%B1%8B%E9%A1%B6%E9%BB%84%E8%89%B2",
+        "status": "error",
+        "error": "HTTP Error 403: Forbidden",
+        "text": "",
+        "images": []
+      },
+      {
+        "channel": "agent_reach_baidu_baike",
+        "term": "故宫角楼三层复合屋顶黄色琉璃瓦朱红柱窗斗拱汉白玉栏杆台基城墙连接",
+        "url": "https://baike.baidu.com/item/%E6%95%85%E5%AE%AB%E8%A7%92%E6%A5%BC%E4%B8%89%E5%B1%82%E5%A4%8D%E5%90%88%E5%B1%8B%E9%A1%B6%E9%BB%84%E8%89%B2%E7%90%89%E7%92%83%E7%93%A6%E6%9C%B1%E7%BA%A2%E6%9F%B1%E7%AA%97%E6%96%97%E6%8B%B1%E6%B1%89%E7%99%BD%E7%8E%89%E6%A0%8F%E6%9D%86%E5%8F%B0%E5%9F%BA%E5%9F%8E%E5%A2%99%E8%BF%9E%E6%8E%A5",
+        "status": "error",
+        "error": "HTTP Error 403: Forbidden",
+        "text": "",
+        "images": []
+      }
+    ]
+  },
+  "sources": [],
+  "pages": [
+    {
+      "channel": "agent_reach_baidu_baike",
+      "term": "故宫角楼",
+      "url": "https://baike.baidu.com/item/%E6%95%85%E5%AE%AB%E8%A7%92%E6%A5%BC",
+      "status": "error",
+      "error": "HTTP Error 403: Forbidden",
+      "text": "",
+      "images": []
+    },
+    {
+      "channel": "agent_reach_baidu_baike",
+      "term": "故宫角楼三层复合屋顶黄色",
+      "url": "https://baike.baidu.com/item/%E6%95%85%E5%AE%AB%E8%A7%92%E6%A5%BC%E4%B8%89%E5%B1%82%E5%A4%8D%E5%90%88%E5%B1%8B%E9%A1%B6%E9%BB%84%E8%89%B2",
+      "status": "error",
+      "error": "HTTP Error 403: Forbidden",
+      "text": "",
+      "images": []
+    },
+    {
+      "channel": "agent_reach_baidu_baike",
+      "term": "故宫角楼三层复合屋顶黄色琉璃瓦朱红柱窗斗拱汉白玉栏杆台基城墙连接",
+      "url": "https://baike.baidu.com/item/%E6%95%85%E5%AE%AB%E8%A7%92%E6%A5%BC%E4%B8%89%E5%B1%82%E5%A4%8D%E5%90%88%E5%B1%8B%E9%A1%B6%E9%BB%84%E8%89%B2%E7%90%89%E7%92%83%E7%93%A6%E6%9C%B1%E7%BA%A2%E6%9F%B1%E7%AA%97%E6%96%97%E6%8B%B1%E6%B1%89%E7%99%BD%E7%8E%89%E6%A0%8F%E6%9D%86%E5%8F%B0%E5%9F%BA%E5%9F%8E%E5%A2%99%E8%BF%9E%E6%8E%A5",
+      "status": "error",
+      "error": "HTTP Error 403: Forbidden",
+      "text": "",
+      "images": []
+    }
+  ]
+}

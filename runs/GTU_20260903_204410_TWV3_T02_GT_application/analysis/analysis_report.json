@@ -1,0 +1,14 @@
+{
+  "case_id": "GTU_20260903_204410_TWV3_T02_GT_application",
+  "status": "analysis_complete",
+  "frame_width_mm": 1500,
+  "frame_height_mm": 1723.72,
+  "node_count": 519,
+  "edge_count": 644,
+  "confidence": 0.82,
+  "estimated_fields": [
+    "bars.width_mm",
+    "bars.depth_mm"
+  ],
+  "next_stage": "deterministic_3d_generation"
+}

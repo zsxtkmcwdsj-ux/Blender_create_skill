@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "glb": "E:\\app\\condex_project\\Blender_create_skill\\runs\\gugong_corner_visual\\model_output\\tiananmen_gate.glb",
+  "blender_version": "5.1.1",
+  "object_count": 117,
+  "mesh_object_count": 117,
+  "material_count": 3,
+  "image_count": 0,
+  "light_count": 0,
+  "camera_count": 0,
+  "action_count": 0,
+  "bounds": {
+    "min": [
+      -33.0,
+      -28.780866622924805,
+      -7.204999923706055
+    ],
+    "max": [
+      33.0,
+      18.5,
+      16.75
+    ],
+    "dimensions": [
+      66.0,
+      47.280866622924805,
+      23.954999923706055
+    ]
+  },
+  "images": [],
+  "negative_scale_objects": [],
+  "deep_mesh_issues": [],
+  "errors": [],
+  "warnings": []
+}

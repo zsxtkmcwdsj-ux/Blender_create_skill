@@ -1,0 +1,14 @@
+{
+  "case_id": "GTU_20260914_092938_R02_GT_application",
+  "status": "analysis_complete",
+  "frame_width_mm": 1500,
+  "frame_height_mm": 1501.36,
+  "node_count": 1304,
+  "edge_count": 1494,
+  "confidence": 0.56,
+  "estimated_fields": [
+    "bars.width_mm",
+    "bars.depth_mm"
+  ],
+  "next_stage": "deterministic_3d_generation"
+}

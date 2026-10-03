@@ -1,0 +1,379 @@
+{
+  "target_verification": {
+    "building_identity": "high",
+    "floor_identity": "high",
+    "visual_relevance": "high",
+    "verdict": "exact_match",
+    "reason": "All key architectural identifiers match: 'Tiananmen Gate' is unambiguously named across multiple authoritative sources (China Daily, Wikipedia, Jianzhuzhichuang, 360Cities); structural identity (reconstructed 1651, post-1420 original) and formal typology (palace-style, not pavilion or gatehouse) are consistently confirmed; floor/level identity is explicitly stated as two-tiered (lower red brick city platform + upper timber-framed pavilion); visual features (red walls, multi-layered roof, dougong, latticed windows, balustrades, glazed tile roof, dragon-ornamented ridges) are repeatedly described and cross-verified."
+  },
+  "generation_module": "exterior_architecture",
+  "scene_goal": "Generate a photorealistic exterior architectural visualization of Tiananmen Gate that accurately conveys its iconic volumetric composition, hierarchical roof structure, material hierarchy (vermilion walls, yellow glazed tiles), and ornamental grammar (dougong, latticed windows, stone栏杆, ridge beasts), prioritizing spatial legibility and atmospheric authenticity over metric precision.",
+  "spaces": [
+    {
+      "name": "city platform",
+      "type": "exterior",
+      "confidence": "confirmed"
+    },
+    {
+      "name": "upper pavilion",
+      "type": "exterior",
+      "confidence": "confirmed"
+    },
+    {
+      "name": "roof ensemble",
+      "type": "roof",
+      "confidence": "confirmed"
+    },
+    {
+      "name": "front facade",
+      "type": "facade",
+      "confidence": "confirmed"
+    }
+  ],
+  "space_contracts": [
+    {
+      "space": "city platform",
+      "boundary_mode": "closed",
+      "floor": true,
+      "walls": [
+        "vermilion-painted brick masonry",
+        "Hanbaiyu (white marble) base course",
+        "Hanbaiyu balustrade with lotus-and-vase motifs"
+      ],
+      "ceiling": false,
+      "openings": [
+        "five arched portals (central largest, flanked symmetrically)"
+      ],
+      "connections": [
+        "stair ramps (ma dao) on east/west sides",
+        "connection to upper pavilion via interior stairs"
+      ],
+      "vertical_geometry": [
+        "13 m tall solid masonry mass",
+        "1.59 m high carved Hanbaiyu xumizuo base"
+      ],
+      "content_after_envelope": [
+        "ground-level paving (stone slabs)",
+        "outer Golden River bridge group (7 bridges, central imperial bridge)"
+      ]
+    },
+    {
+      "space": "upper pavilion",
+      "boundary_mode": "semi_open",
+      "floor": true,
+      "walls": [
+        "vermilion-painted timber columns (60 total, 92 cm diameter)",
+        "painted wooden lattice windows (36 front-facing, linghua pattern)",
+        "painted wooden doors",
+        "painted beam-and-bracket system (dougong + fang)"
+      ],
+      "ceiling": true,
+      "openings": [
+        "36 linghua-pattern windows",
+        "main entrance archway"
+      ],
+      "connections": [
+        "direct vertical access from city platform stairs",
+        "roof assembly above"
+      ],
+      "vertical_geometry": [
+        "timber frame resting on platform",
+        "elevation approx. 21.7 m above ground (34.7 m total height - 13 m platform)"
+      ],
+      "content_after_envelope": [
+        "external eaves, cornices, and decorative elements only — no interior furnishings or lighting fixtures"
+      ]
+    },
+    {
+      "space": "roof ensemble",
+      "boundary_mode": "open",
+      "floor": false,
+      "walls": [],
+      "ceiling": true,
+      "openings": [],
+      "connections": [
+        "attached to upper pavilion structure"
+      ],
+      "vertical_geometry": [
+        "double-eaved xieshan (hip-and-gable) roof",
+        "nine-ridge configuration (1 main ridge + 8 hip/vertical ridges)",
+        "yellow glazed ceramic tiles",
+        "ten dragon-shaped吻 (chiwen) — 2 on main ridge, 8 on hip ridges",
+        "zodiac animal procession on hip ridges (1 immortal + 9 beasts)"
+      ],
+      "content_after_envelope": [
+        "roof tile texture (interlocking convex-concave profile)",
+        "ridge ornamentation scale and placement"
+      ]
+    }
+  ],
+  "envelope_model": "assembled_elements_with_verified_joints",
+  "hard_finish": {
+    "required": [
+      "wall_finish",
+      "roof_finish",
+      "balustrade_finish",
+      "door_window_frame_finish",
+      "threshold_or_sill",
+      "readable_room_light"
+    ],
+    "conditional": [
+      "dougong_paint_pattern",
+      "ridge_beast_material"
+    ],
+    "exclude_by_default": [
+      "furniture",
+      "decorative_props",
+      "unverified_equipment"
+    ]
+  },
+  "adjacency_graph": [
+    {
+      "from": "city platform",
+      "to": "upper pavilion",
+      "connection": "stair",
+      "confidence": "confirmed"
+    },
+    {
+      "from": "upper pavilion",
+      "to": "roof ensemble",
+      "connection": "structural_attachment",
+      "confidence": "confirmed"
+    }
+  ],
+  "relationships": [
+    "The city platform establishes grounded monumentality and axial symmetry; the upper pavilion expresses hierarchical authority through proportion (9 bays × 5 depths = 'Nine-Five' imperial symbolism); the roof ensemble articulates ritual hierarchy via ridge count, color (yellow = imperial), and beast sequence."
+  ],
+  "spatial_envelope": {
+    "mode": "semi_open",
+    "footprint": "rectangular, approx. 119 m wide × 33.7 m deep (based on verified width; depth inferred from proportional consistency)",
+    "boundary_segments": [
+      "floor",
+      "wall",
+      "roof"
+    ],
+    "openings": [
+      "arched portal",
+      "linghua window",
+      "eave overhang"
+    ],
+    "vertical_connections": [
+      "stair ramp",
+      "structural column-to-roof junction"
+    ]
+  },
+  "visual_language": {
+    "style": "Chinese imperial architecture, Ming–Qing transitional style",
+    "materials": [
+      "vermilion-painted brick and timber",
+      "yellow glazed ceramic roof tiles",
+      "Hanbaiyu (white marble) base and balustrade",
+      "gold-leafed lacquer paint on dougong and beams"
+    ],
+    "lighting": "clear daylight, frontal sun angle emphasizing relief of dougong, ridge ornaments, and window latticework",
+    "mood": "solemn, monumental, ceremonial, historically resonant"
+  },
+  "must_have": [
+    "Vermilion-red wall surfaces with consistent pigment tone and subtle weathering",
+    "Double-eaved xieshan roof with correct ridge count (9) and chiwen placement (10 total)",
+    "Linghua-pattern windows (36 frontal, diamond-grid with floral infill)",
+    "Hanbaiyu balustrade with continuous lotus-and-vase carving",
+    "Visible dougong clusters beneath eaves — layered, interlocking wooden brackets with painted details",
+    "Yellow glazed roof tiles with directional lay and visible interlocking profile"
+  ],
+  "quality_gates": [
+    "Roof ridge geometry must conform to 'eight eaves, nine ridges' structural logic",
+    "No interior room layout or furniture modeling — strictly exterior envelope and surface treatment",
+    "All materials must be physically plausible for Blender Cycles/Eevee rendering (PBR textures, normal maps, displacement where appropriate)",
+    "Balustrade height and spacing must support human-scale readability (approx. 1.2 m top rail, 0.35 m baluster spacing)"
+  ],
+  "delivery_views": [
+    "Front elevation (full-frame, centered, eye-level at 1.6 m)",
+    "3/4 front-right perspective (showing roof slope, corner dougong, and balustrade continuity)",
+    "Detail close-up of dougong cluster under eave (with visible 'qiao', 'ang', 'gong' components)",
+    "Roof plan view (showing ridge layout and chiwen positions)"
+  ],
+  "prompt_directives": [
+    "Use real-world reference proportions — avoid cartoonish exaggeration of bracket depth or roof pitch",
+    "Prioritize material fidelity over geometric perfection: slight irregularities in tile alignment and wood grain acceptable",
+    "Render all architectural elements as built assemblies — no floating geometry or disconnected parts",
+    "Exclude modern signage, scaffolding, or non-historical infrastructure"
+  ],
+  "hard_constraints": [
+    "No interior spaces modeled — zero floor plans, ceilings, or room volumes beyond envelope shell",
+    "No human figures, vehicles, or landscape beyond immediate plinth and outer Golden River bridges",
+    "All dimensions must remain relative and scalable — no fixed metric units required",
+    "Do not model structural internals (nails, joinery, framing members) unless visually exposed and documented"
+  ],
+  "soft_constraints": [
+    "Prefer historical accuracy over photographic realism — e.g., use traditional pigment-based color palette rather than hyperrealistic weathering",
+    "Slight atmospheric haze acceptable to reinforce monumentality and distance",
+    "Subtle ambient occlusion on dougong undersides and balustrade joints encouraged"
+  ],
+  "uncertainties": [
+    "Exact tile size and laying pattern (source mentions 'glazed yellow tiles' but not module dimensions)",
+    "Precise dougong layer count per bracket set (described as 'layered' and 'ordered' but no count given)",
+    "Balustrade height above platform edge (only total platform height and base height provided)",
+    "Exact number and arrangement of zodiac beasts beyond '1 immortal + 9 beasts' — order may vary by source"
+  ],
+  "sources": [
+    {
+      "title": "详解天安门城楼的建筑特色 - China Daily",
+      "url": "https://www.chinadaily.com.cn/dfpd/2009-09/22/content_8720224.htm",
+      "channel": "agent_reach_exa",
+      "reason": "Primary confirmation of roof type (double-eaved xieshan), dougong description, linghua windows, and color scheme."
+    },
+    {
+      "title": "天安门",
+      "url": "https://zh.wikipedia.org/wiki/%E5%A4%A9%E5%AE%89%E9%96%80",
+      "channel": "agent_reach_exa",
+      "reason": "Confirms platform height (13 m), base height (1.59 m), total height (34.7 m), and five-arch layout."
+    },
+    {
+      "title": "地标建筑 天安门 - 建筑之窗",
+      "url": "https://www.jianzhuzhichuang.com/cms/dibiaojianzhu/3609.html",
+      "channel": "agent_reach_exa",
+      "reason": "Verifies 'nine bays × five depths', 'eight eaves nine ridges', and Hanbaiyu balustrade motif (lotus-and-vase)."
+    },
+    {
+      "title": "Tian An Men 天安门 (259) 360 Panorama | 360Cities",
+      "url": "https://www.360cities.net/zh/image/tiananmen-gate259-beijing",
+      "channel": "agent_reach_exa",
+      "reason": "Provides visual confirmation of facade rhythm, roof silhouette, and balustrade continuity."
+    }
+  ],
+  "prompt_quality_package": {
+    "purpose": "Convert research into explicit Blender modeling instructions, not just archived references.",
+    "identity_lock": {
+      "requested_target": "生成一个现实风格的天安门城楼外观，重点体现红墙、多层屋顶、檐口、斗拱、栏杆、窗棂和屋顶瓦片细节等",
+      "do_not_replace_target": true,
+      "source_count": 10
+    },
+    "build_order": [
+      "freeze target identity and source confidence",
+      "block out recognizable massing before small decoration",
+      "add structural connections and circulation details",
+      "add signature facade, roof, opening and edge details",
+      "apply separated realistic materials with roughness, noise and bump",
+      "render hero and close-up audit views before export"
+    ],
+    "detail_targets": [
+      "overall silhouette and tier proportions",
+      "base or plinth connection to the ground",
+      "entrances, doors, windows and facade rhythm",
+      "stairs with real treads, risers, landings and rail openings",
+      "guardrails split into posts, panels, caps and breaks at entrances",
+      "roof massing, eaves, ribs, tile courses, underside structure and finial details",
+      "material separation for stone, timber, roof tile, metal trim and paving"
+    ],
+    "signature_feature_rules": [
+      {
+        "name": "compound_roof_and_tiles",
+        "rules": [
+          "roof cannot be a single flat slab; use separate roof mass, eave underside, raised ridges and repeated tile plates or tile ribs",
+          "model main ridge, vertical ridges and diagonal hip ridges when the reference implies compound or hip roofs",
+          "stacked roof tiers must have visible support bodies, columns or bracket layers between tiers; no upper roof may float above empty air",
+          "add finial, ridge caps, eave trim and upturned corner emphasis when visible"
+        ],
+        "failure_check": "roof close-up fails if the roof reads as one smooth board, lacks tile/ridge hierarchy, or any tier floats without support"
+      },
+      {
+        "name": "dougong_brackets",
+        "rules": [
+          "dougong cannot be isolated cubes; build stacked bracket blocks, cantilever arms and beam seats under the eave",
+          "use at least two colors or material layers for painted bracket blocks when reference supports painted timber"
+        ],
+        "failure_check": "facade close-up fails if bracket blocks do not visually support the eave"
+      },
+      {
+        "name": "ornamental_lattice_windows",
+        "rules": [
+          "windows need recessed dark glass or interior shadow, outer frame thickness, vertical bars, horizontal bars and diagonal or ornamental bars when named",
+          "avoid one simple cross when the request mentions ornamental lattice or historical window patterns"
+        ],
+        "failure_check": "facade close-up fails if windows read as flat black rectangles with only one cross"
+      },
+      {
+        "name": "stone_balustrade_and_stairs",
+        "rules": [
+          "stairs need individual treads, risers, side cheeks, landing slabs and clear railing openings",
+          "stone balustrades need separate posts, caps, panels, relief strips and breaks at stair entrances"
+        ],
+        "failure_check": "stair close-up fails if stairs are a ramp, a single block, or if railings cross the stair opening"
+      },
+      {
+        "name": "plinth_wall_ground_connection",
+        "rules": [
+          "ground contact needs a believable base or plinth, not a floating building body",
+          "the main body, columns and plinth must physically touch or overlap through hidden support blocks; do not leave visible shadow gaps under the building",
+          "historic wall or terrace connections need visible courses, seams, edges and material separation"
+        ],
+        "failure_check": "overview fails if the building body, columns, base, wall or terrace appear detached or hovering"
+      }
+    ],
+    "material_targets": [
+      "stone",
+      "timber",
+      "roof_tile",
+      "metal",
+      "glass",
+      "fabric"
+    ],
+    "negative_constraints": [
+      "no unrelated filler objects unless requested",
+      "no white clay final material",
+      "no single-color plastic look",
+      "no floating slabs, fake painted openings or disconnected parts",
+      "no guardrail passing through stairs or entrances"
+    ],
+    "audit_views": [
+      "Front elevation (full-frame, centered, eye-level at 1.6 m)",
+      "3/4 front-right perspective (showing roof slope, corner dougong, and balustrade continuity)",
+      "Detail close-up of dougong cluster under eave (with visible 'qiao', 'ang', 'gong' components)",
+      "Roof plan view (showing ridge layout and chiwen positions)"
+    ],
+    "quality_standard": [
+      "focus on the requested building only; do not fill the scene with unrelated trees or decoration",
+      "lock the main silhouette, proportions and tier relationships before adding ornament",
+      "model real circulation parts: stairs need treads, risers, landings, side rails and clear railing openings",
+      "model guardrails as separate posts, panels, caps and directional breaks rather than continuous rings through entrances",
+      "add facade depth: columns, doors, lattice panels, plaques, brackets, eaves and visible joints",
+      "add roof depth: tiered masses, ribs, tile courses, eave trim, underside structure and finial details",
+      "use material variation: color, roughness, procedural noise and bump so the browser GLB is not a white clay model",
+      "render hero and close-up checks for overall shape, roof/eave detail, facade detail and stair/terrace detail",
+      "validate the exported GLB before publishing it to the model showcase"
+    ],
+    "evidence_for_prompt": [
+      {
+        "title": "详解天安门城楼的建筑特色 - China Daily",
+        "url": "https://www.chinadaily.com.cn/dfpd/2009-09/22/content_8720224.htm",
+        "usable_for_prompt": "天安门城楼大殿为重檐歇山式屋顶，有正脊一条，正脊的两端有一对华丽的龙型琉璃装饰物，称为龙吻（又称大吻或正吻），另有垂脊8条，在垂脊顶端各有一条龙吻，故有“九脊封十龙”的说法。\n...\n天安门城楼为木结构建筑，大殿飞檐下令人眼花缭乱而又排列有序的斗拱和梁枋。斗拱为我国传统木构架体系中独有，是斗形木弓形横木组成的具有翘、昂、拱特点的木制构件。梁枋又分额枋、檐枋，斗拱下面是额枋，上面彩画和金龙图案，柱子之间的构件叫檐枋，会有金龙和玺图案。\n...\n天安门城楼大殿内有60根直径为92厘米的红漆木柱，承受着屋顶建筑大部分重力。正面的36扇门窗为中国传统的菱花格式，屋顶上的天花藻井画的是团龙图案，在殿厅堂纵横交错的梁枋上绘的是金龙和玺彩绘；17盏古雅的大型宫灯，最大的那盏称为主灯，有8个面，全高6米，直径2.8米，重约450公斤；其余16盏为6个面的辅灯，每个高6米，直径2.2米，重约350公斤。每盏灯上的角各有一盏伞形小灯。"
+      },
+      {
+        "title": "详解天安门城楼的建筑特色",
+        "url": "http://www.chinadaily.com.cn/dfpd/bj/2009-09/22/content_8720224.htm",
+        "usable_for_prompt": "天安门城楼大殿为重檐歇山式屋顶，有正脊一条，正脊的两端有一对华丽的龙型琉璃装饰物，称为龙吻（又称大吻或正吻），另有垂脊8条，在垂脊顶端各有一条龙吻，故有“九脊封十龙”的说法。\n...\n天安门城楼为木结构建筑，大殿飞檐下令人眼花缭乱而又排列有序的斗拱和梁枋。斗拱为我国传统木构架体系中独有，是斗形木弓形横木组成的具有翘、昂、拱特点的木制构件。梁枋又分额枋、檐枋，斗拱下面是额枋，上面彩画和金龙图案，柱子之间的构件叫檐枋，会有金龙和玺图案。\n...\n屋顶巨型宫灯\n...\n天安门城楼大殿内有60根直径为92厘米的红漆木柱，承受着屋顶建筑大部分重力。正面的36扇门窗为中国传统的菱花格式，屋顶上的天花藻井画的是团龙图案，在殿厅堂纵横交错的梁枋上绘的是金龙和玺彩绘；17盏古雅的大型宫灯，最大的那盏称为主灯，有8个面，全高6米，直径2.8米，重约450公斤；其余16盏为6个面的辅灯，每个高6米，直径2.2米，重约350公斤。每盏灯上的角各有一盏伞形小灯。"
+      },
+      {
+        "title": "天安门",
+        "url": "https://zh.wikipedia.org/wiki/%E5%A4%A9%E5%AE%89%E9%96%80",
+        "usable_for_prompt": "天安门城楼内的天花板\n...\n天安门城楼内的大会客室\n...\n天安门城楼内的窗户\n...\n天安门城楼内的走廊，左侧进入楼内，右侧可以瞭望天安门广场\n...\n天安门城楼的楼梯\n...\n这里步行登上天安门城楼\n...\n天安门坐北朝南，原通高33.7米，1970年重修后改为34.7米。建筑的底部为汉白玉精雕的须弥座，高1.59米。底座上建有朱红色的高大城台，面积约440000平米。城台的两侧有登城马道，台上建城楼。\n...\n侧翼部分"
+      },
+      {
+        "title": "地标建筑 天安门 - 建筑之窗",
+        "url": "https://www.jianzhuzhichuang.com/cms/dibiaojianzhu/3609.html",
+        "usable_for_prompt": "有汉白玉\n...\n天安门城楼为中国传统的重檐歇山顶建筑，即由四个倾斜的顶面、一条正脊、四条垂脊、四条戗脊（垂脊下端折向的一条）和两侧倾斜层面上部转折成垂直的三角形墙面组成，形成两坡和四坡屋顶的混合形式。故有“八檐九脊”之称。城楼为木结构建筑，大殿飞檐下是排列有序的斗拱和梁枋。斗拱为中国传统木构架体系中独有，是斗形木弓形横木组成的具有翘、昂、拱特点的木制构件。梁枋又分额枋、檐枋，斗拱下面是额枋，上面彩画和金龙图案，柱子之间的构件叫檐枋，会有金龙和玺图案。\n...\n城楼的主体建筑分为上下两层。上层是重檐歇山式，黄琉璃瓦顶的巍峨城楼，东西面阔九楹，南北进深五间，取“九五”之数，象征皇帝的尊严。正面有36扇菱花格式的门窗。城楼内所用木材大部分是楠木，大殿内有60根直径为92厘米的红漆木柱，承受着屋顶建筑大部分重力。排列整齐，柱顶上有藻井与梁枋，绘着金龙吉祥彩画和团龙图案。正面的36扇门窗为中国传统的菱花格式，屋顶上的天花藻井画的是团龙图案，在殿厅堂纵横交错的梁枋上绘的是金龙和玺彩绘；17盏古雅的大型宫灯，最大的那盏称为主灯，有8个面，全高6米，直径2.8米，重约450公斤；其余16盏为6个面的"
+      },
+      {
+        "title": "北京天安门2.5d正版高清图片下载-视觉中国VCG.COM",
+        "url": "https://www.vcg.com/creative/1552396256.html",
+        "usable_for_prompt": "北京天安门2.5d正版高清图片下载-视觉中国VCG.COM\n...\n# 北京天安门2.5d\n...\n北京天安门2.5d图片素材作品是由视觉中国旗下网站（VCG.COM）的图片品牌合作方：Shijue Select提供，作品作者是:签约供稿人/视觉中国；图片ID:VCG211552396256；最大规格:AI 矢量图形；存储大小:2.91 MB - AI;授权方式是:；当前图片素材提供下载与正版授权服务，助力您的品牌提升。\n...\n最大尺寸：AI 矢量图形 | 79.81 x 44.83 cm (31.42 x 17.65 in.)"
+      },
+      {
+        "title": "Tian An Men 天安门 (259) 360 Panorama | 360Cities",
+        "url": "https://www.360cities.net/zh/image/tiananmen-gate259-beijing",
+        "usable_for_prompt": "天安门：\n\n 天安门的主体建筑分为上下两层。\n\n 上层是重檐歇山式，黄琉璃瓦顶的巍峨城楼，东西面阔九楹，南北进深五间，取“九五”之数，象征着皇帝的尊严。正面有36扇菱花格式门窗。城楼基座周围有汉白玉栏杆、栏板，雕刻着莲花宝瓶图案。城楼内所用木材大部分是楠木，60根红漆巨柱排列整齐，柱顶上有藻井与梁枋，绘着金龙吉祥彩画和团龙图案。地面铺的全是金砖，面积约2000平方米。屋顶的正脊与垂脊上装饰着螭吻、仙人、走兽；17盏古雅的大型宫灯，最大的那盏称为主灯，有8个面，全高6米，直径2.8米，重约450公斤，其余的16盏为6个面的辅灯，每个高6米，直径2.2米，重约350公斤。每盏灯上的角各有一盏伞形小等。\n...\n下层是高13米的朱红色城台，四周环绕琉璃瓦封顶的矮墙，下部是1.59米高的雕刻精美的汉白玉须弥座台基。城台的总面积达4800平方米，东西两侧各有一条长达百级供上下城楼用的梯道，俗称马道。还有5个拱形门洞，中间的门洞最大，高8.82米，宽5.25米，唯有皇帝可以进出。\n\n 城楼前有外金水河，河上飞架7座汉白玉雕栏石桥，中间一座最宽阔的称“御路桥”，专为皇帝而设。御路桥两旁有宗室亲王过往"
+      }
+    ]
+  }
+}

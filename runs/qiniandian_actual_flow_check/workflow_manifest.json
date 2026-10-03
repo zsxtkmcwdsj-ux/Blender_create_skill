@@ -1,0 +1,47 @@
+{
+  "question": "生成祈年殿外观，重点楼梯和栏杆",
+  "generation_module": "exterior_architecture",
+  "case_dir": "E:\\app\\condex_project\\Blender_create_skill\\runs\\qiniandian_actual_flow_check",
+  "actual_flow": "text -> research package -> scene brief -> Blender skill prompt -> optional Blender script execution -> optional GLB validation",
+  "stages": [
+    {
+      "name": "text_request",
+      "status": "complete",
+      "question": "生成祈年殿外观，重点楼梯和栏杆",
+      "generation_module": "exterior_architecture"
+    },
+    {
+      "name": "research_package",
+      "status": "complete",
+      "file": "research.json",
+      "mode": "offline",
+      "source_count": 0
+    },
+    {
+      "name": "scene_brief",
+      "status": "complete",
+      "file": "scene_brief.json",
+      "synthesis": "fallback"
+    },
+    {
+      "name": "blender_skill_prompt",
+      "status": "complete",
+      "file": "skill_prompt.md"
+    },
+    {
+      "name": "handoff_package",
+      "status": "complete",
+      "file": "handoff.json"
+    },
+    {
+      "name": "blender_generation",
+      "status": "handoff_required",
+      "reason": "skill_prompt.md is ready; provide --blender-script to execute an existing generator"
+    },
+    {
+      "name": "glb_validation",
+      "status": "pending",
+      "reason": "no GLB path was provided or auto-detected"
+    }
+  ]
+}

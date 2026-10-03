@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "blend_file": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\cafe_concept_final\\low_poly_cafe.blend",
+  "blender_version": "5.1.1",
+  "scene": "Scene",
+  "object_count": 107,
+  "mesh_object_count": 101,
+  "mesh_data_count": 101,
+  "material_count": 18,
+  "frame_range": [
+    1,
+    250
+  ],
+  "fps": 24.0,
+  "active_camera": "摄像机",
+  "hashes": {
+    "transform_geometry": "d2628be71d1145566b62b4fca4aa7c129f5538e5e99c3857c5a83fc0da280f79",
+    "lights_world": "e3a892dd55a2078dcbe67aef59075715d79507f502ed227d6bd5e4aa1bd66ee2",
+    "animation": "11566c45472ff9aa75dcb1be1d001eb4126be151273f9b5acf238f83bacce621",
+    "material_assignments": "9785ee20db97d7dc26a48661b71735d5f7c614daeec082c2b2fb27a7f90fc720"
+  },
+  "negative_scale_objects": [],
+  "smooth_without_sharp_attribute": [],
+  "materials": {
+    "materials": [
+      {
+        "name": "Material",
+        "users": 0,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "clay_pot_1",
+        "users": 1,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "clay_pot_2",
+        "users": 1,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "cream_wall",
+        "users": 3,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "cup_white",
+        "users": 11,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "dark_walnut",
+        "users": 30,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "matte_black",
+        "users": 27,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "muted_terra_tile",
+        "users": 1,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "pale_glass",
+        "users": 4,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "pastry_1",
+        "users": 1,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "pastry_2",
+        "users": 1,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "pastry_3",
+        "users": 1,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "plant_green",
+        "users": 10,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "rust_rug",
+        "users": 1,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "sage_counter",
+        "users": 1,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "soft_metal",
+        "users": 2,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "warm_light",
+        "users": 3,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      },
+      {
+        "name": "warm_oak",
+        "users": 4,
+        "has_node_tree": true,
+        "output_connected": true,
+        "script_nodes": [],
+        "images": []
+      }
+    ],
+    "missing_images": []
+  }
+}

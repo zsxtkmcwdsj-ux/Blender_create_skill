@@ -1,0 +1,11 @@
+{
+  "question": "会议室，封闭空间，包含门窗和基础硬装",
+  "synthesis_status": "fallback",
+  "workflow_mode": "continuous_shell_with_explicit_openings",
+  "research_file": "research.json",
+  "brief_file": "scene_brief.json",
+  "skill_prompt_file": "skill_prompt.md",
+  "space_contract_reference": "blender-mcp-reference-modeling/references/spatial-grammar.md",
+  "hard_finish_contract_reference": "blender-mcp-reference-modeling/references/closed-space-hard-finish.md",
+  "references": []
+}

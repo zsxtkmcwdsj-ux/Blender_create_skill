@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "case_id": "GT_S01_P02",
+  "generation_method": "confirmed_mask_grid_extrusion_v1",
+  "representation": "2.5D silhouette extrusion",
+  "source_mask": "/Users/san/Desktop/Blender_create_skill/runs/GT_S01_P02/vector/clean_mask.png",
+  "source_dimensions_mm": [
+    1500,
+    17.91,
+    1496.75
+  ],
+  "model_dimensions_m": [
+    1.5,
+    0.017909999936819077,
+    1.496749997138977
+  ],
+  "mask_grid": [
+    229,
+    229
+  ],
+  "mask_grid_before_solid_crop": [
+    231,
+    230
+  ],
+  "solid_bounds_before_crop": [
+    1,
+    1,
+    229,
+    229,
+    231,
+    230
+  ],
+  "mask_sample_step": 2,
+  "solid_cells": 14848,
+  "grid": [
+    229,
+    229
+  ],
+  "vertex_count": 37860,
+  "face_count": 37978,
+  "solid_ratio": 0.2831372399458439,
+  "limitations": [
+    "单张正面照片不能恢复侧面雕刻、榫卯和真实截面",
+    "当前模型用于几何轮廓、孔隙率和初步采光遮阳实验",
+    "材质为中性预览材质，不代表历史实测材质"
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "workflow": "lattice_image_to_3d_v2",
+  "case_id": "TWV3_U02_E6_application",
+  "stages": [
+    {
+      "name": "图片输入与来源记录",
+      "status": "complete"
+    },
+    {
+      "name": "窗框四角与真实尺度",
+      "status": "complete"
+    },
+    {
+      "name": "透视矫正",
+      "status": "complete"
+    },
+    {
+      "name": "纹样分割与骨架提取",
+      "status": "complete"
+    },
+    {
+      "name": "节点连线结构化",
+      "status": "complete"
+    },
+    {
+      "name": "三维模型生成",
+      "status": "complete"
+    },
+    {
+      "name": "建筑构件装配验证",
+      "status": "pending"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "case_id": "china_landmarks_exterior",
+  "skill": "blender-mcp-reference-modeling",
+  "status": "script_ready_blender_runtime_missing",
+  "scope": "Exterior-only conceptual massing set of selected Chinese landmarks.",
+  "landmarks": [
+    "Temple of Heaven",
+    "Forbidden City Hall",
+    "Oriental Pearl Tower",
+    "Shanghai Tower",
+    "CCTV Headquarters",
+    "Bird Nest Stadium",
+    "HZMB Bridge",
+    "Suzhou Museum New"
+  ],
+  "script": "outputs/china_landmarks_exterior/create_china_landmarks_exterior.py",
+  "expected_deliverables_after_blender_run": [
+    "outputs/china_landmarks_exterior/stage_00_blockout.blend",
+    "outputs/china_landmarks_exterior/china_landmarks_exterior.blend",
+    "outputs/china_landmarks_exterior/china_landmarks_exterior.glb",
+    "outputs/china_landmarks_exterior/china_landmarks_exterior_preview.png",
+    "outputs/china_landmarks_exterior/china_landmarks_exterior_modern_preview.png",
+    "outputs/china_landmarks_exterior/scene_audit.json"
+  ],
+  "run_command": "blender --background --python outputs/china_landmarks_exterior/create_china_landmarks_exterior.py -- --output outputs/china_landmarks_exterior"
+}

@@ -1,0 +1,12 @@
+{
+  "mode": "BOT_informed_single_space_hard_finish",
+  "target": "北京建筑大学大兴校区7号楼2层学生公寓房间218",
+  "evidence_status": {"room_position": "confirmed by supplied plan", "exact_dimensions": "unknown", "hard_finish_details": "inferred concept"},
+  "zone": {"id": "room_218", "class": "bot:Space", "storey": "floor_2", "boundary_mode": "closed"},
+  "elements": ["floor slab/finish", "left wall", "right wall", "front wall with door opening", "door jambs and head", "door leaf", "back wall with window opening", "window sill/head/frame/glazing", "ceiling slab", "baseboards"],
+  "interfaces": ["room_218 to corridor through door threshold and opening", "room_218 to exterior through window boundary"],
+  "adjacency_graph": [{"from": "room_218", "to": "corridor", "relation": "adjacent through door interface"}],
+  "hard_constraints": ["no furniture", "no loose props", "door must be inside wall opening", "wall remains above door", "window must be inside exterior wall opening", "ceiling must exist in the editable scene"],
+  "inferred_dimensions_m": {"width": 3.6, "depth": 5.4, "height": 3.0, "wall": 0.18, "door_width": 1.0, "door_height": 2.2, "window_width": 1.8, "window_height": 1.4},
+  "deliverables": ["blend", "glb", "interior preview", "cutaway preview", "audit json"]
+}

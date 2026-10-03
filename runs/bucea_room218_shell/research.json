@@ -1,0 +1,16 @@
+{
+  "status": "offline_plan_and_pdf_reference",
+  "target": "北京建筑大学大兴校区7号楼2层学生公寓，房间218单房间硬装壳体",
+  "sources": [
+    {"title": "User supplied fire plan", "path": "E:\\app\\condex_project\\Test_to_3D\\test0022.jpg", "supports": "Room 218 position, corridor adjacency and door-side relationship"},
+    {"title": "BOT: the Building Topology Ontology of the W3C Linked Building Data Group", "path": "C:\\Users\\Lenovo\\Desktop\\智能体人研究\\阶段1：虚拟场景搭建\\参考文献\\建筑术语论文.pdf", "supports": "building/storey/space topology; zones, elements, interfaces, adjacency, containment, and geometry links"}
+  ],
+  "paper_takeaways": [
+    "A space/zone has a 3D spatial extent and is distinct from a tangible building element.",
+    "A building can be decomposed as site -> building -> storey -> space.",
+    "Elements such as walls, doors and windows are contained in, adjacent to, or intersecting with zones.",
+    "Interfaces qualify relationships at boundaries, for example access between a space and corridor through a door.",
+    "Geometry and materials are assigned to zones/elements after their topology is described."
+  ],
+  "modeling_decision": "Model one complete room zone first, then model its boundary elements and interfaces. Exclude furniture so the test isolates architectural hard finish."
+}

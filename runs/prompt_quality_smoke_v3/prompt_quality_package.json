@@ -1,0 +1,53 @@
+{
+  "purpose": "Convert research into explicit Blender modeling instructions, not just archived references.",
+  "identity_lock": {
+    "requested_target": "生成一个现实风格地标外观，重点要求屋顶、楼梯、栏杆和材质细节",
+    "do_not_replace_target": true,
+    "source_count": 0
+  },
+  "build_order": [
+    "freeze target identity and source confidence",
+    "block out recognizable massing before small decoration",
+    "add structural connections and circulation details",
+    "add signature facade, roof, opening and edge details",
+    "apply separated realistic materials with roughness, noise and bump",
+    "render hero and close-up audit views before export"
+  ],
+  "detail_targets": [
+    "overall silhouette and tier proportions",
+    "base or plinth connection to the ground",
+    "entrances, doors, windows and facade rhythm",
+    "stairs with real treads, risers, landings and rail openings",
+    "guardrails split into posts, panels, caps and breaks at entrances",
+    "roof massing, eaves, ribs, tile courses, underside structure and finial details",
+    "material separation for stone, timber, roof tile, metal trim and paving"
+  ],
+  "material_targets": [
+    "roof_tile"
+  ],
+  "negative_constraints": [
+    "no unrelated filler objects unless requested",
+    "no white clay final material",
+    "no single-color plastic look",
+    "no floating slabs, fake painted openings or disconnected parts",
+    "no guardrail passing through stairs or entrances"
+  ],
+  "audit_views": [
+    "hero exterior",
+    "front facade detail",
+    "roof/eave detail",
+    "stair and terrace connection audit"
+  ],
+  "quality_standard": [
+    "focus on the requested building only; do not fill the scene with unrelated trees or decoration",
+    "lock the main silhouette, proportions and tier relationships before adding ornament",
+    "model real circulation parts: stairs need treads, risers, landings, side rails and clear railing openings",
+    "model guardrails as separate posts, panels, caps and directional breaks rather than continuous rings through entrances",
+    "add facade depth: columns, doors, lattice panels, plaques, brackets, eaves and visible joints",
+    "add roof depth: tiered masses, ribs, tile courses, eave trim, underside structure and finial details",
+    "use material variation: color, roughness, procedural noise and bump so the browser GLB is not a white clay model",
+    "render hero and close-up checks for overall shape, roof/eave detail, facade detail and stair/terrace detail",
+    "validate the exported GLB before publishing it to the model showcase"
+  ],
+  "evidence_for_prompt": []
+}

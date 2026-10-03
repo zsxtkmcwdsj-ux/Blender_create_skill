@@ -1,0 +1,13 @@
+{
+  "question": "生成一个现实风格的故宫角楼外观，重点体现多层屋顶、檐口、斗拱、台基、栏杆、窗棂和屋顶瓦片细节",
+  "synthesis_status": "model",
+  "generation_module": "exterior_architecture",
+  "workflow_mode": "assembled_elements_with_verified_joints",
+  "research_file": "research.json",
+  "brief_file": "scene_brief.json",
+  "prompt_quality_package_file": "prompt_quality_package.json",
+  "skill_prompt_file": "skill_prompt.md",
+  "space_contract_reference": "blender-mcp-reference-modeling/references/spatial-grammar.md",
+  "hard_finish_contract_reference": "blender-mcp-reference-modeling/references/closed-space-hard-finish.md",
+  "references": []
+}

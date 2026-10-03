@@ -1,0 +1,16 @@
+{
+  "handoff_id": "TWV3_P05_E6_20260903_204138",
+  "case_id": "TWV3_P05",
+  "method": "ECO-Lattice结构自适应遮挡补全",
+  "stage": "E6",
+  "handoff_kind": "eco_lattice_completed",
+  "analysis_method": "eco_lattice_E6_completed",
+  "algorithm_version": "eco_lattice_v0.8_occluder_illumination_router_prototype",
+  "source_output_dir": "/Users/san/Desktop/text to bim/传统窗棂实验_阶段1至4_20260823/12_ECO-Lattice_多先验遮挡补全_开发验证_不覆盖旧结果/TWV3_P05/20260903_204121_349000",
+  "application_validation": {
+    "status": "accepted_for_downstream_reconstruction",
+    "note": "M_completed用于2.5D建模终检；青色观察与橙色推断应在建模前复查。",
+    "scope": "应用验收，不等同于论文精度验证"
+  },
+  "created_at": "2026-09-03T20:41:38+0800"
+}

@@ -1,0 +1,38 @@
+{
+  "status": "researched_with_codex_web_fallback",
+  "question": "Beijing University of Civil Engineering and Architecture Daxing Campus Building 7, Floor 2 student dormitory interior",
+  "identity_check": {
+    "target": "北京建筑大学大兴校区7号楼2层学生公寓",
+    "verdict": "plan_identity_supported_context_only",
+    "reason": "The uploaded fire plan is the authoritative source for this floor layout. Public web sources confirm the university and Daxing campus context, but do not provide a reliable public source for Building 7 exact interiors."
+  },
+  "sources": [
+    {
+      "title": "北京建筑大学官网：学校简介",
+      "url": "https://www.bucea.edu.cn/gbxxgk/gbxxjj/459bf36ded834a8b9ebbe5fc9e6296fa.htm",
+      "supports": "BUCEA identity and Daxing campus address"
+    },
+    {
+      "title": "北京建筑大学国际交流页面：校园生活",
+      "url": "https://idri.bucea.edu.cn/lxjd/xysh_lxjd/400a963e3d824475bb2f36309bf987bd.htm",
+      "supports": "student accommodation and campus living context"
+    },
+    {
+      "title": "BUCEA English introduction PDF",
+      "url": "https://english.bucea.edu.cn/docs/2025-07/0dc7c48622cc44c2ba2daf5f77c3de7c.pdf",
+      "supports": "Daxing campus and general student dormitory room context"
+    },
+    {
+      "title": "User supplied fire plan",
+      "path": "E:\\app\\condex_project\\Test_to_3D\\test0022.jpg",
+      "supports": "Floor 2 corridor, rooms 202-236, stair cores, elevator core, doors, route and exit marker"
+    }
+  ],
+  "plan_reading": {
+    "layout": "long central corridor with rooms on both sides",
+    "room_labels": ["202", "203", "204", "205", "206", "207", "208", "209", "210", "211", "212", "213", "214", "215", "216", "217", "218", "219", "220", "221", "222", "223", "224", "225", "226", "227", "228", "230", "232", "234", "236"],
+    "vertical_connections": ["west stair", "east stair", "elevator group near east-middle"],
+    "evacuation": "red dashed route follows the corridor toward the marked exit"
+  },
+  "inference_policy": "Use the plan for topology and circulation. Infer concept dimensions, room fit-out, window treatment and materials; do not present them as measured facts."
+}

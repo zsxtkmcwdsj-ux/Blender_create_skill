@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Text to 3D Blender - 建筑空间自动生成工作流复盘</title>
+  <style>
+    :root{
+      --bg:#f5f7fb;--paper:#fff;--ink:#172033;--muted:#667085;--line:#d9e2ef;
+      --blue:#2457d6;--cyan:#0e8795;--green:#147a56;--amber:#ad6b12;--red:#b42338;
+      --nav:#0f284a;--shadow:0 18px 52px rgba(19,36,66,.10);--radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC","Segoe UI",Arial,sans-serif;line-height:1.7}
+    a{color:inherit;text-decoration:none}
+    header{position:sticky;top:0;z-index:5;background:rgba(245,247,251,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+    .top{width:min(1180px,calc(100% - 40px));margin:auto;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font-weight:900;color:var(--nav)}
+    .nav{display:flex;gap:8px;flex-wrap:wrap}
+    .nav a{font-size:13px;font-weight:800;color:#344054;padding:8px 10px;border-radius:10px}
+    .nav a:hover,.nav a.active{background:#e9eef8;color:var(--blue)}
+    main{width:min(1180px,calc(100% - 40px));margin:auto;padding:34px 0 70px}
+    .hero{display:grid;grid-template-columns:1fr .9fr;gap:24px;align-items:center;background:linear-gradient(135deg,#0f284a,#174f7c 58%,#0f8790);color:#fff;border-radius:28px;padding:42px;box-shadow:var(--shadow);overflow:hidden}
+    .eyebrow{display:inline-block;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:900}
+    h1{font-size:42px;line-height:1.18;margin:18px 0 14px;letter-spacing:0}
+    .hero p{font-size:17px;color:rgba(255,255,255,.82);margin:0}
+    .hero img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:18px;background:#111;box-shadow:0 18px 42px rgba(0,0,0,.25)}
+    section{margin-top:30px}
+    .section-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:16px}
+    .kicker{font-size:13px;font-weight:900;color:var(--blue);letter-spacing:.5px}
+    h2{font-size:30px;line-height:1.25;margin:4px 0 0;color:var(--nav)}
+    .desc{max-width:660px;color:var(--muted);margin:0}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px}
+    .metric small{font-weight:800;color:var(--muted)}
+    .metric strong{display:block;font-size:34px;line-height:1.15;color:var(--nav);margin:8px 0 4px}
+    .metric span,.card p,.card li{color:var(--muted)}
+    .card h3{margin:0 0 10px;color:var(--nav);font-size:20px}
+    .card ul{margin:0;padding-left:20px}
+    .card li{margin:6px 0}
+    .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+    .phase{position:relative}
+    .phase:before{content:attr(data-no);display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--nav);color:#fff;font-weight:900;margin-bottom:10px}
+    .phase strong{display:block;color:var(--nav);font-size:17px;margin-bottom:6px}
+    .phase p{margin:0;color:var(--muted);font-size:14px}
+    .flow{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+    .step{background:#fff;border:1px solid var(--line);border-radius:15px;padding:16px 12px;text-align:center;min-height:124px;display:flex;flex-direction:column;justify-content:center;box-shadow:0 10px 24px rgba(19,36,66,.06)}
+    .step b{color:var(--nav)}
+    .step span{display:block;color:var(--muted);font-size:13px;margin-top:6px}
+    .deep-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:18px}
+    .principle h3{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+    .num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:9px;background:#e9f3ff;color:var(--blue);font-size:14px;font-weight:900;flex:0 0 auto}
+    .principle p{margin:0 0 10px}
+    .principle dl{margin:0;display:grid;grid-template-columns:70px 1fr;gap:6px 10px;font-size:14px}
+    .principle dt{font-weight:900;color:var(--nav)}
+    .principle dd{margin:0;color:var(--muted)}
+    .prompt-box{background:#101828;color:#d7e3f0;border-radius:14px;padding:18px;box-shadow:var(--shadow);border:1px solid #253044}
+    .prompt-box h3{margin:0 0 10px;color:#fff}
+    .prompt-box ol{margin:0;padding-left:22px}
+    .prompt-box li{margin:7px 0;color:#d7e3f0}
+    .mapping{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+    .mini-note{background:#f0f7ff;border:1px solid #cfe4ff;border-radius:14px;padding:16px;color:#38516f}
+    .status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+    .status-card{border-radius:14px;border:1px solid var(--line);background:#fff;padding:16px}
+    .status-card strong{display:block;color:var(--nav);font-size:17px;margin-bottom:6px}
+    .status-card p{margin:0;color:var(--muted)}
+    .status-card.done{border-top:5px solid var(--green)}
+    .status-card.bridge{border-top:5px solid var(--amber)}
+    .status-card.next{border-top:5px solid var(--blue)}
+    .image-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:18px}
+    figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow)}
+    figure img{display:block;width:100%;border-radius:13px;background:#e8edf5;object-fit:cover}
+    figure figcaption{margin-top:10px;text-align:center;color:var(--muted);font-size:13px}
+    .main-img{aspect-ratio:16/10}.side-img{aspect-ratio:16/9}
+    .module{border-top:5px solid var(--blue)}
+    .module.indoor{border-color:var(--green)}
+    .module.outdoor{border-color:var(--cyan)}
+    .badge{display:inline-flex;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:900;background:#eef4ff;color:var(--blue);margin-bottom:10px}
+    .badge.green{background:#ecfdf3;color:var(--green)}
+    .badge.cyan{background:#ecfeff;color:var(--cyan)}
+    table{width:100%;border-collapse:collapse;min-width:760px;background:#fff}
+    th,td{border-bottom:1px solid var(--line);padding:14px;text-align:left;vertical-align:top}
+    th{background:#eef3fa;color:var(--nav)}
+    td:first-child{font-weight:900;color:var(--nav)}
+    .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .quote{background:linear-gradient(135deg,#0f284a,#174f7c 62%,#0f8790);color:#fff;border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+    .quote p{margin:0;color:rgba(255,255,255,.84);font-size:17px}
+    .paths{font-family:Consolas,"SFMono-Regular",monospace;background:#101828;color:#d7e3f0;border-radius:14px;padding:16px;overflow:auto;font-size:13px}
+    @media(max-width:1000px){.hero,.image-grid,.grid-2,.deep-grid,.mapping{grid-template-columns:1fr}.grid-4,.grid-3,.status-grid{grid-template-columns:repeat(2,1fr)}.timeline,.flow{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:640px){.top{width:calc(100% - 24px);height:auto;padding:12px 0;display:block}.nav{margin-top:8px}main{width:calc(100% - 24px);padding-top:18px}.hero{padding:26px;border-radius:22px}h1{font-size:31px}.grid-4,.grid-3,.timeline,.flow,.status-grid{grid-template-columns:1fr}.section-head{display:block}.desc{margin-top:8px}.principle dl{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div class="brand">Text to 3D Blender 工作流复盘</div>
+    <nav class="nav">
+      <a href="workflow_studio.html">生成工作台</a>
+      <a href="lattice_studio.html">窗棂研究台</a>
+      <a href="text_to_3d_blender.html" class="active">工作流复盘</a>
+      <a href="model_showcase.html">模型展示台</a>
+      <a href="#change">迭代变化</a>
+      <a href="#workflow">自动化链路</a>
+      <a href="#quality">质量门</a>
+    </nav>
+  </div>
+</header>
+<main>
+  <div class="hero">
+    <div>
+      <span class="eyebrow">从一句话需求到可查看的 3D 建筑</span>
+      <h1>这套流程解决的是：怎样让文字需求真正变成 Blender 模型。</h1>
+      <p>用户只需要说清楚想做什么建筑或空间。系统会先去找资料，再把有用信息整理成资料包，最后写成一份给 Blender skill 执行的“建模说明”。祈年殿这次实验，就是从粗糙轮廓一步步变成可展示模型的完整过程。</p>
+    </div>
+    <img src="outputs/qiniandian_realistic/qiniandian_realistic_preview.png" alt="祈年殿最终整体预览">
+  </div>
+
+  <section>
+    <div class="grid-4">
+      <div class="card metric"><small>细节丰富度</small><strong>3670</strong><span>模型里已经包含屋顶、栏杆、楼梯、门窗、斗拱、牌匾和彩画等大量独立构件。</span></div>
+      <div class="card metric"><small>可交付内容</small><strong>模型 + 预览</strong><span>既能在 Blender 里继续编辑，也能在网页展示台里旋转查看。</span></div>
+      <div class="card metric"><small>检查结果</small><strong>已通过</strong><span>导出的 3D 模型文件已经重新打开检查，尺寸和结构没有报错。</span></div>
+      <div class="card metric"><small>本次范围</small><strong>室外外观</strong><span>只聚焦祈年殿建筑本体，没有再生成树木、人物、车辆等无关内容。</span></div>
+    </div>
+  </section>
+
+  <section id="change">
+    <div class="section-head">
+      <div><div class="kicker">迭代过程</div><h2>从粗糙轮廓到现在，主要变好了哪些地方？</h2></div>
+      <p class="desc">这次不是一次就生成成功，而是每次看结果、指出问题、再把问题变成下一轮建模要求，逐步把模型做细。</p>
+    </div>
+    <div class="timeline">
+      <div class="card phase" data-no="1"><strong>先做出轮廓</strong><p>最早只是大概拼出“中国地标”的样子，能看出方向，但建筑特征不够真实。</p></div>
+      <div class="card phase" data-no="2"><strong>聚焦一个目标</strong><p>后来只做祈年殿一个建筑，优先保证三重屋顶、红柱、白色台基这些一眼能认出的特征。</p></div>
+      <div class="card phase" data-no="3"><strong>补齐建筑结构</strong><p>继续加入圆形台基、外圈栏杆、格扇门窗、柱脚柱帽、檐下构件和中心牌匾。</p></div>
+      <div class="card phase" data-no="4"><strong>增加真实材质</strong><p>给石材、红漆木作、蓝色琉璃瓦、金色线脚和地面铺装加入颜色、粗糙度和细节变化。</p></div>
+      <div class="card phase" data-no="5"><strong>修正明显问题</strong><p>发现楼梯和栏杆关系不对后，重新做了栏杆开口、真实踏步、侧边栏杆和中心坡道。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="image-grid">
+      <figure><img class="main-img" src="outputs/qiniandian_realistic/qiniandian_terrace_detail.png" alt="修正后的楼梯与台基"><figcaption>最终台基细节：楼梯开口、踏步、侧栏杆和中心坡道已经补上。</figcaption></figure>
+      <figure><img class="side-img" src="outputs/qiniandian_realistic/qiniandian_front_facade_detail.png" alt="祈年殿正面牌匾与门窗"><figcaption>正面近景：牌匾、红漆木纹、门窗线脚和檐口阴影用于展示细节。</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="workflow">
+    <div class="section-head">
+      <div><div class="kicker">从文字到模型</div><h2>一段文字需求，是怎样变成 3D 模型的？</h2></div>
+      <p class="desc">关键不是让 Blender 直接“猜一个建筑”，而是先把资料找全、整理清楚，再把资料包转换成 Blender skill 能执行的建模说明。</p>
+    </div>
+    <div class="card">
+      <div class="flow">
+        <div class="step"><b>1. 用户输入</b><span>用户描述想做的建筑或空间，例如“做一个真实风格的祈年殿外观”。</span></div>
+        <div class="step"><b>2. 自动找资料</b><span>系统查找介绍、照片、外观特征、平面关系和可能的尺寸线索。</span></div>
+        <div class="step"><b>3. 整理资料包</b><span>把可信资料、参考图片、必须表现的特征和不确定信息分开整理。</span></div>
+        <div class="step"><b>4. 写建模说明</b><span>把资料包转换成给 Blender skill 的提示词：先做什么、必须有什么、不能错什么。</span></div>
+        <div class="step"><b>5. 分阶段建模</b><span>Blender skill 按说明生成体量、结构、细节、材质、灯光和相机。</span></div>
+        <div class="step"><b>6. 多角度查看</b><span>不只看一张效果图，还要看整体、近景和容易出错的地方。</span></div>
+        <div class="step"><b>7. 导出检查</b><span>保存可编辑模型，导出网页可看的模型文件，并重新打开检查。</span></div>
+      </div>
+    </div>
+
+    <div class="deep-grid">
+      <div class="card principle">
+        <h3><span class="num">1</span>需求解析：先把一句话变成“任务边界”</h3>
+        <p>用户的原话通常很短，比如“做一个真实风格的祈年殿外观”。系统首先要判断这句话里哪些是必须遵守的边界。</p>
+        <dl>
+          <dt>输入</dt><dd>用户的一段自然语言需求。</dd>
+          <dt>原理</dt><dd>把模糊描述拆成目标对象、生成范围、风格要求和交付方式。</dd>
+          <dt>输出</dt><dd>例如：目标是祈年殿；只做外观；不要室内；风格要偏现实；最终要能展示 3D 模型。</dd>
+        </dl>
+      </div>
+      <div class="card principle">
+        <h3><span class="num">2</span>自动调研：不是随便搜图，而是找“能约束模型”的信息</h3>
+        <p>调研的目的不是堆资料，而是让模型少瞎猜。真正有用的是能影响建模决策的信息。</p>
+        <dl>
+          <dt>输入</dt><dd>目标名称、地点、建筑类型、室内或室外范围。</dd>
+          <dt>原理</dt><dd>优先找官方介绍、百科资料、正面照片、侧面照片、屋顶照片、入口照片、材质和尺寸线索。</dd>
+          <dt>输出</dt><dd>一组参考资料：哪些特征确认可信，哪些只是推测，哪些信息没有找到。</dd>
+        </dl>
+      </div>
+      <div class="card principle">
+        <h3><span class="num">3</span>资料包整理：把资料变成“可建模清单”</h3>
+        <p>找到资料之后，还要把它翻译成 Blender 能用的语言。照片本身不能直接变成模型，必须先变成构件、材质和检查项。</p>
+        <dl>
+          <dt>输入</dt><dd>文字资料、参考图片、用户反馈、前一版模型的问题。</dd>
+          <dt>原理</dt><dd>把资料分成四类：必须出现的特征、建议表现的细节、不能出现的错误、不确定但可合理近似的部分。</dd>
+          <dt>输出</dt><dd>例如：必须有三重蓝瓦屋顶、红柱、白色台基、圆形栏杆、楼梯开口；不能加无关树木。</dd>
+        </dl>
+      </div>
+      <div class="card principle">
+        <h3><span class="num">4</span>提示词生成：把资料包变成 Blender skill 的“施工说明”</h3>
+        <p>这是最关键的一步。Blender skill 真正执行的不是网页上的展示文案，而是一份结构化提示词。它会告诉 skill 按什么顺序建、重点做什么、怎样验收。</p>
+        <dl>
+          <dt>输入</dt><dd>任务边界、资料包、构件清单、材质要求、质量检查项。</dd>
+          <dt>原理</dt><dd>提示词不能只写“真实一点”，而要写成分阶段的建模任务书。</dd>
+          <dt>输出</dt><dd>一份可执行的 Blender 建模说明，交给 skill 生成模型、材质、灯光、相机和导出文件。</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="mapping">
+      <div class="prompt-box">
+        <h3>给 Blender skill 的提示词，通常要包含这些部分</h3>
+        <ol>
+          <li><b>目标说明：</b>这次要生成什么，例如“祈年殿外观，现实风格，只做建筑本体”。</li>
+          <li><b>资料依据：</b>哪些特征来自参考资料，哪些只是合理推断。</li>
+          <li><b>必须出现：</b>三重屋顶、圆形台基、红柱、蓝瓦、栏杆、楼梯、牌匾、门窗等。</li>
+          <li><b>生成顺序：</b>先整体体量，再结构连接，再细节构件，再材质，最后灯光和相机。</li>
+          <li><b>材质要求：</b>石材要有粗糙度，红柱要像漆木，蓝瓦要有高光，金色线脚要区分出来。</li>
+          <li><b>禁止事项：</b>不要无关树木，不要漂浮屋顶，不要栏杆穿过楼梯，不要用纯色块冒充真实材质。</li>
+          <li><b>检查视角：</b>必须输出整体视角、檐口近景、正面近景、楼梯台基近景。</li>
+          <li><b>交付要求：</b>保存可编辑模型，导出网页可看的模型，并重新打开检查。</li>
+        </ol>
+      </div>
+      <div class="card principle">
+        <h3>为什么提示词这么重要？</h3>
+        <p>因为 Blender skill 更像一个会执行步骤的建模助手，而不是只看一句话就能自动猜对所有细节的魔法按钮。提示词越像“施工说明”，模型就越稳定。</p>
+        <dl>
+          <dt>太短时</dt><dd>只写“生成真实祈年殿”，模型容易只做出大概轮廓，楼梯、栏杆、材质都可能粗糙。</dd>
+          <dt>结构化后</dt><dd>写清楚体量、构件、材质、顺序和检查项，skill 才知道哪里必须细做。</dd>
+          <dt>本次经验</dt><dd>楼梯问题就是靠提示词和质量检查共同修正的：不是说“加楼梯”，而是要求踏步、平台、栏杆开口和台基连接都必须真实存在。</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="mini-note">
+      简单理解：前面的“自动调研”和“资料包整理”，不是独立步骤；它们最终都会服务于提示词。资料包负责告诉系统“应该相信什么”，提示词负责告诉 Blender skill“应该怎么建”。这两步连起来，文本需求才会稳定变成 3D 模型。
+    </div>
+  </section>
+
+  <section id="modules">
+    <div class="section-head">
+      <div><div class="kicker">两类生成目标</div><h2>为什么要分成“室外建筑”和“室内空间”两类？</h2></div>
+      <p class="desc">室外和室内需要关注的内容完全不同。用户选择目标类型后，系统会自动切换调研重点、资料包内容和给 Blender skill 的建模说明。</p>
+    </div>
+    <div class="grid-2">
+      <div class="card module outdoor">
+        <span class="badge cyan">室外建筑</span>
+        <h3>室外建筑模块</h3>
+        <ul>
+          <li>先确认建筑是谁、长什么样、最有辨识度的外观特征是什么。</li>
+          <li>重点收集外立面、屋顶、入口、台基、门窗、栏杆、牌匾等参考资料。</li>
+          <li>建模时先做整体轮廓，再补屋顶、柱廊、楼梯、栏杆、门窗和细节装饰。</li>
+          <li>材质要能看出石材、木作、金属、瓦面、玻璃或混凝土的差异。</li>
+          <li>检查时既要远看能认出建筑，也要近看楼梯、栏杆、门窗不穿帮。</li>
+        </ul>
+      </div>
+      <div class="card module indoor">
+        <span class="badge green">室内空间</span>
+        <h3>室内空间模块</h3>
+        <ul>
+          <li>先确认房间用途、人数、主要活动、动线和需要哪些家具设备。</li>
+          <li>重点收集平面图、室内照片、家具尺度、采光方式和材料搭配。</li>
+          <li>建模时先做地面、墙体、天花和真实门窗洞口，再放家具和灯具。</li>
+          <li>材质要能区分地板、墙漆、木饰面、织物、玻璃、金属和灯光效果。</li>
+          <li>检查时要看空间能不能走通，门窗是不是洞口，家具比例是否合理。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="quality">
+    <div class="section-head">
+      <div><div class="kicker">结果检查</div><h2>为什么生成完还要检查？</h2></div>
+      <p class="desc">有些模型看起来“有这个东西”，但其实结构关系是错的。比如有楼梯，不代表楼梯真的连上了台基；有栏杆，也不代表栏杆给入口留了开口。</p>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>检查项</th><th>室外建筑看什么</th><th>室内空间看什么</th></tr></thead>
+        <tbody>
+          <tr><td>结构是否接上</td><td>楼梯要接到台基，栏杆要给入口留开口，屋顶和墙体不能像漂浮的片。</td><td>门要真的通向房间，走道要能走通，家具不能堵住主要路线。</td></tr>
+          <tr><td>近景是否可信</td><td>牌匾、瓦片、柱脚、斗拱、栏杆和踏步要能经得起放大查看。</td><td>桌椅、灯具、门把手、窗框、踢脚线和插座等细节要完整。</td></tr>
+          <tr><td>材质是否像真的</td><td>石材、木作、瓦面和金属不能只是纯色块，要有粗糙度、纹理和边缘高光。</td><td>地板、墙面、织物、木纹和玻璃要有不同质感，不能都像塑料。</td></tr>
+          <tr><td>是否符合参考</td><td>地标建筑最核心的轮廓不能错，不确定的尺寸只能作为近似处理。</td><td>如果有平面图或参考照片，墙体、门窗和房间关系要优先服从资料。</td></tr>
+          <tr><td>是否方便交付</td><td>要能继续编辑，也要能在网页展示台里旋转查看，并提供整体和近景预览。</td><td>同样需要可编辑模型、网页展示模型和多角度预览，而不是只交一张效果图。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <div class="grid-3">
+      <div class="card"><h3>经验 1：真实感先来自结构</h3><p>用户说“真实风格”时，不能只换颜色和灯光。屋顶层级、门窗分隔、台基、楼梯、栏杆和檐下构件都要补上。</p></div>
+      <div class="card"><h3>经验 2：资料要变成建模要求</h3><p>调研不是为了堆链接。像祈年殿的三重蓝色琉璃瓦、红柱、白色台基和圆形平面，都要写进建模说明。</p></div>
+      <div class="card"><h3>经验 3：提示词决定执行质量</h3><p>给 Blender skill 的提示词不能只写“做真实一点”。它要说明先做整体还是细节、必须表现哪些构件、哪些错误不能出现、最后要看哪些角度。</p></div>
+    </div>
+  </section>
+
+  <section id="deliverables">
+    <div class="section-head">
+      <div><div class="kicker">交付结果</div><h2>最后交付的是什么？</h2></div>
+      <p class="desc">最终不是只交一张图片，而是一组可以继续查看、编辑和展示的结果。</p>
+    </div>
+    <div class="paths">
+      可编辑模型：qiniandian_realistic.blend<br>
+      网页展示模型：qiniandian_realistic.glb<br>
+      整体预览：qiniandian_realistic_preview.png<br>
+      正面近景：qiniandian_front_facade_detail.png<br>
+      楼梯台基近景：qiniandian_terrace_detail.png<br>
+      检查报告：glb_validation.json
+    </div>
+    <p class="desc" style="margin-top:12px"><a href="model_showcase.html">打开模型展示台，查看并旋转已生成的 GLB 模型。</a></p>
+  </section>
+
+  <section>
+    <div class="quote">
+      <p>这套工作流的核心，是把用户的自然语言需求变成一份可靠的建模说明：前面自动调研和资料整理，都是为了让最后交给 Blender skill 的提示词更具体、更有证据、更容易执行。资料包越清楚，提示词越准确，模型就越不容易变成粗糙示意。</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

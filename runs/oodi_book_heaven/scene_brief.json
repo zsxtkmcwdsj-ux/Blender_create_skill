@@ -1,0 +1,64 @@
+{
+  "mode": "concept_spatial_modeling",
+  "target_verification": {
+    "building_identity": "high",
+    "floor_identity": "medium",
+    "visual_relevance": "high",
+    "verdict": "building_match_only",
+    "reason": "Official ALA and Oodi pages identify the building, three-level concept, top-floor Book Heaven, Citizens' Balcony, arching wood volume, undulating ceiling, and double-helix stair. Exact camera-area dimensions and furniture placement remain inferred."
+  },
+  "scene_goal": "A complete concept interior of Helsinki Central Library Oodi's top-floor Book Heaven reading room, emphasizing the quiet open reading landscape and its public balcony edge.",
+  "spaces": [
+    {"name": "Book Heaven open reading room", "type": "common_area", "confidence": "confirmed"},
+    {"name": "Citizens' Balcony edge", "type": "common_area", "confidence": "confirmed"},
+    {"name": "Curved wooden service / book volume", "type": "service_space", "confidence": "inferred"},
+    {"name": "Double-helix stair landing", "type": "stairwell", "confidence": "confirmed"},
+    {"name": "Cafe nook", "type": "service_space", "confidence": "confirmed"},
+    {"name": "Children's reading oasis", "type": "common_area", "confidence": "confirmed"}
+  ],
+  "relationships": [
+    "The open reading floor is the dominant central space.",
+    "The curved timber volume anchors the rear edge and visually connects down through the building.",
+    "The Citizens' Balcony runs along the glazed city-facing edge.",
+    "The double-helix stair is a vertical landmark beside the timber volume.",
+    "Reading oases and book stacks sit as islands in the open floor, while the cafe stays near the balcony edge."
+  ],
+  "visual_language": {
+    "style": "contemporary Finnish civic interior, open and calm, with an expressive curved timber spine",
+    "materials": ["warm laminated wood", "white acoustic ceiling", "clear glass", "light concrete", "muted blue and green upholstery", "brushed metal"],
+    "lighting": "cool diffuse daylight through the glazed facade balanced by warm pendant pools over reading islands",
+    "mood": "quiet, bright, civic, generous and slightly futuristic"
+  },
+  "must_have": [
+    "large open reading floor",
+    "curved timber volume",
+    "undulating white ceiling with circular skylights",
+    "glazed balcony edge",
+    "double-helix stair",
+    "book stacks and reading islands",
+    "small cafe nook",
+    "children's reading oasis",
+    "visible circulation path"
+  ],
+  "hard_constraints": [
+    "Keep the building identity as Oodi and the modeled scope as the top-floor reading environment.",
+    "Preserve a strong public edge: open floor toward the balcony and city view.",
+    "Use wood, glass and white acoustic surfaces as the dominant architectural language.",
+    "Do not present inferred dimensions as measured facts."
+  ],
+  "soft_constraints": [
+    "Use a 1:1 metric concept scale with a readable 28 m x 18 m selected area.",
+    "Keep furniture low-poly but make the main architectural silhouettes coherent.",
+    "Use a single hero camera that shows the timber volume, stair, reading floor and balcony together."
+  ],
+  "uncertainties": [
+    "Selected camera area and furniture arrangement are inferred.",
+    "Exact wave ceiling geometry and stair geometry are simplified for a complete concept scene."
+  ],
+  "sources": [
+    {"title": "Helsinki Central Library Oodi - ALA Architects", "url": "https://ala.fi/work/helsinki-central-library/", "channel": "official_architect"},
+    {"title": "The floors of Oodi", "url": "https://oodihelsinki.fi/en/facilities/floors/", "channel": "official_oodi"},
+    {"title": "Helsinki Central Library Oodi - European Commission", "url": "https://culture.ec.europa.eu/cultural-and-creative-sectors/architecture/living-spaces/catalogue/helsinki", "channel": "eu_architecture_catalogue"},
+    {"title": "Oodi Helsinki Central Library / ALA Architects - ArchDaily", "url": "https://www.archdaily.com/907675/oodi-helsinki-central-library-ala-architects", "channel": "secondary_plan_reference"}
+  ]
+}

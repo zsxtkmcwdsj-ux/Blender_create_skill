@@ -1,0 +1,21 @@
+# Local credentials; share the empty configuration template only.
+.env
+.env.*
+!.env.example
+
+# Local Python environments, caches, and logs.
+.venv*/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.log
+.DS_Store
+
+# Downloadable model weights exceed GitHub's regular file-size limit.
+models/*.pth
+models/*.pt
+models/*.safetensors
+
+# Blender's automatic backup files.
+*.blend[0-9]

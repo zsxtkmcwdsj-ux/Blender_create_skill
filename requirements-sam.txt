@@ -1,0 +1,8 @@
+numpy==1.26.4
+Pillow==10.4.0
+opencv-python-headless==4.10.0.84
+torch==2.2.2
+torchvision==0.17.2
+# PyPI 发行包对应 Meta 官方 Segment Anything 实现；项目运行记录中另存模型与检查点信息。
+segment-anything==1.0
+scikit-image==0.24.0

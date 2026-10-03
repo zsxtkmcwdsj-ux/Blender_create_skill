@@ -1,0 +1,80 @@
+{
+  "mode": "concept_spatial_modeling",
+  "target_verification": {
+    "building_identity": "high",
+    "floor_identity": "medium",
+    "visual_relevance": "high",
+    "verdict": "building_match_only",
+    "reason": "The official museum story and secondary plan reference agree on the I.M. Pei building, geometric roof and skylight language, white walls, glass and steel, central water courtyard, cloisters and interior-exterior continuity. The exact selected room is synthesized from these sources."
+  },
+  "scene_goal": "A complete concept interior of Suzhou Museum New Building showing one enclosed exhibition gallery, a real doorway and geometric window, a covered cloister, and a semi-open water courtyard beyond.",
+  "spaces": [
+    {"name": "Enclosed white exhibition gallery", "type": "room", "confidence": "inferred"},
+    {"name": "Central geometric entrance hall", "type": "lobby", "confidence": "confirmed"},
+    {"name": "Covered cloister", "type": "corridor", "confidence": "confirmed"},
+    {"name": "Semi-open water courtyard", "type": "common_area", "confidence": "confirmed"},
+    {"name": "Stone bridge and garden edge", "type": "common_area", "confidence": "confirmed"},
+    {"name": "Two-story stair connection", "type": "stairwell", "confidence": "confirmed"}
+  ],
+  "relationships": [
+    "The enclosed gallery is the primary room and has four walls, floor and a pitched geometric ceiling.",
+    "A thick framed doorway connects the gallery to the cloister.",
+    "The cloister is semi-enclosed and frames the courtyard rather than becoming a floating strip.",
+    "A large geometric window and glazed opening connect the hall to the water courtyard.",
+    "The courtyard is open to sky and bounded by white walls, roof edges, water and garden rocks.",
+    "The stair is attached to real floor openings and lands at the hall/courtyard edge."
+  ],
+  "visual_language": {
+    "style": "contemporary Chinese museum architecture rooted in Suzhou garden sequencing",
+    "materials": ["white plaster wall", "dark gray stone roof", "dark tile floor", "light granite", "black steel", "clear glass", "water and garden stone"],
+    "lighting": "soft daylight through geometric roof skylights and angled windows, with restrained warm gallery lighting",
+    "mood": "quiet, precise, contemplative, framed views and shifting perspectives"
+  },
+  "spatial_envelope": {
+    "mode": "mixed_closed_and_semi_open",
+    "footprint": "inferred L-shaped gallery and cloister around a rectangular water court",
+    "boundary_segments": [
+      "full-height white gallery walls",
+      "thick wall with framed doorway",
+      "angled wall with geometric window",
+      "covered cloister roof",
+      "open courtyard edge with parapet and planting",
+      "pitched geometric roof and skylight"
+    ],
+    "openings": ["gallery doorway", "hexagonal window", "glazed courtyard opening", "stair opening", "open cloister bays"],
+    "vertical_connections": ["two-story stair from lower gallery to upper landing"]
+  },
+  "must_have": [
+    "complete enclosed gallery volume",
+    "real wall thickness",
+    "door opening with frame and threshold",
+    "geometric window opening",
+    "covered cloister with columns and roof",
+    "semi-open water courtyard",
+    "pitched geometric skylight roof",
+    "two-story stair with floor landing",
+    "bridge, garden rocks and bamboo",
+    "hero interior view and cutaway overview"
+  ],
+  "hard_constraints": [
+    "Do not model furniture and props before the room envelope.",
+    "The enclosed gallery must read as a real room with continuous floor, walls and ceiling.",
+    "Every door, window, stair and courtyard connection must be a modeled opening or boundary condition.",
+    "Separate confirmed building characteristics from inferred dimensions and room arrangement."
+  ],
+  "soft_constraints": [
+    "Use a 1:1 metric concept scale with a 22 m x 18 m selected composition.",
+    "Keep the geometry low-poly but structurally legible.",
+    "Use a cutaway/section camera to prove the building envelope."
+  ],
+  "uncertainties": [
+    "The selected gallery arrangement and dimensions are inferred.",
+    "The hexagonal window and doorway are representative geometric openings, not claimed survey dimensions."
+  ],
+  "sources": [
+    {"title": "Suzhou Museum official introduction", "url": "https://www.szmuseum.com/Other/MuseumIntro", "channel": "official_museum"},
+    {"title": "Suzhou Museum: I.M. Pei Masterwork", "url": "https://artsandculture.google.com/story/hgXxr9NyQc6tKA?hl=zh-CN", "channel": "google_arts_culture"},
+    {"title": "AD Classics: Suzhou Museum", "url": "https://www.archdaily.com/894202/ad-classics-suzhou-museum-im-pei-plus-pei-partnership-architects", "channel": "secondary_plan_reference"},
+    {"title": "Suzhou Museum spatial syntax research", "url": "https://www.dpm.org.cn/Uploads/File/2024/02/21/u65d55f6fd8d83.pdf", "channel": "academic_reference"}
+  ]
+}

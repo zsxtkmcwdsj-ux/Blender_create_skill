@@ -1,0 +1,14 @@
+{
+  "case_id": "lattice_window_001",
+  "status": "analysis_complete",
+  "frame_width_mm": 1500,
+  "frame_height_mm": 1476.44,
+  "node_count": 431,
+  "edge_count": 532,
+  "confidence": 0.72,
+  "estimated_fields": [
+    "bars.width_mm",
+    "bars.depth_mm"
+  ],
+  "next_stage": "deterministic_3d_generation"
+}

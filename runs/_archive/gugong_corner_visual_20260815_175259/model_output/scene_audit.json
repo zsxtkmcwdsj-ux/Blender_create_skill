@@ -1,0 +1,29 @@
+{
+  "modeled_features": [
+    "compound_roof_and_tiles",
+    "dougong_brackets",
+    "ornamental_lattice_windows",
+    "stone_balustrade_and_stairs",
+    "plinth_wall_ground_connection"
+  ],
+  "quality_checklist": {
+    "compound_roof_and_tiles": "pass",
+    "dougong_brackets": "pass",
+    "ornamental_lattice_windows": "pass",
+    "stone_balustrade_and_stairs": "pass",
+    "plinth_wall_ground_connection": "pass",
+    "roof_close_up_failure": "pass",
+    "facade_close_up_failure": "pass",
+    "stair_close_up_failure": "pass",
+    "overview_detachment": "fail"
+  },
+  "evidence_ledger": {
+    "platform_dimensions": "confirmed",
+    "pavilion_dimensions": "confirmed",
+    "roof_type": "confirmed",
+    "dougong_count": "inferred",
+    "window_pattern": "confirmed",
+    "balustrade_motif": "confirmed",
+    "tile_color": "confirmed"
+  }
+}

@@ -1,0 +1,567 @@
+{
+  "passed": true,
+  "glb": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\suzhou_museum_new\\suzhou_museum_new.glb",
+  "blender_version": "5.1.1",
+  "object_count": 106,
+  "mesh_object_count": 106,
+  "material_count": 12,
+  "image_count": 0,
+  "light_count": 0,
+  "camera_count": 0,
+  "action_count": 0,
+  "bounds": {
+    "min": [
+      -10.140000343322754,
+      -3.5299999713897705,
+      -0.23999999463558197
+    ],
+    "max": [
+      10.140000343322754,
+      5.699999809265137,
+      5.806239604949951
+    ],
+    "dimensions": [
+      20.280000686645508,
+      9.229999780654907,
+      6.046239599585533
+    ]
+  },
+  "images": [],
+  "negative_scale_objects": [],
+  "deep_mesh_issues": [
+    {
+      "mesh": "Cube.001",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.002",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.003",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.004",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.005",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.006",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.007",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.008",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.009",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.019",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.020",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.021",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.010",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.011",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.012",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.013",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.014",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "hexagonal_window_glass_mesh",
+      "non_manifold_edges": 6,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.015",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.016",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.017",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.018",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.022",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.023",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.024",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.025",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.026",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.027",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.028",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.029",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.030",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.031",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.032",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.033",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.034",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.035",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.036",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.037",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.038",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.039",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.040",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.041",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.042",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.043",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.044",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.001",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.002",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.003",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cylinder",
+      "non_manifold_edges": 60,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.004",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.005",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.006",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cylinder.001",
+      "non_manifold_edges": 60,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.007",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.008",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.009",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cylinder.002",
+      "non_manifold_edges": 60,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.010",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.011",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.012",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cylinder.003",
+      "non_manifold_edges": 60,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.013",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.014",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.015",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cylinder.004",
+      "non_manifold_edges": 60,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.016",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.017",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Icosphere.018",
+      "non_manifold_edges": 240,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.045",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.046",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.047",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.048",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.049",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.050",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.051",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.052",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.053",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.054",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.055",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.056",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.057",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.058",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.059",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.060",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.061",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.062",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.063",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.064",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.065",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.066",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cylinder.005",
+      "non_manifold_edges": 72,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.067",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cylinder.006",
+      "non_manifold_edges": 72,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.068",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cylinder.007",
+      "non_manifold_edges": 72,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.069",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.070",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.071",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.072",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.073",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.074",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.075",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Cube.076",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Text",
+      "non_manifold_edges": 2882,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "Text.001",
+      "non_manifold_edges": 2076,
+      "zero_area_faces": 0
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "深度网格检查发现非流形边或零面积面。"
+  ]
+}

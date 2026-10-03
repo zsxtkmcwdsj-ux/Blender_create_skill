@@ -1,0 +1,38 @@
+{
+  "target": "祈年殿 / Hall of Prayer for Good Harvests",
+  "scope": "exterior only",
+  "truth_status": "Approximate, reference-informed; not survey or photogrammetry accurate.",
+  "object_count": 3670,
+  "mesh_object_count": 3662,
+  "materials": 15,
+  "modeled_features": [
+    "three concentric marble terraces",
+    "four cardinal stair sets with repeated steps",
+    "circular balustrades with posts and water spouts",
+    "24 outer columns plus symbolic inner column rings",
+    "dark timber lattice doors and gold mullions",
+    "procedural marble, lacquer, paving, gold and glazed-roof material noise/bump",
+    "painted dougong blocks under eaves",
+    "gold pinstripes and painted cloud motifs below the eaves",
+    "second-layer dougong blocks and dense lower-eave rafters",
+    "stone balustrade infill panels and center stair relief ramps",
+    "individual raised glazed tile plates on each roof tier",
+    "three stacked blue glazed roofs with radial tile ribs",
+    "gold finial and bead courses"
+  ],
+  "references": [
+    "https://whc.unesco.org/en/list/881/",
+    "https://en.wikipedia.org/wiki/Temple_of_Heaven",
+    "https://www.chinadaily.com.cn/a/201812/10/WS5c0e018ea310eff303290196.html",
+    "https://www.travelchinaguide.com/attraction/beijing/temple-of-heaven/hall-of-prayer-for-good-harvests.htm"
+  ],
+  "deliverables": {
+    "blend": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\qiniandian_realistic\\qiniandian_realistic.blend",
+    "glb": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\qiniandian_realistic\\qiniandian_realistic.glb",
+    "preview": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\qiniandian_realistic\\qiniandian_realistic_preview.png",
+    "roof_detail": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\qiniandian_realistic\\qiniandian_roof_eave_detail.png",
+    "facade_detail": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\qiniandian_realistic\\qiniandian_front_facade_detail.png",
+    "terrace_detail": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\qiniandian_realistic\\qiniandian_terrace_detail.png",
+    "stage": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\qiniandian_realistic\\stage_00_qiniandian_exterior.blend"
+  }
+}

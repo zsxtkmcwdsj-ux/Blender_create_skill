@@ -1,0 +1,27 @@
+{
+  "target": "Chinese landmark realistic exterior studies",
+  "truth_status": "Reference-informed procedural model; not survey-accurate.",
+  "landmarks": [
+    "Temple of Heaven",
+    "Forbidden City Hall",
+    "Lujiazui Skyline",
+    "Bird Nest Stadium"
+  ],
+  "objects_total": 387,
+  "mesh_objects": 382,
+  "materials": 14,
+  "deliverables": {
+    "blend": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\china_landmarks_exterior\\realistic\\china_landmarks_realistic.blend",
+    "glb": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\china_landmarks_exterior\\realistic\\china_landmarks_realistic.glb",
+    "preview": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\china_landmarks_exterior\\realistic\\china_landmarks_realistic_preview.png",
+    "historic_preview": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\china_landmarks_exterior\\realistic\\china_landmarks_historic_preview.png",
+    "modern_preview": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\china_landmarks_exterior\\realistic\\china_landmarks_modern_preview.png",
+    "stage": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\china_landmarks_exterior\\realistic\\stage_00_realistic_exterior.blend"
+  },
+  "references_used": [
+    "https://artsandculture.google.com/story/explore-the-hall-of-supreme-harmony-the-palace-museum/AwURf6njEEfMAQ?hl=en",
+    "https://govt.chinadaily.com.cn/s/202105/24/WS60ab676e498e7a02c6f6bfd5/hall-of-supreme-harmony-taihe-dian.html",
+    "https://www.otis.com/en/kw/our-company/global-projects/project-showcase/oriental-pearl-tower",
+    "https://english.shanghai.gov.cn/en-ScenicSpots/20231205/19a5f5184eca45728fd57a4d4c8efc61.html"
+  ]
+}

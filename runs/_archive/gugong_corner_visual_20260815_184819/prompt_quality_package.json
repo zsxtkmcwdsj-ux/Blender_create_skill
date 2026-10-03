@@ -1,0 +1,180 @@
+{
+  "purpose": "Convert research into explicit Blender modeling instructions, not just archived references.",
+  "identity_lock": {
+    "requested_target": "生成一个现实风格的故宫角楼外观，重点体现多层屋顶、檐口、斗拱、台基、栏杆、窗棂和屋顶瓦片细节",
+    "do_not_replace_target": true,
+    "source_count": 10
+  },
+  "build_order": [
+    "freeze target identity and source confidence",
+    "block out recognizable massing before small decoration",
+    "add structural connections and circulation details",
+    "add signature facade, roof, opening and edge details",
+    "apply separated realistic materials with roughness, noise and bump",
+    "render hero and close-up audit views before export"
+  ],
+  "detail_targets": [
+    "overall silhouette and tier proportions",
+    "base or plinth connection to the ground",
+    "entrances, doors, windows and facade rhythm",
+    "stairs with real treads, risers, landings and rail openings",
+    "guardrails split into posts, panels, caps and breaks at entrances",
+    "roof massing, eaves, ribs, tile courses, underside structure and finial details",
+    "material separation for stone, timber, roof tile, metal trim and paving"
+  ],
+  "signature_feature_rules": [
+    {
+      "name": "compound_roof_and_tiles",
+      "rules": [
+        "roof cannot be a single flat slab; use separate roof mass, eave underside, raised ridges and repeated tile plates or tile ribs",
+        "model main ridge, vertical ridges and diagonal hip ridges when the reference implies compound or hip roofs",
+        "stacked roof tiers must have visible support bodies, columns or bracket layers between tiers; no upper roof may float above empty air",
+        "add finial, ridge caps, eave trim and upturned corner emphasis when visible"
+      ],
+      "failure_check": "roof close-up fails if the roof reads as one smooth board, lacks tile/ridge hierarchy, or any tier floats without support"
+    },
+    {
+      "name": "dougong_brackets",
+      "rules": [
+        "dougong cannot be isolated cubes; build stacked bracket blocks, cantilever arms and beam seats under the eave",
+        "use at least two colors or material layers for painted bracket blocks when reference supports painted timber"
+      ],
+      "failure_check": "facade close-up fails if bracket blocks do not visually support the eave"
+    },
+    {
+      "name": "ornamental_lattice_windows",
+      "rules": [
+        "windows need recessed dark glass or interior shadow, outer frame thickness, vertical bars, horizontal bars and diagonal or ornamental bars when named",
+        "avoid one simple cross when the request mentions ornamental lattice or historical window patterns"
+      ],
+      "failure_check": "facade close-up fails if windows read as flat black rectangles with only one cross"
+    },
+    {
+      "name": "stone_balustrade_and_stairs",
+      "rules": [
+        "stairs need individual treads, risers, side cheeks, landing slabs and clear railing openings",
+        "stone balustrades need separate posts, caps, panels, relief strips and breaks at stair entrances"
+      ],
+      "failure_check": "stair close-up fails if stairs are a ramp, a single block, or if railings cross the stair opening"
+    },
+    {
+      "name": "plinth_wall_ground_connection",
+      "rules": [
+        "ground contact needs a believable base or plinth, not a floating building body",
+        "the main body, columns and plinth must physically touch or overlap through hidden support blocks; do not leave visible shadow gaps under the building",
+        "historic wall or terrace connections need visible courses, seams, edges and material separation"
+      ],
+      "failure_check": "overview fails if the building body, columns, base, wall or terrace appear detached or hovering"
+    }
+  ],
+  "material_targets": [
+    "stone",
+    "timber",
+    "roof_tile",
+    "metal",
+    "glass",
+    "fabric"
+  ],
+  "negative_constraints": [
+    "no unrelated filler objects unless requested",
+    "no white clay final material",
+    "no single-color plastic look",
+    "no floating slabs, fake painted openings or disconnected parts",
+    "no guardrail passing through stairs or entrances"
+  ],
+  "audit_views": [
+    "frontal 3/4 view showing two adjacent façades and full roof complexity",
+    "elevation view aligned to cardinal axis",
+    "low-angle ground-level view emphasizing platform and railing scale"
+  ],
+  "geometry_contract": {
+    "target_archetype": "generic_exterior_landmark",
+    "required_components": [
+      "continuous ground-contact base or plinth supporting the main body",
+      "recognizable primary body mass with real doors/windows/openings",
+      "roof system with sloped mass, eaves, ridge lines, underside support and repeated tile detail",
+      "front, roof/eave, and weak-connection audit cameras"
+    ],
+    "forbidden_shortcuts": [
+      "Do not satisfy target identity with generic boxes plus decoration.",
+      "Do not leave visible Boolean cutter objects in the exported GLB.",
+      "Do not render only close-up fragments; include a full recognizable overview."
+    ]
+  },
+  "modeling_recipe": {
+    "scale_policy": [
+      "Keep each source dimension attached to the component it describes; never reuse a base, trim or ornament dimension as a whole-building dimension.",
+      "When exact survey dimensions are missing, preserve the visible hierarchy first: base supports body, body supports roof, openings cut through their parent mass, details sit on top."
+    ],
+    "component_translation": [
+      "Translate every confirmed or inferred must-have item into named mesh groups, not adjectives in comments.",
+      "For each signature item, build at least mass, edge/trim, and repeated-detail layers before materials.",
+      "Use object names that match the architectural role so later audit can inspect the scene."
+    ],
+    "procedural_helpers_to_write": [
+      "build_roof_shell",
+      "build_ridge_and_tile_rows",
+      "build_column_grid",
+      "build_facade_openings",
+      "build_stairs_and_balustrades",
+      "build_pbr_materials",
+      "build_audit_cameras"
+    ],
+    "material_translation": [
+      "Create separate PBR-like materials for structural stone, lacquered timber, roof tile, dark openings/glass, and metal/gold trim.",
+      "Use bevels plus procedural noise/bump/color variation; do not rely on flat base colors."
+    ],
+    "camera_translation": [
+      "Render one full-building orthographic or long-lens overview that proves silhouette and ground contact.",
+      "Render close-up audit views for roof/eave, facade/openings, and stair/base connections when those features are requested."
+    ],
+    "audit_requirements": [
+      "Fail if the requested landmark cannot be recognized from the full-building overview.",
+      "Fail if named openings are not real modeled openings.",
+      "Fail if named roof or stair systems are represented only by generic blocks."
+    ]
+  },
+  "quality_standard": [
+    "focus on the requested building only; do not fill the scene with unrelated trees or decoration",
+    "lock the main silhouette, proportions and tier relationships before adding ornament",
+    "model real circulation parts: stairs need treads, risers, landings, side rails and clear railing openings",
+    "model guardrails as separate posts, panels, caps and directional breaks rather than continuous rings through entrances",
+    "add facade depth: columns, doors, lattice panels, plaques, brackets, eaves and visible joints",
+    "add roof depth: tiered masses, ribs, tile courses, eave trim, underside structure and finial details",
+    "use material variation: color, roughness, procedural noise and bump so the browser GLB is not a white clay model",
+    "render hero and close-up checks for overall shape, roof/eave detail, facade detail and stair/terrace detail",
+    "validate the exported GLB before publishing it to the model showcase"
+  ],
+  "evidence_for_prompt": [
+    {
+      "title": "角楼",
+      "url": "https://www.dpm.org.cn/explore/building/236522.html",
+      "usable_for_prompt": "紫禁城垣四隅之上的角楼，建成于明永乐十八年（1420年），清代重修。 角楼是紫禁城城池的一部分，它与城垣、城门楼及护城河同属于皇宫的防卫设施。 角楼坐落在须弥座之上，周边绕以石栏。中为方亭式，面阔进深各三间，每面8.73m，四面明间各加抱厦一间，靠近城垣外侧两面地势局促，故抱厦进深仅为1.60m，而城垣内侧的两面地势较开阔，抱厦进深加大为3.98m，平面成为中点交叉的十字形，蕴含着曲尺楼的意匠，使得角楼与城垣这两个截然不同的建筑形体，取得了有机的联系。 角楼由墩台下地面至角楼宝顶高27.50m，由多个歇山式组成复合式屋顶，覆黄琉璃瓦。上层檐为纵横相交四面显山的歇山顶，正脊交叉处置铜鎏金宝顶。檐下施单翘重昂七踩斗栱。二层檐四面各加一歇山式抱厦，四角各出一条垂脊，多角搭接相互勾连，檐下单翘单昂五踩斗栱。下层檐四面采用半坡腰檐，四角出垂脊，用围脊连贯，檐下重昂五踩斗栱。下层檐和二层檐实际上四面各是一座重檐歇山顶加垂脊集合在一起的屋顶形式。角楼梁枋饰以龙锦方心墨线大点金旋纹彩画，三交六椀菱花隔扇门和槛窗极为精致。 角楼采用减柱造做法，室内减去四根立柱扩大了利用空间面积。在房屋构架上采用扒梁式做"
+    },
+    {
+      "title": "故宫角楼的建筑智慧-新华网",
+      "url": "http://www.news.cn/politics/2021-09/11/c_1127850486.htm",
+      "usable_for_prompt": "故宫中极具特色的建筑之一，即为角楼。角楼共有4座，分别位于故宫城墙的4个转角位置，其初始功能主要用于军事瞭望及防御。史料及考古资料表明，我国多个朝代的宫城城墙上均建有角楼。如先秦古籍《考工记》的“匠人营国”部分就规定，宫墙角楼为“七雉”。《墨子》中的《备城门》《备蛾傅》等部分记载，在城墙拐角处修建防护建筑，其样式必定是重楼形式。故宫建立在元代皇宫的基础上，元皇宫被拆除之前，其城墙四角均有三层屋檐、琉璃屋顶的角楼，这在元代文学家陶宗仪所著《辍耕录》中有专门记载。故宫角楼于明永乐十八年（公元1420年）建成，至今仍保存完好。\n...\n故宫角楼有着巧夺天工的建筑艺术。从构造角度来看，它是多种类型建筑或建筑构件的“组合”：1个三重檐的四角攒尖亭、4个重檐歇山屋顶类建筑、2个单檐歇山屋顶叠加，形成了独特巧妙的结构方式。其中，三重檐、重檐、单檐分别指屋顶含有三层、两层、一层屋檐；攒尖、歇山均属于我国古建筑样式，前者是指所有屋脊汇于一点的屋顶造型，后者是指在一个四面坡屋顶上叠加一个两面坡屋顶后的屋顶造型。\n...\n这样的构造方式，充分实现了建筑功能与造型的统一。功能方面，亭在我国古代建筑中，可以作为"
+    },
+    {
+      "title": "3D打印故宫角楼 - 巨象三维北京3D打印公司",
+      "url": "http://juxiang3d.com/new/332.html",
+      "usable_for_prompt": "3D打印当真的无所不能，连故宫角楼都能造随着《上新了·故宫》《我在故宫修文物》等一批电视节目的播出，让故宫的古建筑、文物珍品在大家心中圈粉无数。加拿大华人3D打印创客“夏宁江”先生，是一名古建筑爱好者，对中国古建筑颇有研究，也用3D打印机打印过很多作品，比如《南禅寺》（点击链接查看作品）。这次，“夏宁江”先生又带来了他的3D打印新作品《故宫角楼》，利用榫卯结构进行搭建，完成了《故宫角楼》的制作，用匠心传承着中华传统文化。 3D打印当真的无所不能，连故宫角楼都能造-秀美 故宫角楼 在故宫，角楼被公认为是形制最复杂的建筑。它坐落在城墙转角处，从城墙墙脚地面到角楼顶高275米。屋顶有三层檐，共用六个歇山顶组合而成，三层檐的勾连方法各不相同，檐角层次丰富，三个屋脊共有28个翼角，16个窝角，72条脊，屋脊上的吻兽共230只。这种多角多檐、多屋脊的造型使角楼的轮廓具有参差错落之美，同时又显得端庄雄伟，气势不凡。 3D打印当真的无所不能，连故宫角楼都能造-秀美 3D打印版故宫角楼 对“夏宁江”先生和与之有相同热爱的古建筑爱好者来说，用3D打印机制作古建筑的工作极需耐心与专注力，工期冗长不说程序还繁"
+    },
+    {
+      "title": "故宫角楼的建筑智慧（匠心独运） - 中国共产党新闻网",
+      "url": "http://cpc.people.com.cn/n1/2021/0911/c64387-32224136.html",
+      "usable_for_prompt": "故宫中极具特色的建筑之一，即为角楼。角楼共有4座，分别位于故宫城墙的4个转角位置，其初始功能主要用于军事瞭望及防御。史料及考古资料表明，我国多个朝代的宫城城墙上均建有角楼。如先秦古籍《考工记》的“匠人营国”部分就规定，宫墙角楼为“七雉”。《墨子》中的《备城门》《备蛾傅》等部分记载，在城墙拐角处修建防护建筑，其样式必定是重楼形式。故宫建立在元代皇宫的基础上，元皇宫被拆除之前，其城墙四角均有三层屋檐、琉璃屋顶的角楼，这在元代文学家陶宗仪所著《辍耕录》中有专门记载。故宫角楼于明永乐十八年（公元1420年）建成，至今仍保存完好。\n...\n故宫角楼有着巧夺天工的建筑艺术。从构造角度来看，它是多种类型建筑或建筑构件的“组合”：1个三重檐的四角攒尖亭、4个重檐歇山屋顶类建筑、2个单檐歇山屋顶叠加，形成了独特巧妙的结构方式。其中，三重檐、重檐、单檐分别指屋顶含有三层、两层、一层屋檐；攒尖、歇山均属于我国古建筑样式，前者是指所有屋脊汇于一点的屋顶造型，后者是指在一个四面坡屋顶上叠加一个两面坡屋顶后的屋顶造型。\n...\n这样的构造方式，充分实现了建筑功能与造型的统一。功能方面，亭在我国古代建筑中，可以作为"
+    },
+    {
+      "title": "紫禁城角楼的传说_四九城_首都之窗_北京市人民政府门户网站",
+      "url": "https://www.beijing.gov.cn/renwen/jrbj/sjc/201703/t20170303_1874495.html",
+      "usable_for_prompt": "先说紫禁城角楼的设计精巧。从平面布局看，角楼并不像一般的楼宇殿堂为矩形，角楼是四面凸字形平面组合的多角建筑，呈“十”字相叠的曲尺形，在角楼的每一面上都可以看到7个翼角，四面合起来是28个翼角；在内部梁架结构上属于正脊纵横十字交叉，三层屋檐，72个脊，俗称“九梁十八柱七十二脊”。人们看到紫禁城角楼时，都会觉得它太精巧复杂了，一般都看不明白是怎么建起来的。以至于1956年修复西北角楼时，角楼被用苫布罩起来很长时间，很多人不解个中缘由，以为角楼拆下来装不上了，出现了“角楼被故宫的人修坏了”的传言。其实，罩起来是为防止角楼里面的文物和彩画被风吹雨淋损坏。角楼为砖木结构，没用水泥构件，全是卯榫，没用一个铁钉，显示了古代木工智慧的高超和卓越才能。正因为角楼设计如此精巧，故能在中国建筑史上占有一席之位。\n...\n再说紫禁城角楼的美妙。角楼结构优美，轮廓典雅，造型独特，多角、多檐、多山花、多屋脊，而且檐角起翘，参差错落，层层叠高，玲珑绚丽。楼顶披特制异形黄琉璃瓦，屋脊上有234只栩栩如生的吻兽，楼顶中心置铜鎏金塔式宝顶，彩色琉璃瓦和宝顶在阳光照耀下闪闪发光，蔚为壮观，非常漂亮。紫禁城角楼很高大，连城台"
+    },
+    {
+      "title": "故宫角楼琉璃瓦件样式研究",
+      "url": "http://www.sanyamuseum.com/a/3/2022/0824/1178.html",
+      "usable_for_prompt": "角楼为三重檐建筑，四面明间各接一间重檐抱厦，平面形状为一个不规则的十字形。角楼的屋面共分3层，最下面的一层是半坡式腰檐。随着平面上柱子出角和入角的变化，在这一层出现了大小20个屋面、12条角脊、8条窝角沟和12条可连接的围脊。二层檐屋顶出现较大变化，由不同坡度的28个屋面，4条正脊，2条丁字脊，12条垂脊，6条博脊，一条高低起伏的围脊，4条角脊，8条戗脊，4条直线窝角沟，4条折线窝角沟组成。上层檐屋顶随着木构架的收缩为一个正十字形，实际是两座歇山顶十字相交，形成了2条正脊、8条垂脊、4条博脊、4条金刚戗脊、8条天沟、12个屋面。两条正脊的顶端各有一大吻，正脊的交汇点处矗立1个铜制鎏金宝顶，4座正吻面朝宝顶（图1）。总的来说，角楼的屋顶琉璃瓦件类似重檐歇山屋顶的构造，但比一般重檐歇山建筑多了一些应用于窝角沟的瓦件。\n...\n角楼所使用的琉璃构件十分讲究，是明代琉璃烧制技术的杰作。在造型艺术上独具匠心，主要有以下几个特点：\n...\n首先，因角楼建在近10m高的宫墙之上，为了调整人们的视觉，上檐大吻尺寸较下檐大吻略大。如顶层的4个大吻为五样的，中层屋顶大吻与合角吻用六样的，最下面的重檐层合角"
+    }
+  ]
+}

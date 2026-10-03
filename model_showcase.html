@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <title>Blender Model Showcase</title>
+  <style>
+    :root{--bg:#050608;--panel:#10141b;--panel2:#161b23;--ink:#f6f8fb;--muted:#98a4b3;--line:#2a313d;--accent:#2dd4bf;--danger:#e05243;--shadow:0 22px 58px rgba(0,0,0,.38)}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC","Segoe UI",Arial,sans-serif;line-height:1.55;overflow:hidden}
+    a{color:inherit;text-decoration:none}button{font:inherit}
+    .global-nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 22px;border-bottom:1px solid var(--line);background:#090b0f}
+    .global-nav strong{font-size:18px}
+    .global-nav nav{display:flex;gap:8px;flex-wrap:wrap}
+    .global-nav a{font-size:14px;font-weight:800;color:var(--muted);border:1px solid var(--line);background:#11151c;border-radius:8px;padding:9px 12px}
+    .global-nav a:hover,.global-nav a.active{color:#03110f;background:var(--accent);border-color:var(--accent)}
+    .app{height:calc(100vh - 68px);display:grid;grid-template-columns:320px 1fr;min-height:0}
+    aside{border-right:1px solid var(--line);background:#090b0f;padding:18px;overflow:auto}
+    .section-title{display:flex;align-items:end;justify-content:space-between;margin-bottom:14px}
+    .section-title h2{font-size:18px;margin:0}.section-title span{font-size:12px;color:var(--muted)}
+    .filter{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px}
+    .filter button,.tool button{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;padding:9px 10px;cursor:pointer}
+    .filter button[aria-pressed="true"],.tool button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#03110f}
+    .list{display:grid;gap:10px}
+    .model-card{display:grid;grid-template-columns:86px 1fr;gap:10px;align-items:center;width:100%;text-align:left;border:1px solid var(--line);background:#11151b;border-radius:8px;padding:8px;cursor:pointer;color:var(--ink);transition:.16s ease}
+    .model-card:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,0,0,.35)}
+    .model-card[aria-selected="true"]{border-color:var(--accent);box-shadow:0 0 0 2px rgba(45,212,191,.18)}
+    .model-card img{width:86px;height:64px;object-fit:cover;border-radius:6px;background:#050608;border:1px solid #202832}
+    .model-card b{display:block;font-size:15px;line-height:1.25}.model-card span{display:block;font-size:12px;color:var(--muted);margin-top:5px}.model-card i{display:inline-block;width:8px;height:8px;border-radius:99px;background:var(--accent);margin-right:7px}
+    main{min-width:0;min-height:0;padding:18px;display:grid;grid-template-rows:auto 1fr auto;gap:14px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:14px 16px;box-shadow:var(--shadow)}
+    .title h1{font-size:25px;margin:0;line-height:1.2}.title p{margin:4px 0 0;color:var(--muted);font-size:13px}
+    .tool{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .stage{position:relative;min-height:0;border:1px solid var(--line);background:#000;border-radius:8px;overflow:hidden;box-shadow:var(--shadow)}
+    #viewerCanvas{display:block;width:100%;height:100%;background:#000}
+    .stage:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 62%,rgba(45,212,191,.11),transparent 28%)}
+    .status{position:absolute;left:16px;bottom:16px;z-index:2;max-width:560px;background:rgba(10,12,16,.82);border:1px solid var(--line);border-radius:8px;padding:10px 12px;color:var(--muted);font-size:13px}
+    .status strong{color:var(--ink)}
+    .info{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
+    .panel{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:15px;box-shadow:0 10px 28px rgba(0,0,0,.22)}
+    .panel h2{margin:0 0 8px;font-size:18px}.panel p{margin:0;color:var(--muted)}
+    .meta{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.meta div{border:1px solid var(--line);border-radius:8px;padding:10px;background:var(--panel2)}.meta small{display:block;color:var(--muted);font-weight:700}.meta b{display:block;font-size:13px;margin-top:4px;word-break:break-all}
+    @media(max-width:980px){body{overflow:auto}.app{height:auto;grid-template-columns:1fr}.global-nav{height:auto;padding:12px 14px;display:block}.global-nav nav{margin-top:10px}aside{border-right:0;border-bottom:1px solid var(--line)}.list{grid-template-columns:repeat(2,1fr)}main{height:860px}.info{grid-template-columns:1fr}}
+    @media(max-width:620px){.list,.meta{grid-template-columns:1fr}.topbar{display:block}.tool{margin-top:12px}main{padding:12px;height:780px}}
+  </style>
+</head>
+<body>
+<header class="global-nav">
+  <strong>Text to 3D Blender</strong>
+  <nav aria-label="main navigation">
+    <a href="workflow_studio.html">&#29983;&#25104;&#24037;&#20316;&#21488;</a>
+    <a href="lattice_studio.html">&#31383;&#26818;&#30740;&#31350;&#21488;</a>
+    <a href="text_to_3d_blender.html">&#24037;&#20316;&#27969;&#22797;&#30424;</a>
+    <a href="model_showcase.html" class="active">&#27169;&#22411;&#23637;&#31034;&#21488;</a>
+  </nav>
+</header>
+
+<div class="app">
+  <aside>
+    <div class="section-title"><h2>Model List</h2><span>Live GLB</span></div>
+    <div class="filter" aria-label="model filters">
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-filter="exterior" aria-pressed="false">Exterior</button>
+      <button type="button" data-filter="interior" aria-pressed="false">Interior</button>
+      <button type="button" data-filter="concept" aria-pressed="false">Concept</button>
+    </div>
+    <div class="list" id="modelList"></div>
+  </aside>
+
+  <main>
+    <section class="topbar">
+      <div class="title">
+        <h1 id="modelTitle">Qiniandian realistic exterior</h1>
+        <p>Black-background Three.js viewer. Loads real GLB, auto-rotates, supports drag, zoom and pan.</p>
+      </div>
+      <div class="tool">
+        <button type="button" id="rotateToggle" aria-pressed="true">Rotate</button>
+        <button type="button" id="resetCamera">Reset View</button>
+        <button type="button" id="openGlb">Open GLB</button>
+      </div>
+    </section>
+
+    <section class="stage" aria-label="3D model viewer">
+      <canvas id="viewerCanvas"></canvas>
+      <div class="status" id="statusBox"><strong>Loading</strong> Reading GLB model...</div>
+    </section>
+
+    <section class="info">
+      <div class="panel">
+        <h2 id="modelName">Qiniandian realistic exterior</h2>
+        <p id="modelDesc">The most complete exterior benchmark in this workspace.</p>
+      </div>
+      <div class="panel meta">
+        <div><small>Type</small><b id="modelType">Exterior architecture</b></div>
+        <div><small>GLB</small><b id="modelPath">outputs/qiniandian_realistic/qiniandian_realistic.glb</b></div>
+        <div><small>Status</small><b id="modelStatus">Loading</b></div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script type="importmap">
+{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.160.0/examples/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+
+const T = {
+  showcaseTitle: "\u6a21\u578b\u5c55\u793a\u53f0",
+  workflowStudio: "\u751f\u6210\u5de5\u4f5c\u53f0",
+  workflowReview: "\u5de5\u4f5c\u6d41\u590d\u76d8",
+  modelShowcase: "\u6a21\u578b\u5c55\u793a\u53f0",
+  modelList: "\u6a21\u578b\u5217\u8868",
+  liveGlb: "GLB \u5b9e\u65f6\u52a0\u8f7d",
+  all: "\u5168\u90e8",
+  exterior: "\u5ba4\u5916",
+  interior: "\u5ba4\u5185",
+  concept: "\u6982\u5ff5",
+  viewerHelp: "\u9ed1\u5e95 Three.js \u5c55\u793a\u53f0\uff1a\u771f\u5b9e\u52a0\u8f7d GLB\uff0c\u81ea\u52a8\u987a\u65f6\u9488\u65cb\u8f6c\uff0c\u53ef\u62d6\u62fd\u3001\u7f29\u653e\u3001\u5e73\u79fb\u3002",
+  rotate: "\u65cb\u8f6c",
+  resetView: "\u590d\u4f4d\u89c6\u89d2",
+  openGlb: "\u6253\u5f00 GLB",
+  loading: "\u52a0\u8f7d\u4e2d",
+  readingGlb: "\u6b63\u5728\u8bfb\u53d6 GLB \u6a21\u578b...",
+  type: "\u7c7b\u578b",
+  status: "\u72b6\u6001",
+  exteriorArchitecture: "\u5ba4\u5916\u5efa\u7b51",
+  interiorSpace: "\u5ba4\u5185\u7a7a\u95f4",
+  qiniandian: "\u7948\u5e74\u6bbf\u73b0\u5b9e\u98ce\u683c\u5916\u89c2",
+  qiniandianDesc: "\u5f53\u524d\u6700\u5b8c\u6574\u7684\u5ba4\u5916\u5efa\u7b51\u6837\u4f8b\uff0c\u91cd\u70b9\u5c55\u793a\u4e09\u91cd\u5c4b\u9876\u3001\u7ea2\u67f1\u3001\u53f0\u57fa\u3001\u697c\u68af\u3001\u680f\u6746\u3001\u95e8\u7a97\u3001\u6a90\u53e3\u548c\u6750\u8d28\u7ec6\u8282\u3002",
+  cornerTower: "\u6545\u5bab\u89d2\u697c\u6d41\u7a0b\u5b9e\u9a8c\u7248",
+  cornerTowerDesc: "\u901a\u7528\u6d41\u7a0b\u5b9e\u9a8c\u6a21\u578b\uff0c\u7528\u4e8e\u68c0\u67e5\u590d\u5408\u5c4b\u9876\u3001\u7409\u7483\u74e6\u3001\u6731\u7ea2\u67f1\u7a97\u3001\u83f1\u82b1\u7a97\u3001\u77f3\u680f\u6746\u3001\u53f0\u57fa\u548c\u57ce\u5899\u8fde\u63a5\u3002",
+  chinaLandmarks: "\u4e2d\u56fd\u5730\u6807\u73b0\u5b9e\u98ce\u683c\u5408\u96c6",
+  chinaLandmarksDesc: "\u65e9\u671f\u591a\u5730\u6807\u5916\u89c2\u5408\u96c6\uff0c\u7528\u4e8e\u5bf9\u6bd4\u4ece\u591a\u76ee\u6807\u7c97\u7565\u751f\u6210\u5230\u5355\u4f53\u805a\u7126\u7684\u5dee\u5f02\u3002",
+  suzhou: "\u82cf\u5dde\u535a\u7269\u9986\u65b0\u9986",
+  suzhouDesc: "\u767d\u5899\u3001\u6df1\u8272\u5c4b\u9762\u548c\u9662\u843d\u5173\u7cfb\u7684\u5efa\u7b51\u6982\u5ff5\u6a21\u578b\u3002",
+  publicSpaceDesc: "\u516c\u5171\u9605\u8bfb\u7a7a\u95f4\u6982\u5ff5\u6a21\u578b\u3002",
+  meetingRoom: "\u4f1a\u8bae\u5ba4\u786c\u88c5\u6837\u4f8b",
+  meetingRoomDesc: "\u5ba4\u5185\u786c\u88c5\u6837\u4f8b\uff0c\u7528\u4e8e\u68c0\u67e5\u5899\u4f53\u3001\u95e8\u7a97\u3001\u706f\u5149\u548c\u5bb6\u5177\u5c3a\u5ea6\u3002",
+  roomDesc: "\u623f\u95f4\u5916\u58f3\u548c\u95e8\u7a97\u6d1e\u53e3\u6821\u9a8c\u6837\u4f8b\u3002",
+  cafe: "\u4f4e\u591a\u8fb9\u5f62\u5496\u5561\u5e97",
+  cafeDesc: "\u65e9\u671f\u6982\u5ff5\u6a21\u578b\uff0c\u7528\u4f5c\u8d28\u91cf\u5bf9\u6bd4\u57fa\u7ebf\u3002",
+  dormFloor: "\u5927\u5174\u5bbf\u820d\u697c 2 \u5c42",
+  dormFloorDesc: "\u697c\u5c42\u7ea7\u7a7a\u95f4\u7ec4\u7ec7\u6a21\u578b\u3002",
+  generatedModel: "\u65b0\u751f\u6210\u6a21\u578b",
+  workflowResult: "\u5de5\u4f5c\u6d41\u751f\u6210\u7ed3\u679c",
+  liveLoading: "\u5b9e\u65f6\u52a0\u8f7d",
+  generatedDesc: "\u8fd9\u662f\u4ece\u751f\u6210\u5de5\u4f5c\u53f0\u76f4\u63a5\u8fdb\u5165\u7684 GLB \u6a21\u578b\uff0c\u53ef\u62d6\u62fd\u3001\u7f29\u653e\u3001\u65cb\u8f6c\u67e5\u770b\u3002",
+  localFileError: "\u5f53\u524d\u9875\u9762\u662f\u76f4\u63a5\u6253\u5f00\u7684\u672c\u5730\u6587\u4ef6\u3002\u8bf7\u5148\u542f\u52a8\u672c\u5730\u670d\u52a1\uff0c\u518d\u6253\u5f00 http://localhost:8765/model_showcase.html\u3002",
+  loadFailedPrefix: "GLB \u672a\u80fd\u8fdb\u5165 Three.js \u573a\u666f\u3002\u8def\u5f84\uff1a",
+  errorPrefix: "\u9519\u8bef\uff1a",
+  reading: "\u6b63\u5728\u8bfb\u53d6",
+  largeFile: "\u5927\u6a21\u578b\u6587\u4ef6\u53ef\u80fd\u9700\u8981\u4e00\u4e9b\u65f6\u95f4\u3002",
+  loaded: "\u5df2\u52a0\u8f7d",
+  loadedHelp: "\u8fd9\u662f\u5b9e\u65f6 3D \u6a21\u578b\uff0c\u4e0d\u662f\u9759\u6001\u9884\u89c8\u56fe\u3002\u5de6\u952e\u62d6\u62fd\u65cb\u8f6c\uff0c\u6eda\u8f6e\u7f29\u653e\uff0c\u53f3\u952e\u5e73\u79fb\u3002",
+  loadFailed: "\u52a0\u8f7d\u5931\u8d25"
+};
+
+function applyChineseUi(){
+  document.title = T.showcaseTitle;
+  const navLinks = document.querySelectorAll(".global-nav nav a");
+  [T.workflowStudio, T.workflowReview, T.modelShowcase].forEach((text, index) => {
+    if (navLinks[index]) navLinks[index].textContent = text;
+  });
+  document.querySelector(".section-title h2").textContent = T.modelList;
+  document.querySelector(".section-title span").textContent = T.liveGlb;
+  document.querySelector('[data-filter="all"]').textContent = T.all;
+  document.querySelector('[data-filter="exterior"]').textContent = T.exterior;
+  document.querySelector('[data-filter="interior"]').textContent = T.interior;
+  document.querySelector('[data-filter="concept"]').textContent = T.concept;
+  document.querySelector(".title p").textContent = T.viewerHelp;
+  document.getElementById("rotateToggle").textContent = T.rotate;
+  document.getElementById("resetCamera").textContent = T.resetView;
+  document.getElementById("openGlb").textContent = T.openGlb;
+  fields.statusBox.innerHTML = `<strong>${T.loading}</strong> ${T.readingGlb}`;
+  document.querySelectorAll(".meta small")[0].textContent = T.type;
+  document.querySelectorAll(".meta small")[2].textContent = T.status;
+}
+
+const models = [
+  {id:"qiniandian",name:T.qiniandian,type:T.exteriorArchitecture,group:"exterior",status:"PBR \u6750\u8d28\u5df2\u4fee\u6b63",src:"outputs/qiniandian_realistic/qiniandian_realistic.glb?v=pbr3",thumb:"outputs/qiniandian_realistic/qiniandian_realistic_preview.png",desc:T.qiniandianDesc},
+  {id:"forbidden-corner-tower",name:T.cornerTower,type:T.exteriorArchitecture,group:"exterior",status:"GLB \u6821\u9a8c\u901a\u8fc7",src:"runs/forbidden_city_corner_tower_trial/model_output/forbidden_city_corner_tower.glb?v=structural-support",thumb:"runs/forbidden_city_corner_tower_trial/model_output/forbidden_city_corner_tower_preview.png",desc:T.cornerTowerDesc},
+  {id:"china-realistic",name:T.chinaLandmarks,type:T.exteriorArchitecture,group:"exterior",status:"\u7a0b\u5e8f\u6750\u8d28\u9884\u89c8",src:"outputs/china_landmarks_exterior/realistic/china_landmarks_realistic.glb",thumb:"outputs/china_landmarks_exterior/realistic/china_landmarks_realistic_preview.png",desc:T.chinaLandmarksDesc},
+  {id:"suzhou",name:T.suzhou,type:"\u5ba4\u5916\u6982\u5ff5",group:"concept",status:"\u6982\u5ff5\u6750\u8d28",src:"outputs/suzhou_museum_new/suzhou_museum_new.glb",thumb:"outputs/suzhou_museum_new/suzhou_museum_new_preview.png",desc:T.suzhouDesc},
+  {id:"oodi",name:"Oodi Book Heaven",type:"\u516c\u5171\u7a7a\u95f4\u6982\u5ff5",group:"concept",status:"\u6982\u5ff5\u6750\u8d28",src:"outputs/oodi_book_heaven/oodi_book_heaven.glb",thumb:"outputs/oodi_book_heaven/oodi_book_heaven_preview.png",desc:T.publicSpaceDesc},
+  {id:"meeting-room",name:T.meetingRoom,type:T.interiorSpace,group:"interior",status:"\u57fa\u7840 PBR \u6750\u8d28",src:"outputs/meeting_room_demo/meeting_room_demo.glb",thumb:"outputs/meeting_room_demo/meeting_room_demo_preview.png",desc:T.meetingRoomDesc},
+  {id:"bucea-room",name:"BUCEA 218 \u5bbf\u820d\u623f\u95f4",type:T.interiorSpace,group:"interior",status:"\u57fa\u7840 PBR \u6750\u8d28",src:"outputs/bucea_room218_shell/bucea_room218_shell.glb",thumb:"outputs/bucea_room218_shell/bucea_room218_shell_preview.png",desc:T.roomDesc},
+  {id:"cafe",name:T.cafe,type:"\u6982\u5ff5\u7a7a\u95f4",group:"concept",status:"\u65e9\u671f\u4f4e\u591a\u8fb9\u5f62\u6750\u8d28",src:"outputs/cafe_concept_final/low_poly_cafe.glb",thumb:"outputs/cafe_concept_final/low_poly_cafe_preview.png",desc:T.cafeDesc},
+  {id:"dorm-floor",name:T.dormFloor,type:"\u5efa\u7b51\u7a7a\u95f4\u6982\u5ff5",group:"concept",status:"\u6982\u5ff5\u6750\u8d28",src:"outputs/bucea_daxing_dorm7_floor2/bucea_daxing_dorm7_floor2.glb",thumb:"outputs/bucea_daxing_dorm7_floor2/bucea_daxing_dorm7_floor2_overview.png",desc:T.dormFloorDesc}
+];
+
+const params = new URLSearchParams(location.search);
+const customGlb = params.get("glb");
+if (customGlb) {
+  const customName = params.get("name") || T.generatedModel;
+  models.unshift({id:"generated-model",name:customName,type:T.workflowResult,group:"exterior",status:T.liveLoading,src:customGlb,thumb:params.get("thumb") || "",desc:T.generatedDesc});
+}
+
+const canvas = document.getElementById("viewerCanvas");
+const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:false, preserveDrawingBuffer:true});
+renderer.setClearColor(0x000000, 1);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.2;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x000000);
+const camera = new THREE.PerspectiveCamera(35, 1, 0.01, 2000);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.06;
+controls.target.set(0, 0, 0);
+
+scene.add(new THREE.HemisphereLight(0xe8f4ff, 0x16110b, 1.35));
+const key = new THREE.DirectionalLight(0xffffff, 3.2);
+key.position.set(18, 26, 16);
+key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+scene.add(key);
+const fill = new THREE.DirectionalLight(0x5eead4, 1.1);
+fill.position.set(-18, 10, -12);
+scene.add(fill);
+const rim = new THREE.DirectionalLight(0xd8a23a, 1.2);
+rim.position.set(0, 18, -24);
+scene.add(rim);
+
+const floor = new THREE.Mesh(new THREE.CircleGeometry(80, 160), new THREE.MeshStandardMaterial({color:0x090909, roughness:0.78, metalness:0}));
+floor.rotation.x = -Math.PI / 2;
+floor.position.y = -0.02;
+floor.receiveShadow = true;
+scene.add(floor);
+
+const loader = new GLTFLoader();
+const root = new THREE.Group();
+scene.add(root);
+let active = models[0];
+let currentModel = null;
+let autoRotate = true;
+let loadToken = 0;
+
+const fields = {
+  title: document.getElementById("modelTitle"),
+  name: document.getElementById("modelName"),
+  desc: document.getElementById("modelDesc"),
+  type: document.getElementById("modelType"),
+  path: document.getElementById("modelPath"),
+  status: document.getElementById("modelStatus"),
+  statusBox: document.getElementById("statusBox")
+};
+
+applyChineseUi();
+
+function setStatus(label, text, failed = false){
+  fields.status.textContent = label;
+  fields.statusBox.innerHTML = `<strong>${label}</strong> ${text}`;
+  fields.statusBox.style.borderColor = failed ? "var(--danger)" : "var(--line)";
+}
+
+function describeLoadError(error, item){
+  const message = error?.message || error?.target?.statusText || String(error || "unknown error");
+  if (location.protocol === "file:") return T.localFileError;
+  return `${T.loadFailedPrefix}${item.src.replace(/\?.*$/, "")}\uff1b${T.errorPrefix}${message}`;
+}
+
+function renderList(filter = "all"){
+  const list = document.getElementById("modelList");
+  list.innerHTML = "";
+  models.filter(item => filter === "all" || item.group === filter).forEach(item => {
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "model-card";
+    card.dataset.id = item.id;
+    card.setAttribute("aria-selected", item.id === active.id ? "true" : "false");
+    card.innerHTML = `<img src="${item.thumb}" alt=""><span><b><i></i>${item.name}</b><span>${item.type} / ${item.status}</span></span>`;
+    card.addEventListener("click", () => selectModel(item.id));
+    list.appendChild(card);
+  });
+}
+
+function frameObject(object){
+  const box = new THREE.Box3().setFromObject(object);
+  const size = new THREE.Vector3();
+  const center = new THREE.Vector3();
+  box.getSize(size);
+  box.getCenter(center);
+  object.position.sub(center);
+  const maxSide = Math.max(size.x, size.y, size.z) || 1;
+  object.scale.setScalar(24 / maxSide);
+  const framed = new THREE.Box3().setFromObject(object);
+  const framedSize = new THREE.Vector3();
+  framed.getSize(framedSize);
+  floor.position.y = framed.min.y - 0.04;
+  floor.scale.setScalar(Math.max(1, framedSize.x / 70, framedSize.z / 70));
+  camera.position.set(framedSize.x * 0.9 + 10, framedSize.y * 0.72 + 8, framedSize.z * 1.18 + 14);
+  controls.target.set(0, framedSize.y * 0.18, 0);
+  controls.update();
+}
+
+function prepareMaterials(object){
+  object.traverse(child => {
+    if (!child.isMesh) return;
+    child.castShadow = true;
+    child.receiveShadow = true;
+    if (child.material) {
+      child.material.side = THREE.DoubleSide;
+      child.material.needsUpdate = true;
+    }
+  });
+}
+
+function selectModel(id){
+  const item = models.find(model => model.id === id);
+  if (!item) return;
+  active = item;
+  fields.title.textContent = item.name;
+  fields.name.textContent = item.name;
+  fields.desc.textContent = item.desc;
+  fields.type.textContent = item.type;
+  fields.path.textContent = item.src.replace(/\?.*$/, "");
+  setStatus(T.loading, `${T.reading} ${item.name}\uff0c${T.largeFile}`);
+  document.querySelectorAll(".model-card").forEach(card => card.setAttribute("aria-selected", card.dataset.id === id ? "true" : "false"));
+
+  const token = ++loadToken;
+  loader.load(item.src, gltf => {
+    if (token !== loadToken) return;
+    if (currentModel) root.remove(currentModel);
+    currentModel = gltf.scene;
+    prepareMaterials(currentModel);
+    root.add(currentModel);
+    frameObject(currentModel);
+    setStatus(T.loaded, T.loadedHelp);
+  }, progress => {
+    if (token !== loadToken || !progress.total) return;
+    setStatus(T.loading, `${Math.round(progress.loaded / progress.total * 100)}%`);
+  }, error => {
+    if (token !== loadToken) return;
+    console.error(error);
+    setStatus(T.loadFailed, describeLoadError(error, item), true);
+  });
+}
+
+document.querySelectorAll(".filter button").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".filter button").forEach(item => item.setAttribute("aria-pressed", "false"));
+    button.setAttribute("aria-pressed", "true");
+    renderList(button.dataset.filter);
+  });
+});
+document.getElementById("rotateToggle").addEventListener("click", event => {
+  autoRotate = !autoRotate;
+  event.currentTarget.setAttribute("aria-pressed", String(autoRotate));
+});
+document.getElementById("resetCamera").addEventListener("click", () => currentModel && frameObject(currentModel));
+document.getElementById("openGlb").addEventListener("click", () => window.open(active.src, "_blank"));
+
+function resize(){
+  const rect = canvas.parentElement.getBoundingClientRect();
+  renderer.setSize(rect.width, rect.height, false);
+  camera.aspect = rect.width / Math.max(rect.height, 1);
+  camera.updateProjectionMatrix();
+}
+
+let last = performance.now();
+function animate(now){
+  const dt = Math.min((now - last) / 1000, 0.05);
+  last = now;
+  resize();
+  if (autoRotate && currentModel) root.rotation.y -= dt * 0.38;
+  controls.update();
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+}
+
+renderList();
+selectModel(active.id);
+requestAnimationFrame(animate);
+window.addEventListener("resize", resize);
+</script>
+</body>
+</html>

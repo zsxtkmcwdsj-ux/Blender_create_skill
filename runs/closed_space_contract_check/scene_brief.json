@@ -1,0 +1,144 @@
+{
+  "mode": "concept_spatial_modeling",
+  "envelope_model": "continuous_shell_with_explicit_openings",
+  "spatial_envelope": {
+    "mode": "semi_open",
+    "footprint": "inferred irregular polygon",
+    "boundary_segments": [
+      "floor",
+      "walls_or_glazing",
+      "ceiling_or_roof"
+    ],
+    "openings": [
+      "door",
+      "window",
+      "circulation_void"
+    ],
+    "vertical_connections": []
+  },
+  "target_verification": {
+    "building_identity": "unknown",
+    "floor_identity": "unknown",
+    "visual_relevance": "unknown",
+    "verdict": "concept_reference",
+    "reason": "未完成模型判断，以下只作为概念设计输入。"
+  },
+  "scene_goal": "single enclosed student dorm room with real walls, door opening, window opening, and basic hard finish",
+  "spaces": [
+    {
+      "name": "入口/公共大厅",
+      "type": "lobby"
+    },
+    {
+      "name": "主交通空间",
+      "type": "corridor"
+    },
+    {
+      "name": "主要公共功能区",
+      "type": "common_area"
+    }
+  ],
+  "space_contracts": [
+    {
+      "space": "入口/公共大厅",
+      "boundary_mode": "closed",
+      "floor": true,
+      "walls": [
+        "side boundaries",
+        "ceiling boundary"
+      ],
+      "ceiling": true,
+      "openings": [
+        "door to circulation"
+      ],
+      "connections": [],
+      "vertical_geometry": [],
+      "content_after_envelope": []
+    },
+    {
+      "space": "主交通空间",
+      "boundary_mode": "closed",
+      "floor": true,
+      "walls": [
+        "side boundaries",
+        "ceiling boundary"
+      ],
+      "ceiling": true,
+      "openings": [
+        "door to circulation"
+      ],
+      "connections": [],
+      "vertical_geometry": [],
+      "content_after_envelope": []
+    },
+    {
+      "space": "主要公共功能区",
+      "boundary_mode": "closed",
+      "floor": true,
+      "walls": [
+        "side boundaries",
+        "ceiling boundary"
+      ],
+      "ceiling": true,
+      "openings": [
+        "door to circulation"
+      ],
+      "connections": [],
+      "vertical_geometry": [],
+      "content_after_envelope": []
+    }
+  ],
+  "hard_finish": {
+    "required": [
+      "floor_finish",
+      "wall_finish",
+      "ceiling_finish",
+      "skirting_or_baseboard",
+      "door_window_frame_finish",
+      "threshold_or_sill",
+      "readable_room_light"
+    ],
+    "conditional": [
+      "corner_guard_or_reveal",
+      "switches_and_sockets",
+      "hvac_grille",
+      "detector_or_sprinkler",
+      "waterproofing_and_floor_drain",
+      "acoustic_or_curtain_finish"
+    ],
+    "exclude_by_default": [
+      "furniture",
+      "decorative_props",
+      "unverified_equipment"
+    ]
+  },
+  "adjacency_graph": [],
+  "relationships": [
+    "主交通空间连接入口和主要公共功能区",
+    "服务或垂直交通空间靠近公共动线"
+  ],
+  "visual_language": {
+    "style": "根据目标建筑类型做简洁的概念化表达",
+    "materials": [
+      "stone",
+      "wood",
+      "glass",
+      "metal"
+    ],
+    "lighting": "柔和的建筑展示光",
+    "mood": "清晰、开敞、可读"
+  },
+  "must_have": [
+    "入口/公共大厅",
+    "主交通空间",
+    "主要公共功能区"
+  ],
+  "soft_constraints": [
+    "不要求一比一复刻",
+    "局部尺寸和装饰允许合理发挥"
+  ],
+  "uncertainties": [
+    "未确认的具体尺寸、门洞和房间数量不得当成事实"
+  ],
+  "sources": []
+}

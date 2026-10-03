@@ -1,0 +1,42 @@
+{
+  "mode": "fire_plan_to_spatial_concept",
+  "target": "北京建筑大学大兴校区7号楼2层学生公寓",
+  "target_verification": {
+    "building_identity": "context_supported",
+    "floor_identity": "uploaded_plan_supported",
+    "exact_interior": "not_publicly_verified",
+    "verdict": "plan_authoritative_concept_model"
+  },
+  "scene_goal": "Build a complete spatial concept for the second-floor dormitory: central corridor, repeated room shells, representative room 218 interior, doors, exterior window, two stairs, elevator context and evacuation route.",
+  "spatial_envelope": {
+    "mode": "closed_rooms_with_shared_corridor",
+    "footprint": "long rectangular floor-plan segment inferred from supplied fire plan",
+    "boundary_segments": ["corridor floor", "room floors", "corridor walls", "room walls", "exterior wall", "full ceiling slabs"],
+    "openings": ["room doors to corridor", "room 218 exterior window", "stair access", "elevator doors"],
+    "vertical_connections": ["west stair core", "east stair core", "east-middle elevator core"]
+  },
+  "spaces": [
+    {"name": "central corridor", "type": "circulation", "evidence": "uploaded plan"},
+    {"name": "room 218", "type": "representative student dormitory", "evidence": "uploaded plan label; interior inferred"},
+    {"name": "rooms 216 and 220", "type": "adjacent room shells", "evidence": "uploaded plan labels"},
+    {"name": "west/east stair cores", "type": "vertical circulation", "evidence": "uploaded plan"},
+    {"name": "elevator group", "type": "vertical circulation", "evidence": "uploaded plan"}
+  ],
+  "visual_language": {"style": "quiet institutional student housing", "materials": ["painted plaster", "vinyl corridor floor", "wood dorm furniture", "blue glazing", "red fire-route cues"], "lighting": "soft daylight plus warm room lighting", "mood": "clear, lived-in, spatially legible"},
+  "must_have": ["complete floor and ceiling envelope", "corridor-to-room door opening", "room 218 window", "two stair cores", "elevator context", "representative furniture", "two camera views"],
+  "soft_constraints": ["concept dimensions only", "preserve plan topology", "keep route and circulation readable", "avoid claiming exact measured reconstruction"],
+  "space_contracts": [
+    {"space": "central corridor", "boundary_mode": "closed", "floor": true, "walls": ["south room-front boundary", "north room-front boundary", "end conditions"], "ceiling": true, "openings": ["room doors", "stair landings", "elevator doors"], "connections": ["rooms 202-236", "two stair cores", "elevator group"], "vertical_geometry": [], "content_after_envelope": ["route markings", "benches", "signage"]},
+    {"space": "room 218", "boundary_mode": "closed", "floor": true, "walls": ["two side walls", "windowed exterior wall", "door wall with head above door"], "ceiling": true, "openings": ["door to corridor", "exterior window"], "connections": ["central corridor"], "vertical_geometry": [], "content_after_envelope": ["two beds", "desk", "wardrobe", "shelf"]},
+    {"space": "stairwell", "boundary_mode": "closed", "floor": true, "walls": ["shaft enclosure"], "ceiling": true, "openings": ["corridor landing"], "connections": ["lower landing", "upper landing"], "vertical_geometry": ["two flights", "treads", "mid landing"], "content_after_envelope": ["handrail"]},
+    {"space": "elevator", "boundary_mode": "closed", "floor": true, "walls": ["shaft/core walls"], "ceiling": true, "openings": ["landing doors"], "connections": ["corridor landing"], "vertical_geometry": ["cab/shaft continuation"], "content_after_envelope": []}
+  ],
+  "adjacency_graph": [
+    {"from": "room 218", "to": "central corridor", "connection": "door", "confidence": "confirmed"},
+    {"from": "central corridor", "to": "west stairwell", "connection": "stair landing", "confidence": "confirmed"},
+    {"from": "central corridor", "to": "east stairwell", "connection": "stair landing", "confidence": "confirmed"},
+    {"from": "central corridor", "to": "elevator", "connection": "elevator landing", "confidence": "confirmed"}
+  ],
+  "uncertainties": ["no scale bar", "no room interior photos", "no verified Building 7 elevation/interior source", "room occupancy and furniture arrangement inferred"],
+  "sources": ["E:\\app\\condex_project\\Test_to_3D\\test0022.jpg", "https://www.bucea.edu.cn/gbxxgk/gbxxjj/459bf36ded834a8b9ebbe5fc9e6296fa.htm", "https://idri.bucea.edu.cn/lxjd/xysh_lxjd/400a963e3d824475bb2f36309bf987bd.htm"]
+}

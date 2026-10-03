@@ -1,0 +1,137 @@
+{
+  "passed": true,
+  "glb": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\bucea_room218_shell\\bucea_room218_shell.glb",
+  "blender_version": "5.1.1",
+  "object_count": 20,
+  "mesh_object_count": 20,
+  "material_count": 8,
+  "image_count": 0,
+  "light_count": 0,
+  "camera_count": 0,
+  "action_count": 0,
+  "bounds": {
+    "min": [
+      -1.8899999856948853,
+      -0.20999999344348907,
+      0.0
+    ],
+    "max": [
+      1.8899999856948853,
+      5.559999942779541,
+      3.0
+    ],
+    "dimensions": [
+      3.7799999713897705,
+      5.76999993622303,
+      3.0
+    ]
+  },
+  "images": [],
+  "negative_scale_objects": [],
+  "deep_mesh_issues": [
+    {
+      "mesh": "room_shell_envelope_mesh",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.003",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.004",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.005",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.006",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.007",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.008",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.009",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.012",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.002",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.010",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.011",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.001",
+      "non_manifold_edges": 24,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.013",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.014",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.015",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.016",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.017",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    },
+    {
+      "mesh": "立方体.018",
+      "non_manifold_edges": 216,
+      "zero_area_faces": 0
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "深度网格检查发现非流形边或零面积面。"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "case_id": "lattice_demo_001",
+  "generation_method": "confirmed_mask_grid_extrusion_v1",
+  "representation": "2.5D silhouette extrusion",
+  "source_mask": "/Users/san/Desktop/Blender_create_skill/runs/lattice_demo_001/vector/clean_mask.png",
+  "source_dimensions_mm": [
+    1500,
+    32.47,
+    1064.8
+  ],
+  "model_dimensions_m": [
+    1.5,
+    0.03246999904513359,
+    1.0648000240325928
+  ],
+  "mask_grid": [
+    214,
+    147
+  ],
+  "mask_grid_before_solid_crop": [
+    227,
+    161
+  ],
+  "solid_bounds_before_crop": [
+    6,
+    7,
+    219,
+    153,
+    227,
+    161
+  ],
+  "mask_sample_step": 3,
+  "solid_cells": 10768,
+  "grid": [
+    214,
+    147
+  ],
+  "vertex_count": 26424,
+  "face_count": 26470,
+  "solid_ratio": 0.3422976667302435,
+  "limitations": [
+    "单张正面照片不能恢复侧面雕刻、榫卯和真实截面",
+    "当前模型用于几何轮廓、孔隙率和初步采光遮阳实验",
+    "材质为中性预览材质，不代表历史实测材质"
+  ]
+}

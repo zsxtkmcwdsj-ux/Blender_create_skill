@@ -1,0 +1,8 @@
+{
+  "question": "做一个低多边形咖啡店室内场景，包含吧台、座位区、后厨和入口",
+  "synthesis_status": "fallback",
+  "research_file": "research.json",
+  "brief_file": "scene_brief.json",
+  "skill_prompt_file": "skill_prompt.md",
+  "references": []
+}

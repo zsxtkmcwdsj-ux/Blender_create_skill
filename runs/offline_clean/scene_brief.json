@@ -1,0 +1,53 @@
+{
+  "mode": "concept_spatial_modeling",
+  "target_verification": {
+    "building_identity": "unknown",
+    "floor_identity": "unknown",
+    "visual_relevance": "unknown",
+    "verdict": "concept_reference",
+    "reason": "未完成模型判断，以下只作为概念设计输入。"
+  },
+  "scene_goal": "做一个低多边形咖啡店室内场景，包含吧台、座位区、后厨和入口",
+  "spaces": [
+    {
+      "name": "入口/公共大厅",
+      "type": "lobby"
+    },
+    {
+      "name": "主交通空间",
+      "type": "corridor"
+    },
+    {
+      "name": "主要公共功能区",
+      "type": "common_area"
+    }
+  ],
+  "relationships": [
+    "主交通空间连接入口和主要公共功能区",
+    "服务或垂直交通空间靠近公共动线"
+  ],
+  "visual_language": {
+    "style": "根据目标建筑类型做简洁的概念化表达",
+    "materials": [
+      "stone",
+      "wood",
+      "glass",
+      "metal"
+    ],
+    "lighting": "柔和的建筑展示光",
+    "mood": "清晰、开敞、可读"
+  },
+  "must_have": [
+    "主要空间关系",
+    "主要动线",
+    "可读的入口和核心空间"
+  ],
+  "soft_constraints": [
+    "不要求一比一复刻",
+    "局部尺寸和装饰允许合理发挥"
+  ],
+  "uncertainties": [
+    "未确认的具体尺寸、门洞和房间数量不得当成事实"
+  ],
+  "sources": []
+}

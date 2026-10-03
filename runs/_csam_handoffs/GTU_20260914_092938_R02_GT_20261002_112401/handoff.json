@@ -1,0 +1,16 @@
+{
+  "handoff_id": "GTU_20260914_092938_R02_GT_20261002_112401",
+  "case_id": "GTU_20260914_092938_R02",
+  "method": "人工真值Mask",
+  "stage": "GT",
+  "handoff_kind": "manual_ground_truth",
+  "analysis_method": "manual_ground_truth_mask",
+  "algorithm_version": "manual_annotation",
+  "source_output_dir": "",
+  "application_validation": {
+    "status": "accepted_for_downstream_reconstruction",
+    "note": "人工Mask直接用于2.5D建模终检，不改变人工真值记录。",
+    "scope": "应用验收，不等同于论文精度验证"
+  },
+  "created_at": "2026-10-02T11:24:01+0800"
+}

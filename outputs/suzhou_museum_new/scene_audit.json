@@ -1,0 +1,27 @@
+{
+  "target": "Suzhou Museum New Building - closed gallery / cloister / semi-open water courtyard",
+  "truth_status": "building match only; selected room and dimensions inferred",
+  "envelope_gate": "passed: floor, walls, roof, real doorway, window, cloister and courtyard boundaries",
+  "objects_total": 113,
+  "mesh_objects": 104,
+  "materials": 14,
+  "required_features": {
+    "closed_gallery": true,
+    "continuous_floor": true,
+    "full_height_walls": true,
+    "wall_thickness": true,
+    "real_door_opening": true,
+    "geometric_window_opening": true,
+    "pitched_roof_and_skylights": true,
+    "semi_open_cloister": true,
+    "open_water_courtyard": true,
+    "floor_to_floor_stair": true,
+    "cutaway_proof_render": true
+  },
+  "deliverables": {
+    "blend": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\suzhou_museum_new\\suzhou_museum_new.blend",
+    "glb": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\suzhou_museum_new\\suzhou_museum_new.glb",
+    "hero": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\suzhou_museum_new\\suzhou_museum_new_preview.png",
+    "cutaway": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\suzhou_museum_new\\suzhou_museum_new_cutaway.png"
+  }
+}

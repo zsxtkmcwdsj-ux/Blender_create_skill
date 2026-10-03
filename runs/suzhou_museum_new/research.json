@@ -1,0 +1,67 @@
+{
+  "status": "codex_web_research",
+  "question": "Create a concept interior model of the real Suzhou Museum New Building by I.M. Pei, focusing on a white geometric exhibition gallery opening through a framed doorway and hexagonal window toward a semi-open water courtyard.",
+  "target": {
+    "building": "Suzhou Museum New Building",
+    "architect": "I.M. Pei with Pei Partnership Architects",
+    "location": "Suzhou, Jiangsu, China",
+    "completed": "2006",
+    "scope": "Main gallery / central hall / cloister / water courtyard interface"
+  },
+  "channels": {
+    "agent_reach": "unavailable in this environment; Codex web research used as the research channel",
+    "official_museum": "passed via official museum story and museum pages",
+    "google_arts_culture": "passed; official museum story mirror",
+    "secondary_plan_reference": "passed via ArchDaily AD Classics",
+    "academic_reference": "found but not used as a measurement source"
+  },
+  "sources": [
+    {
+      "title": "Suzhou Museum official introduction: Pei and Suzhou Museum",
+      "url": "https://www.szmuseum.com/Other/MuseumIntro",
+      "channel": "official_museum",
+      "evidence": [
+        "The museum describes inner courtyards as a device that connects interior and exterior space.",
+        "The new building has a main courtyard and several smaller inner courtyards."
+      ]
+    },
+    {
+      "title": "Suzhou Museum: I.M. Pei Masterwork - Google Arts & Culture",
+      "url": "https://artsandculture.google.com/story/hgXxr9NyQc6tKA?hl=zh-CN",
+      "channel": "google_arts_culture",
+      "evidence": [
+        "The museum was completed in 2006 and designed by I.M. Pei.",
+        "The entrance hall connects to other museum functions.",
+        "The hall uses a geometric roof frame with square and triangular lines.",
+        "High angled windows bring sky views into the interior.",
+        "White walls, dark roof tones, glass and steel create the visual language.",
+        "The museum includes a two-story steel stair and a water-lotus courtyard."
+      ]
+    },
+    {
+      "title": "AD Classics: Suzhou Museum / I.M. Pei + Pei Partnership Architects",
+      "url": "https://www.archdaily.com/894202/ad-classics-suzhou-museum-im-pei-plus-pei-partnership-architects",
+      "channel": "secondary_plan_reference",
+      "evidence": [
+        "The plan wraps a central water court with a rectangular building composition.",
+        "Exhibition halls are organized around cloisters and form an enclosed network around the internal courtyard.",
+        "The central hall rises through an octagonal and folded geometric roof form with natural light.",
+        "The design uses whitewashed plaster walls, dark gray roof material and garden architecture."
+      ]
+    },
+    {
+      "title": "Suzhou Museum spatial syntax research - Palace Museum academic source",
+      "url": "https://www.dpm.org.cn/Uploads/File/2024/02/21/u65d55f6fd8d83.pdf",
+      "channel": "academic_reference",
+      "evidence": [
+        "The public space is described as a courtyard-based layout where modern and historic architecture coexist.",
+        "The spatial experience is organized through movement, gardens and changing views."
+      ]
+    }
+  ],
+  "research_limits": [
+    "The selected interior zone is a concept synthesis, not an exact survey of one room.",
+    "Exact wall thicknesses, door schedule and room dimensions are inferred from public plans and photos.",
+    "The model intentionally combines a closed gallery with a semi-open courtyard edge to test the workflow rule."
+  ]
+}

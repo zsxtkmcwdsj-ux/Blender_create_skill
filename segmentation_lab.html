@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>窗棂分割实验入口</title>
+  <script>if(location.protocol==="file:")location.replace("http://127.0.0.1:8765/segmentation_lab.html")</script>
+  <style>:root{color-scheme:dark;--bg:#071018;--panel:#101c29;--line:#294055;--text:#edf5fb;--muted:#91a5b7;--accent:#2dd4bf}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}header{padding:20px 28px;border-bottom:1px solid var(--line)}main{width:min(1050px,calc(100% - 32px));margin:42px auto}.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:24px}.card h2{margin:0}.card p{color:var(--muted);min-height:74px}.card a{display:inline-block;padding:11px 16px;border-radius:10px;background:var(--accent);color:#03120f;text-decoration:none;font-weight:800}.note{margin-top:18px;color:var(--muted)}@media(max-width:760px){.cards{grid-template-columns:1fr}}</style>
+</head>
+<body><header><b>传统窗棂分割实验</b></header><main><h1>基线与论文提出方法独立运行</h1><div class="cards"><section class="card"><h2>开放词汇 SAM2 基线</h2><p>固定概念词组由 Grounding DINO 自动定位，再由 SAM2.1 输出原始对象 Mask；零训练、零点击、零人工笔刷，作为“整窗对象分割”对照。</p><a href="method_b_studio.html">进入开放词汇 SAM2</a></section><section class="card"><h2>ECO-Lattice 多先验遮挡补全</h2><p>以可见杆件证据与遮挡准入为基础，分别生成 CCC 连续曲率、TGC 拓扑图和可拒绝 SRA 对称辅助候选，再统一门控并分层保存。</p><a href="method_c_studio.html">进入 ECO-Lattice 研究台</a></section></div><p class="note">传统阈值与形态学技术为离线基线，不放入网页；人工真值保持独立，是各技术路线共用的评价标准。</p></main></body></html>

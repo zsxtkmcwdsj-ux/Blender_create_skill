@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "glb": "E:\\app\\condex_project\\Blender_create_skill\\runs\\forbidden_city_corner_tower_trial\\model_output\\forbidden_city_corner_tower.glb",
+  "blender_version": "5.1.1",
+  "object_count": 1641,
+  "mesh_object_count": 1641,
+  "material_count": 11,
+  "image_count": 0,
+  "light_count": 0,
+  "camera_count": 0,
+  "action_count": 0,
+  "bounds": {
+    "min": [
+      -26.0,
+      -26.0,
+      -0.14000000059604645
+    ],
+    "max": [
+      26.0,
+      26.0,
+      14.229999542236328
+    ],
+    "dimensions": [
+      52.0,
+      52.0,
+      14.369999542832375
+    ]
+  },
+  "images": [],
+  "negative_scale_objects": [],
+  "deep_mesh_issues": [],
+  "errors": [],
+  "warnings": []
+}

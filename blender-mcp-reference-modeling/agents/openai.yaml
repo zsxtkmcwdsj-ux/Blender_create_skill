@@ -1,0 +1,4 @@
+interface:
+  display_name: "Blender MCP Reference Modeling"
+  short_description: "基于参考图的分阶段 Blender MCP 精细建模流程"
+  default_prompt: "Use $blender-mcp-reference-modeling to build a Blender scene from approved reference drawings with visible staged checks."

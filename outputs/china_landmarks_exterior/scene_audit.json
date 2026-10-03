@@ -1,0 +1,36 @@
+{
+  "target": "China landmark exterior concept collection",
+  "truth_status": "Conceptual exterior massing, not survey-accurate reproduction.",
+  "landmarks": [
+    "Temple of Heaven",
+    "Forbidden City Hall",
+    "Oriental Pearl Tower",
+    "Shanghai Tower",
+    "CCTV Headquarters",
+    "Bird Nest Stadium",
+    "HZMB Bridge",
+    "Suzhou Museum New"
+  ],
+  "objects_total": 181,
+  "mesh_objects": 167,
+  "materials": 15,
+  "features": {
+    "exterior_only": true,
+    "no_interior_rooms": true,
+    "semantic_collections": true,
+    "editable_blend": true,
+    "glb_export": true,
+    "preview_renders": true
+  },
+  "deliverables": {
+    "blend": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\china_landmarks_exterior\\china_landmarks_exterior.blend",
+    "glb": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\china_landmarks_exterior\\china_landmarks_exterior.glb",
+    "preview": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\china_landmarks_exterior\\china_landmarks_exterior_preview.png",
+    "modern_preview": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\china_landmarks_exterior\\china_landmarks_exterior_modern_preview.png",
+    "stage_checkpoint": "E:\\app\\condex_project\\Blender_create_skill\\outputs\\china_landmarks_exterior\\stage_00_blockout.blend"
+  },
+  "limitations": [
+    "Concept exterior massing only; not survey-accurate.",
+    "Procedural Blender lighting and transparent materials may not match GLB exactly."
+  ]
+}

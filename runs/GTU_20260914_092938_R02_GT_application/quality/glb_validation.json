@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "glb": "/Users/san/Desktop/Blender_create_skill/runs/GTU_20260914_092938_R02_GT_application/model/lattice_window.glb",
+  "blender_version": "5.2.0 LTS",
+  "mesh_object_count": 1,
+  "bounds": {
+    "min": [
+      -0.75,
+      -0.0019549999851733446,
+      -0.7506800293922424
+    ],
+    "max": [
+      0.75,
+      0.0019549999851733446,
+      0.7506800293922424
+    ],
+    "dimensions": [
+      1.5,
+      0.003909999970346689,
+      1.5013600587844849
+    ]
+  },
+  "deep_mesh_issues": [
+    {
+      "object": "Lattice_Silhouette",
+      "non_manifold_edges": 39720,
+      "zero_area_faces": 0
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    "GLB 为保留硬边法线可能拆分顶点；记录非流形边供后续实体化阶段检查"
+  ]
+}

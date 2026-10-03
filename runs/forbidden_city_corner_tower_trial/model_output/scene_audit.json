@@ -1,0 +1,44 @@
+{
+  "target": "故宫角楼 / Forbidden City Corner Tower",
+  "scope": "exterior only, reference-informed procedural model",
+  "truth_status": "Approximate; based on public architectural descriptions, not survey or photogrammetry accurate.",
+  "modeled_features": [
+    "city wall corner connection and moat-facing presentation base",
+    "square xumizuo-style plinth with stone balustrade and clear stair opening",
+    "real front stair treads, side cheeks and landing",
+    "vermilion timber body with columns and recessed lattice panels",
+    "three compound yellow glazed roof tiers with cross hip-roof masses",
+    "individual raised yellow tile plates, main ridges, cross ridges, diagonal hip ridges and small ridge beasts",
+    "raised tile ribs, gold ridge lines, upturned eave emphasis and central gilded finial",
+    "green/cyan dougong bracket blocks below every roof tier",
+    "ornamental lattice windows with vertical, horizontal and diagonal bars",
+    "stone balustrade panels with relief strips and intentional stair breaks",
+    "separate stone, timber, glass, roof tile, gold and gray brick materials",
+    "hero, roof, facade and stair close-up render checks"
+  ],
+  "quality_checklist": {
+    "compound_roof_and_tiles": "pass: separate roof tiers, tile plates, ridges, eave underside and finial are modeled",
+    "dougong_brackets": "partial: stacked colored support blocks are present, but still simplified compared with true bracket geometry",
+    "ornamental_lattice_windows": "pass: windows have recesses plus vertical, horizontal and diagonal bars",
+    "stone_balustrade_and_stairs": "pass: stair treads, landing, posts, panels, relief strips and stair opening are modeled",
+    "plinth_wall_ground_connection": "pass: plinth, wall corner and ground/moat context are connected"
+  },
+  "references": [
+    "https://www.dpm.org.cn/explore/building/236522.html",
+    "https://epaper.gmw.cn/gmrb/html/2023-12/16/nw.D110000gmrb_20231216_1-10.htm",
+    "https://cpc.people.com.cn/n1/2021/0911/c64387-32224136.html",
+    "https://www.travelchinaguide.com/attraction/beijing/forbidden-city/corner-towers.htm"
+  ],
+  "object_count": 1647,
+  "mesh_object_count": 1641,
+  "materials": 13,
+  "deliverables": {
+    "blend": "E:\\app\\condex_project\\Blender_create_skill\\runs\\forbidden_city_corner_tower_trial\\model_output\\forbidden_city_corner_tower.blend",
+    "glb": "E:\\app\\condex_project\\Blender_create_skill\\runs\\forbidden_city_corner_tower_trial\\model_output\\forbidden_city_corner_tower.glb",
+    "preview": "E:\\app\\condex_project\\Blender_create_skill\\runs\\forbidden_city_corner_tower_trial\\model_output\\forbidden_city_corner_tower_preview.png",
+    "roof_detail": "E:\\app\\condex_project\\Blender_create_skill\\runs\\forbidden_city_corner_tower_trial\\model_output\\forbidden_city_corner_tower_roof_detail.png",
+    "facade_detail": "E:\\app\\condex_project\\Blender_create_skill\\runs\\forbidden_city_corner_tower_trial\\model_output\\forbidden_city_corner_tower_facade_detail.png",
+    "stair_detail": "E:\\app\\condex_project\\Blender_create_skill\\runs\\forbidden_city_corner_tower_trial\\model_output\\forbidden_city_corner_tower_stair_detail.png",
+    "stage": "E:\\app\\condex_project\\Blender_create_skill\\runs\\forbidden_city_corner_tower_trial\\model_output\\stage_00_forbidden_city_corner_tower.blend"
+  }
+}

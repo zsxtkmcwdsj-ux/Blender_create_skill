@@ -1,0 +1,46 @@
+{
+  "target": "generic meeting room concept",
+  "space_type": "bot:Space / meeting room",
+  "truth_status": "hard-finish concept shell; dimensions inferred from plan proportions",
+  "furniture_present": true,
+  "inferred_dimensions_m": {
+    "width": 6.0,
+    "depth": 8.0,
+    "height": 3.2,
+    "wall": 0.18,
+    "door_width": 1.2,
+    "door_height": 2.2,
+    "window_width": 2.8,
+    "window_height": 1.5
+  },
+  "space_contract": {
+    "continuous_shell": true,
+    "shell_object": "room_shell_envelope",
+    "floor": true,
+    "walls": [
+      "continuous left/right/front/back shell",
+      "wall above door retained",
+      "wall around window retained"
+    ],
+    "ceiling": true,
+    "openings": [
+      "door to corridor",
+      "exterior window"
+    ],
+    "interfaces": [
+      "door threshold/frame/head",
+      "window sill/frame/head"
+    ],
+    "connections": [
+      "room -> corridor by door"
+    ]
+  },
+  "missing_required_objects": [],
+  "objects_total": 34,
+  "outputs": [
+    "meeting_room_demo.blend",
+    "meeting_room_demo.glb",
+    "meeting_room_demo_preview.png",
+    "meeting_room_demo_window_preview.png"
+  ]
+}
